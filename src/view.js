@@ -22,10 +22,6 @@ import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js";
 import "@fancyapps/ui/dist/carousel/carousel.css";
 import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 
-/* eslint-disable no-console */
-console.log("Hello World! (from wpdev-wcphx-2024 block)");
-/* eslint-enable no-console */
-
 const container = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
 const options = {
 	slidesPerPage: 1,

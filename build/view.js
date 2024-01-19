@@ -146,11 +146,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-/* eslint-disable no-console */
-console.log("Hello World! (from wpdev-wcphx-2024 block)");
-/* eslint-enable no-console */
-
 const container = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
 const options = {
   slidesPerPage: 1,
