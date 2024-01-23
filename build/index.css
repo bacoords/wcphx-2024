@@ -6,6 +6,18 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-wpdev-wcphx-2024 .wp-block-media-text {
+  padding-left: 0;
+  padding-right: 0;
+}
+.wp-block-wpdev-wcphx-2024.is-selected, .wp-block-wpdev-wcphx-2024.has-child-selected {
+  row-gap: var(--wp--style--block-gap);
+  display: flex;
+  flex-direction: column;
+}
+.wp-block-wpdev-wcphx-2024.is-selected .wp-block-media-text, .wp-block-wpdev-wcphx-2024.has-child-selected .wp-block-media-text {
+  outline: 1px solid var(--wp--preset--color--contrast, #343434);
+}
 .wp-block-wpdev-wcphx-2024:not(.is-selected):not(.has-child-selected) .wp-block-media-text:not(:first-of-type) {
   display: none;
 }
