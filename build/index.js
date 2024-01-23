@@ -52,19 +52,15 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
-    className: "f-carousel"
-  });
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps)(blockProps, {
     allowedBlocks: ["core/media-text"],
     template: [["core/media-text", {
-      className: "f-carousel__slide",
       imageFill: true
     }]],
     defaultBlock: {
       name: "core/media-text",
       attributes: {
-        className: "f-carousel__slide",
         imageFill: true
       }
     },
@@ -165,9 +161,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 function save() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-      className: "f-carousel"
-    })
+    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
 }
 
@@ -243,7 +237,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpdev/wcphx-2024","version":"0.1.0","title":"Media Text Carousel","category":"media","icon":"slides","description":"Example carousel block scaffolded with Create Block tool.","example":{},"keywords":["WCPHX 2024","slider"],"supports":{"html":false,"align":["wide","full"],"spacing":{"padding":true,"margin":true},"color":{"background":true}},"textdomain":"wcphx-2024","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":["file:./style-index.css","file:./view.css"],"viewScript":"file:./view.js"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpdev/wcphx-2024","version":"0.1.0","title":"Media Text Carousel","category":"media","icon":"slides","description":"Example carousel block scaffolded with Create Block tool.","example":{},"keywords":["WCPHX 2024","slider"],"supports":{"html":false,"align":["wide","full"],"spacing":{"padding":true,"margin":true},"color":{"background":true}},"textdomain":"wcphx-2024","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

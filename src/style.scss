@@ -5,5 +5,10 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+@import "flickity";
+
 .wp-block-wpdev-wcphx-2024 {
+	.wp-block-media-text {
+		width: 100%;
+	}
 }

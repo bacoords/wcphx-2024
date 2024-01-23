@@ -1,58 +1,3477 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./node_modules/ev-emitter/ev-emitter.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ev-emitter/ev-emitter.js ***!
+  \***********************************************/
+/***/ (function(module) {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Autoplay: () => (/* binding */ c)
-/* harmony export */ });
-const e=(t,...s)=>{const n=s.length;for(let i=0;i<n;i++){const n=s[i]||{};Object.entries(n).forEach((([s,n])=>{const i=Array.isArray(n)?[]:{};var o;t[s]||Object.assign(t,{[s]:i}),"object"==typeof(o=n)&&null!==o&&o.constructor===Object&&"[object Object]"===Object.prototype.toString.call(o)?Object.assign(t[s],e(i,n)):Array.isArray(n)?Object.assign(t,{[s]:[...n]}):Object.assign(t,{[s]:n})}))}return t},t=function(e,t){return e.split(".").reduce(((e,t)=>"object"==typeof e?e[t]:void 0),t)};class s{constructor(e={}){Object.defineProperty(this,"options",{enumerable:!0,configurable:!0,writable:!0,value:e}),Object.defineProperty(this,"events",{enumerable:!0,configurable:!0,writable:!0,value:new Map}),this.setOptions(e);for(const e of Object.getOwnPropertyNames(Object.getPrototypeOf(this)))e.startsWith("on")&&"function"==typeof this[e]&&(this[e]=this[e].bind(this))}setOptions(t){this.options=t?e({},this.constructor.defaults,t):{};for(const[e,t]of Object.entries(this.option("on")||{}))this.on(e,t)}option(e,...s){let n=t(e,this.options);return n&&"function"==typeof n&&(n=n.call(this,this,...s)),n}optionFor(e,s,n,...i){let o=t(s,e);var r;"string"!=typeof(r=o)||isNaN(r)||isNaN(parseFloat(r))||(o=parseFloat(o)),"true"===o&&(o=!0),"false"===o&&(o=!1),o&&"function"==typeof o&&(o=o.call(this,this,e,...i));let a=t(s,this.options);return a&&"function"==typeof a?o=a.call(this,this,e,...i,o):void 0===o&&(o=a),void 0===o?n:o}cn(e){const t=this.options.classes;return t&&t[e]||""}localize(e,t=[]){e=String(e).replace(/\{\{(\w+).?(\w+)?\}\}/g,((e,t,s)=>{let n="";return s?n=this.option(`${t[0]+t.toLowerCase().substring(1)}.l10n.${s}`):t&&(n=this.option(`l10n.${t}`)),n||(n=e),n}));for(let s=0;s<t.length;s++)e=e.split(t[s][0]).join(t[s][1]);return e=e.replace(/\{\{(.*?)\}\}/g,((e,t)=>t))}on(e,t){let s=[];"string"==typeof e?s=e.split(" "):Array.isArray(e)&&(s=e),this.events||(this.events=new Map),s.forEach((e=>{let s=this.events.get(e);s||(this.events.set(e,[]),s=[]),s.includes(t)||s.push(t),this.events.set(e,s)}))}off(e,t){let s=[];"string"==typeof e?s=e.split(" "):Array.isArray(e)&&(s=e),s.forEach((e=>{const s=this.events.get(e);if(Array.isArray(s)){const e=s.indexOf(t);e>-1&&s.splice(e,1)}}))}emit(e,...t){[...this.events.get(e)||[]].forEach((e=>e(this,...t))),"*"!==e&&this.emit("*",e,...t)}}Object.defineProperty(s,"version",{enumerable:!0,configurable:!0,writable:!0,value:"5.0.33"}),Object.defineProperty(s,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{}});class n extends s{constructor(e,t){super(t),Object.defineProperty(this,"instance",{enumerable:!0,configurable:!0,writable:!0,value:e})}attach(){}detach(){}}const i=e=>`${e||""}`.split(" ").filter((e=>!!e)),o=(e,t)=>{e&&i(t).forEach((t=>{e.classList.add(t)}))},r="play",a="pause",l="ready";class c extends n{constructor(){super(...arguments),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:l}),Object.defineProperty(this,"inHover",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"timer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"progressBar",{enumerable:!0,configurable:!0,writable:!0,value:null})}get isActive(){return this.state!==l}onReady(e){this.option("autoStart")&&(e.isInfinite||e.page<e.pages.length-1)&&this.start()}onChange(){this.removeProgressBar(),this.pause()}onSettle(){this.resume()}onVisibilityChange(){"visible"===document.visibilityState?this.resume():this.pause()}onMouseEnter(){this.inHover=!0,this.pause()}onMouseLeave(){var e;this.inHover=!1,(null===(e=this.instance.panzoom)||void 0===e?void 0:e.isResting)&&this.resume()}onTimerEnd(){const e=this.instance;"play"===this.state&&(e.isInfinite||e.page!==e.pages.length-1?e.slideNext():e.slideTo(0))}removeProgressBar(){this.progressBar&&(this.progressBar.remove(),this.progressBar=null)}createProgressBar(){var e;if(!this.option("showProgress"))return null;this.removeProgressBar();const t=this.instance,s=(null===(e=t.pages[t.page])||void 0===e?void 0:e.slides)||[];let n=this.option("progressParentEl");if(n||(n=(1===s.length?s[0].el:null)||t.viewport),!n)return null;const i=document.createElement("div");return o(i,"f-progress"),n.prepend(i),this.progressBar=i,i.offsetHeight,i}set(){const e=this,t=e.instance;if(t.pages.length<2)return;if(e.timer)return;const s=e.option("timeout");e.state=r,o(t.container,"has-autoplay");let n=e.createProgressBar();n&&(n.style.transitionDuration=`${s}ms`,n.style.transform="scaleX(1)"),e.timer=setTimeout((()=>{e.timer=null,e.inHover||e.onTimerEnd()}),s),e.emit("set")}clear(){const e=this;e.timer&&(clearTimeout(e.timer),e.timer=null),e.removeProgressBar()}start(){const e=this;if(e.set(),e.state!==l){if(e.option("pauseOnHover")){const t=e.instance.container;t.addEventListener("mouseenter",e.onMouseEnter,!1),t.addEventListener("mouseleave",e.onMouseLeave,!1)}document.addEventListener("visibilitychange",e.onVisibilityChange,!1),e.emit("start")}}stop(){const e=this,t=e.state,s=e.instance.container;var n,o;e.clear(),e.state=l,s.removeEventListener("mouseenter",e.onMouseEnter,!1),s.removeEventListener("mouseleave",e.onMouseLeave,!1),document.removeEventListener("visibilitychange",e.onVisibilityChange,!1),o="has-autoplay",(n=s)&&i(o).forEach((e=>{n.classList.remove(e)})),t!==l&&e.emit("stop")}pause(){const e=this;e.state===r&&(e.state=a,e.clear(),e.emit(a))}resume(){const e=this,t=e.instance;if(t.isInfinite||t.page!==t.pages.length-1)if(e.state!==r){if(e.state===a&&!e.inHover){const t=new Event("resume",{bubbles:!0,cancelable:!0});e.emit("resume",t),t.defaultPrevented||e.set()}}else e.set();else e.stop()}toggle(){this.state===r||this.state===a?this.stop():this.start()}attach(){const e=this,t=e.instance;t.on("ready",e.onReady),t.on("Panzoom.startAnimation",e.onChange),t.on("Panzoom.endAnimation",e.onSettle),t.on("Panzoom.touchMove",e.onChange)}detach(){const e=this,t=e.instance;t.off("ready",e.onReady),t.off("Panzoom.startAnimation",e.onChange),t.off("Panzoom.endAnimation",e.onSettle),t.off("Panzoom.touchMove",e.onChange),e.stop()}}Object.defineProperty(c,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{autoStart:!0,pauseOnHover:!0,progressParentEl:null,showProgress:!0,timeout:3e3}});
+/**
+ * EvEmitter v2.1.1
+ * Lil' event emitter
+ * MIT License
+ */
+
+( function( global, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS - Browserify, Webpack
+    module.exports = factory();
+  } else {
+    // Browser globals
+    global.EvEmitter = factory();
+  }
+
+}( typeof window != 'undefined' ? window : this, function() {
+
+function EvEmitter() {}
+
+let proto = EvEmitter.prototype;
+
+proto.on = function( eventName, listener ) {
+  if ( !eventName || !listener ) return this;
+
+  // set events hash
+  let events = this._events = this._events || {};
+  // set listeners array
+  let listeners = events[ eventName ] = events[ eventName ] || [];
+  // only add once
+  if ( !listeners.includes( listener ) ) {
+    listeners.push( listener );
+  }
+
+  return this;
+};
+
+proto.once = function( eventName, listener ) {
+  if ( !eventName || !listener ) return this;
+
+  // add event
+  this.on( eventName, listener );
+  // set once flag
+  // set onceEvents hash
+  let onceEvents = this._onceEvents = this._onceEvents || {};
+  // set onceListeners object
+  let onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || {};
+  // set flag
+  onceListeners[ listener ] = true;
+
+  return this;
+};
+
+proto.off = function( eventName, listener ) {
+  let listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) return this;
+
+  let index = listeners.indexOf( listener );
+  if ( index != -1 ) {
+    listeners.splice( index, 1 );
+  }
+
+  return this;
+};
+
+proto.emitEvent = function( eventName, args ) {
+  let listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) return this;
+
+  // copy over to avoid interference if .off() in listener
+  listeners = listeners.slice( 0 );
+  args = args || [];
+  // once stuff
+  let onceListeners = this._onceEvents && this._onceEvents[ eventName ];
+
+  for ( let listener of listeners ) {
+    let isOnce = onceListeners && onceListeners[ listener ];
+    if ( isOnce ) {
+      // remove listener
+      // remove before trigger to prevent recursion
+      this.off( eventName, listener );
+      // unset once flag
+      delete onceListeners[ listener ];
+    }
+    // trigger listener
+    listener.apply( this, args );
+  }
+
+  return this;
+};
+
+proto.allOff = function() {
+  delete this._events;
+  delete this._onceEvents;
+  return this;
+};
+
+return EvEmitter;
+
+} ) );
 
 
 /***/ }),
 
-/***/ "./node_modules/@fancyapps/ui/dist/carousel/carousel.esm.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@fancyapps/ui/dist/carousel/carousel.esm.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./node_modules/fizzy-ui-utils/utils.js":
+/*!**********************************************!*\
+  !*** ./node_modules/fizzy-ui-utils/utils.js ***!
+  \**********************************************/
+/***/ (function(module) {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Carousel: () => (/* binding */ U),
-/* harmony export */   Panzoom: () => (/* binding */ D)
-/* harmony export */ });
-const t=(t,e=1e4)=>(t=parseFloat(t+"")||0,Math.round((t+Number.EPSILON)*e)/e),e=function(t,i=void 0){return!(!t||t===document.body||i&&t===i)&&(function(t){if(!(t&&t instanceof Element&&t.offsetParent))return!1;const e=t.scrollHeight>t.clientHeight,i=window.getComputedStyle(t).overflowY,n=-1!==i.indexOf("hidden"),s=-1!==i.indexOf("visible");return e&&!n&&!s}(t)?t:e(t.parentElement,i))},i=function(t){var e=(new DOMParser).parseFromString(t,"text/html").body;if(e.childElementCount>1){for(var i=document.createElement("div");e.firstChild;)i.appendChild(e.firstChild);return i}return e.firstChild},n=t=>`${t||""}`.split(" ").filter((t=>!!t)),s=(t,e,i)=>{t&&n(e).forEach((e=>{t.classList.toggle(e,i||!1)}))};class o{constructor(t){Object.defineProperty(this,"pageX",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"pageY",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"clientX",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"clientY",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"id",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"time",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"nativePointer",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),this.nativePointer=t,this.pageX=t.pageX,this.pageY=t.pageY,this.clientX=t.clientX,this.clientY=t.clientY,this.id=self.Touch&&t instanceof Touch?t.identifier:-1,this.time=Date.now()}}const a={passive:!1};class r{constructor(t,{start:e=(()=>!0),move:i=(()=>{}),end:n=(()=>{})}){Object.defineProperty(this,"element",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"startCallback",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"moveCallback",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"endCallback",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"currentPointers",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"startPointers",{enumerable:!0,configurable:!0,writable:!0,value:[]}),this.element=t,this.startCallback=e,this.moveCallback=i,this.endCallback=n;for(const t of["onPointerStart","onTouchStart","onMove","onTouchEnd","onPointerEnd","onWindowBlur"])this[t]=this[t].bind(this);this.element.addEventListener("mousedown",this.onPointerStart,a),this.element.addEventListener("touchstart",this.onTouchStart,a),this.element.addEventListener("touchmove",this.onMove,a),this.element.addEventListener("touchend",this.onTouchEnd),this.element.addEventListener("touchcancel",this.onTouchEnd)}onPointerStart(t){if(!t.buttons||0!==t.button)return;const e=new o(t);this.currentPointers.some((t=>t.id===e.id))||this.triggerPointerStart(e,t)&&(window.addEventListener("mousemove",this.onMove),window.addEventListener("mouseup",this.onPointerEnd),window.addEventListener("blur",this.onWindowBlur))}onTouchStart(t){for(const e of Array.from(t.changedTouches||[]))this.triggerPointerStart(new o(e),t);window.addEventListener("blur",this.onWindowBlur)}onMove(t){const e=this.currentPointers.slice(),i="changedTouches"in t?Array.from(t.changedTouches||[]).map((t=>new o(t))):[new o(t)],n=[];for(const t of i){const e=this.currentPointers.findIndex((e=>e.id===t.id));e<0||(n.push(t),this.currentPointers[e]=t)}n.length&&this.moveCallback(t,this.currentPointers.slice(),e)}onPointerEnd(t){t.buttons>0&&0!==t.button||(this.triggerPointerEnd(t,new o(t)),window.removeEventListener("mousemove",this.onMove),window.removeEventListener("mouseup",this.onPointerEnd),window.removeEventListener("blur",this.onWindowBlur))}onTouchEnd(t){for(const e of Array.from(t.changedTouches||[]))this.triggerPointerEnd(t,new o(e))}triggerPointerStart(t,e){return!!this.startCallback(e,t,this.currentPointers.slice())&&(this.currentPointers.push(t),this.startPointers.push(t),!0)}triggerPointerEnd(t,e){const i=this.currentPointers.findIndex((t=>t.id===e.id));i<0||(this.currentPointers.splice(i,1),this.startPointers.splice(i,1),this.endCallback(t,e,this.currentPointers.slice()))}onWindowBlur(){this.clear()}clear(){for(;this.currentPointers.length;){const t=this.currentPointers[this.currentPointers.length-1];this.currentPointers.splice(this.currentPointers.length-1,1),this.startPointers.splice(this.currentPointers.length-1,1),this.endCallback(new Event("touchend",{bubbles:!0,cancelable:!0,clientX:t.clientX,clientY:t.clientY}),t,this.currentPointers.slice())}}stop(){this.element.removeEventListener("mousedown",this.onPointerStart,a),this.element.removeEventListener("touchstart",this.onTouchStart,a),this.element.removeEventListener("touchmove",this.onMove,a),this.element.removeEventListener("touchend",this.onTouchEnd),this.element.removeEventListener("touchcancel",this.onTouchEnd),window.removeEventListener("mousemove",this.onMove),window.removeEventListener("mouseup",this.onPointerEnd),window.removeEventListener("blur",this.onWindowBlur)}}function l(t,e){return e?Math.sqrt(Math.pow(e.clientX-t.clientX,2)+Math.pow(e.clientY-t.clientY,2)):0}function h(t,e){return e?{clientX:(t.clientX+e.clientX)/2,clientY:(t.clientY+e.clientY)/2}:t}const c=t=>"object"==typeof t&&null!==t&&t.constructor===Object&&"[object Object]"===Object.prototype.toString.call(t),d=(t,...e)=>{const i=e.length;for(let n=0;n<i;n++){const i=e[n]||{};Object.entries(i).forEach((([e,i])=>{const n=Array.isArray(i)?[]:{};t[e]||Object.assign(t,{[e]:n}),c(i)?Object.assign(t[e],d(n,i)):Array.isArray(i)?Object.assign(t,{[e]:[...i]}):Object.assign(t,{[e]:i})}))}return t},u=function(t,e){return t.split(".").reduce(((t,e)=>"object"==typeof t?t[e]:void 0),e)};class g{constructor(t={}){Object.defineProperty(this,"options",{enumerable:!0,configurable:!0,writable:!0,value:t}),Object.defineProperty(this,"events",{enumerable:!0,configurable:!0,writable:!0,value:new Map}),this.setOptions(t);for(const t of Object.getOwnPropertyNames(Object.getPrototypeOf(this)))t.startsWith("on")&&"function"==typeof this[t]&&(this[t]=this[t].bind(this))}setOptions(t){this.options=t?d({},this.constructor.defaults,t):{};for(const[t,e]of Object.entries(this.option("on")||{}))this.on(t,e)}option(t,...e){let i=u(t,this.options);return i&&"function"==typeof i&&(i=i.call(this,this,...e)),i}optionFor(t,e,i,...n){let s=u(e,t);var o;"string"!=typeof(o=s)||isNaN(o)||isNaN(parseFloat(o))||(s=parseFloat(s)),"true"===s&&(s=!0),"false"===s&&(s=!1),s&&"function"==typeof s&&(s=s.call(this,this,t,...n));let a=u(e,this.options);return a&&"function"==typeof a?s=a.call(this,this,t,...n,s):void 0===s&&(s=a),void 0===s?i:s}cn(t){const e=this.options.classes;return e&&e[t]||""}localize(t,e=[]){t=String(t).replace(/\{\{(\w+).?(\w+)?\}\}/g,((t,e,i)=>{let n="";return i?n=this.option(`${e[0]+e.toLowerCase().substring(1)}.l10n.${i}`):e&&(n=this.option(`l10n.${e}`)),n||(n=t),n}));for(let i=0;i<e.length;i++)t=t.split(e[i][0]).join(e[i][1]);return t=t.replace(/\{\{(.*?)\}\}/g,((t,e)=>e))}on(t,e){let i=[];"string"==typeof t?i=t.split(" "):Array.isArray(t)&&(i=t),this.events||(this.events=new Map),i.forEach((t=>{let i=this.events.get(t);i||(this.events.set(t,[]),i=[]),i.includes(e)||i.push(e),this.events.set(t,i)}))}off(t,e){let i=[];"string"==typeof t?i=t.split(" "):Array.isArray(t)&&(i=t),i.forEach((t=>{const i=this.events.get(t);if(Array.isArray(i)){const t=i.indexOf(e);t>-1&&i.splice(t,1)}}))}emit(t,...e){[...this.events.get(t)||[]].forEach((t=>t(this,...e))),"*"!==t&&this.emit("*",t,...e)}}Object.defineProperty(g,"version",{enumerable:!0,configurable:!0,writable:!0,value:"5.0.33"}),Object.defineProperty(g,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{}});class p extends g{constructor(t={}){super(t),Object.defineProperty(this,"plugins",{enumerable:!0,configurable:!0,writable:!0,value:{}})}attachPlugins(t={}){const e=new Map;for(const[i,n]of Object.entries(t)){const t=this.option(i),s=this.plugins[i];s||!1===t?s&&!1===t&&(s.detach(),delete this.plugins[i]):e.set(i,new n(this,t||{}))}for(const[t,i]of e)this.plugins[t]=i,i.attach()}detachPlugins(t){t=t||Object.keys(this.plugins);for(const e of t){const t=this.plugins[e];t&&t.detach(),delete this.plugins[e]}return this.emit("detachPlugins"),this}}var f;!function(t){t[t.Init=0]="Init",t[t.Error=1]="Error",t[t.Ready=2]="Ready",t[t.Panning=3]="Panning",t[t.Mousemove=4]="Mousemove",t[t.Destroy=5]="Destroy"}(f||(f={}));const m=["a","b","c","d","e","f"],b={content:null,width:"auto",height:"auto",panMode:"drag",touch:!0,dragMinThreshold:3,lockAxis:!1,mouseMoveFactor:1,mouseMoveFriction:.12,zoom:!0,pinchToZoom:!0,panOnlyZoomed:"auto",minScale:1,maxScale:2,friction:.25,dragFriction:.35,decelFriction:.05,click:"toggleZoom",dblClick:!1,wheel:"zoom",wheelLimit:7,spinner:!0,bounds:"auto",infinite:!1,rubberband:!0,bounce:!0,maxVelocity:75,transformParent:!1,classes:{content:"f-panzoom__content",isLoading:"is-loading",canZoomIn:"can-zoom_in",canZoomOut:"can-zoom_out",isDraggable:"is-draggable",isDragging:"is-dragging",inFullscreen:"in-fullscreen",htmlHasFullscreen:"with-panzoom-in-fullscreen"},l10n:{PANUP:"Move up",PANDOWN:"Move down",PANLEFT:"Move left",PANRIGHT:"Move right",ZOOMIN:"Zoom in",ZOOMOUT:"Zoom out",TOGGLEZOOM:"Toggle zoom level",TOGGLE1TO1:"Toggle zoom level",ITERATEZOOM:"Toggle zoom level",ROTATECCW:"Rotate counterclockwise",ROTATECW:"Rotate clockwise",FLIPX:"Flip horizontally",FLIPY:"Flip vertically",FITX:"Fit horizontally",FITY:"Fit vertically",RESET:"Reset",TOGGLEFS:"Toggle fullscreen"}},v='<circle cx="25" cy="25" r="20"></circle>',y='<div class="f-spinner"><svg viewBox="0 0 50 50">'+v+v+"</svg></div>",w=t=>t&&null!==t&&t instanceof Element&&"nodeType"in t,x=(t,e)=>{t&&n(e).forEach((e=>{t.classList.remove(e)}))},P=(t,e)=>{t&&n(e).forEach((e=>{t.classList.add(e)}))},T={a:1,b:0,c:0,d:1,e:0,f:0},S=1e5,M=1e4,O="mousemove",E="drag",k="content";let z=null,L=null;class D extends p{get fits(){return this.contentRect.width-this.contentRect.fitWidth<1&&this.contentRect.height-this.contentRect.fitHeight<1}get isTouchDevice(){return null===L&&(L=window.matchMedia("(hover: none)").matches),L}get isMobile(){return null===z&&(z=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)),z}get panMode(){return this.options.panMode!==O||this.isTouchDevice?E:O}get panOnlyZoomed(){const t=this.options.panOnlyZoomed;return"auto"===t?this.isTouchDevice:t}get isInfinite(){return this.option("infinite")}get angle(){return 180*Math.atan2(this.current.b,this.current.a)/Math.PI||0}get targetAngle(){return 180*Math.atan2(this.target.b,this.target.a)/Math.PI||0}get scale(){const{a:t,b:e}=this.current;return Math.sqrt(t*t+e*e)||1}get targetScale(){const{a:t,b:e}=this.target;return Math.sqrt(t*t+e*e)||1}get minScale(){return this.option("minScale")||1}get fullScale(){const{contentRect:t}=this;return t.fullWidth/t.fitWidth||1}get maxScale(){return this.fullScale*(this.option("maxScale")||1)||1}get coverScale(){const{containerRect:t,contentRect:e}=this,i=Math.max(t.height/e.fitHeight,t.width/e.fitWidth)||1;return Math.min(this.fullScale,i)}get isScaling(){return Math.abs(this.targetScale-this.scale)>1e-5&&!this.isResting}get isContentLoading(){const t=this.content;return!!(t&&t instanceof HTMLImageElement)&&!t.complete}get isResting(){if(this.isBouncingX||this.isBouncingY)return!1;for(const t of m){const e="e"==t||"f"===t?1e-4:1e-5;if(Math.abs(this.target[t]-this.current[t])>e)return!1}return!(!this.ignoreBounds&&!this.checkBounds().inBounds)}constructor(t,e={},n={}){var s;if(super(e),Object.defineProperty(this,"pointerTracker",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"resizeObserver",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"updateTimer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"clickTimer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"rAF",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"isTicking",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"ignoreBounds",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"isBouncingX",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"isBouncingY",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"clicks",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"trackingPoints",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"pwt",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"cwd",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"pmme",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"friction",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:f.Init}),Object.defineProperty(this,"isDragging",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"content",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"spinner",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"containerRect",{enumerable:!0,configurable:!0,writable:!0,value:{width:0,height:0,innerWidth:0,innerHeight:0}}),Object.defineProperty(this,"contentRect",{enumerable:!0,configurable:!0,writable:!0,value:{top:0,right:0,bottom:0,left:0,fullWidth:0,fullHeight:0,fitWidth:0,fitHeight:0,width:0,height:0}}),Object.defineProperty(this,"dragStart",{enumerable:!0,configurable:!0,writable:!0,value:{x:0,y:0,top:0,left:0,time:0}}),Object.defineProperty(this,"dragOffset",{enumerable:!0,configurable:!0,writable:!0,value:{x:0,y:0,time:0}}),Object.defineProperty(this,"current",{enumerable:!0,configurable:!0,writable:!0,value:Object.assign({},T)}),Object.defineProperty(this,"target",{enumerable:!0,configurable:!0,writable:!0,value:Object.assign({},T)}),Object.defineProperty(this,"velocity",{enumerable:!0,configurable:!0,writable:!0,value:{a:0,b:0,c:0,d:0,e:0,f:0}}),Object.defineProperty(this,"lockedAxis",{enumerable:!0,configurable:!0,writable:!0,value:!1}),!t)throw new Error("Container Element Not Found");this.container=t,this.initContent(),this.attachPlugins(Object.assign(Object.assign({},D.Plugins),n)),this.emit("attachPlugins"),this.emit("init");const o=this.content;if(o.addEventListener("load",this.onLoad),o.addEventListener("error",this.onError),this.isContentLoading){if(this.option("spinner")){t.classList.add(this.cn("isLoading"));const e=i(y);!t.contains(o)||o.parentElement instanceof HTMLPictureElement?this.spinner=t.appendChild(e):this.spinner=(null===(s=o.parentElement)||void 0===s?void 0:s.insertBefore(e,o))||null}this.emit("beforeLoad")}else queueMicrotask((()=>{this.enable()}))}initContent(){const{container:t}=this,e=this.cn(k);let i=this.option(k)||t.querySelector(`.${e}`);if(i||(i=t.querySelector("img,picture")||t.firstElementChild,i&&P(i,e)),i instanceof HTMLPictureElement&&(i=i.querySelector("img")),!i)throw new Error("No content found");this.content=i}onLoad(){const{spinner:t,container:e,state:i}=this;t&&(t.remove(),this.spinner=null),this.option("spinner")&&e.classList.remove(this.cn("isLoading")),this.emit("afterLoad"),i===f.Init?this.enable():this.updateMetrics()}onError(){this.state!==f.Destroy&&(this.spinner&&(this.spinner.remove(),this.spinner=null),this.stop(),this.detachEvents(),this.state=f.Error,this.emit("error"))}getNextScale(t){const{fullScale:e,targetScale:i,coverScale:n,maxScale:s,minScale:o}=this;let a=o;switch(t){case"toggleMax":a=i-o<.5*(s-o)?s:o;break;case"toggleCover":a=i-o<.5*(n-o)?n:o;break;case"toggleZoom":a=i-o<.5*(e-o)?e:o;break;case"iterateZoom":let t=[1,e,s].sort(((t,e)=>t-e)),r=t.findIndex((t=>t>i+1e-5));a=t[r]||1}return a}attachObserver(){var t;const e=()=>{const{container:t,containerRect:e}=this;return Math.abs(e.width-t.getBoundingClientRect().width)>.1||Math.abs(e.height-t.getBoundingClientRect().height)>.1};this.resizeObserver||void 0===window.ResizeObserver||(this.resizeObserver=new ResizeObserver((()=>{this.updateTimer||(e()?(this.onResize(),this.isMobile&&(this.updateTimer=setTimeout((()=>{e()&&this.onResize(),this.updateTimer=null}),500))):this.updateTimer&&(clearTimeout(this.updateTimer),this.updateTimer=null))}))),null===(t=this.resizeObserver)||void 0===t||t.observe(this.container)}detachObserver(){var t;null===(t=this.resizeObserver)||void 0===t||t.disconnect()}attachEvents(){const{container:t}=this;t.addEventListener("click",this.onClick,{passive:!1,capture:!1}),t.addEventListener("wheel",this.onWheel,{passive:!1}),this.pointerTracker=new r(t,{start:this.onPointerDown,move:this.onPointerMove,end:this.onPointerUp}),document.addEventListener(O,this.onMouseMove)}detachEvents(){var t;const{container:e}=this;e.removeEventListener("click",this.onClick,{passive:!1,capture:!1}),e.removeEventListener("wheel",this.onWheel,{passive:!1}),null===(t=this.pointerTracker)||void 0===t||t.stop(),this.pointerTracker=null,document.removeEventListener(O,this.onMouseMove),document.removeEventListener("keydown",this.onKeydown,!0),this.clickTimer&&(clearTimeout(this.clickTimer),this.clickTimer=null),this.updateTimer&&(clearTimeout(this.updateTimer),this.updateTimer=null)}animate(){this.setTargetForce();const t=this.friction,e=this.option("maxVelocity");for(const i of m)t?(this.velocity[i]*=1-t,e&&!this.isScaling&&(this.velocity[i]=Math.max(Math.min(this.velocity[i],e),-1*e)),this.current[i]+=this.velocity[i]):this.current[i]=this.target[i];this.setTransform(),this.setEdgeForce(),!this.isResting||this.isDragging?this.rAF=requestAnimationFrame((()=>this.animate())):this.stop("current")}setTargetForce(){for(const t of m)"e"===t&&this.isBouncingX||"f"===t&&this.isBouncingY||(this.velocity[t]=(1/(1-this.friction)-1)*(this.target[t]-this.current[t]))}checkBounds(t=0,e=0){const{current:i}=this,n=i.e+t,s=i.f+e,o=this.getBounds(),{x:a,y:r}=o,l=a.min,h=a.max,c=r.min,d=r.max;let u=0,g=0;return l!==1/0&&n<l?u=l-n:h!==1/0&&n>h&&(u=h-n),c!==1/0&&s<c?g=c-s:d!==1/0&&s>d&&(g=d-s),Math.abs(u)<1e-4&&(u=0),Math.abs(g)<1e-4&&(g=0),Object.assign(Object.assign({},o),{xDiff:u,yDiff:g,inBounds:!u&&!g})}clampTargetBounds(){const{target:t}=this,{x:e,y:i}=this.getBounds();e.min!==1/0&&(t.e=Math.max(t.e,e.min)),e.max!==1/0&&(t.e=Math.min(t.e,e.max)),i.min!==1/0&&(t.f=Math.max(t.f,i.min)),i.max!==1/0&&(t.f=Math.min(t.f,i.max))}calculateContentDim(t=this.current){const{content:e,contentRect:i}=this,{fitWidth:n,fitHeight:s,fullWidth:o,fullHeight:a}=i;let r=o,l=a;if(this.option("zoom")||0!==this.angle){const i=!(e instanceof HTMLImageElement)&&("none"===window.getComputedStyle(e).maxWidth||"none"===window.getComputedStyle(e).maxHeight),h=i?o:n,c=i?a:s,d=this.getMatrix(t),u=new DOMPoint(0,0).matrixTransform(d),g=new DOMPoint(0+h,0).matrixTransform(d),p=new DOMPoint(0+h,0+c).matrixTransform(d),f=new DOMPoint(0,0+c).matrixTransform(d),m=Math.abs(p.x-u.x),b=Math.abs(p.y-u.y),v=Math.abs(f.x-g.x),y=Math.abs(f.y-g.y);r=Math.max(m,v),l=Math.max(b,y)}return{contentWidth:r,contentHeight:l}}setEdgeForce(){if(this.ignoreBounds||this.isDragging||this.panMode===O||this.targetScale<this.scale)return this.isBouncingX=!1,void(this.isBouncingY=!1);const{target:t}=this,{x:e,y:i,xDiff:n,yDiff:s}=this.checkBounds();const o=this.option("maxVelocity");let a=this.velocity.e,r=this.velocity.f;0!==n?(this.isBouncingX=!0,n*a<=0?a+=.14*n:(a=.14*n,e.min!==1/0&&(this.target.e=Math.max(t.e,e.min)),e.max!==1/0&&(this.target.e=Math.min(t.e,e.max))),o&&(a=Math.max(Math.min(a,o),-1*o))):this.isBouncingX=!1,0!==s?(this.isBouncingY=!0,s*r<=0?r+=.14*s:(r=.14*s,i.min!==1/0&&(this.target.f=Math.max(t.f,i.min)),i.max!==1/0&&(this.target.f=Math.min(t.f,i.max))),o&&(r=Math.max(Math.min(r,o),-1*o))):this.isBouncingY=!1,this.isBouncingX&&(this.velocity.e=a),this.isBouncingY&&(this.velocity.f=r)}enable(){const{content:t}=this,e=new DOMMatrixReadOnly(window.getComputedStyle(t).transform);for(const t of m)this.current[t]=this.target[t]=e[t];this.updateMetrics(),this.attachObserver(),this.attachEvents(),this.state=f.Ready,this.emit("ready")}onClick(t){var e;"click"===t.type&&0===t.detail&&(this.dragOffset.x=0,this.dragOffset.y=0),this.isDragging&&(null===(e=this.pointerTracker)||void 0===e||e.clear(),this.trackingPoints=[],this.startDecelAnim());const i=t.target;if(!i||t.defaultPrevented)return;if(i.hasAttribute("disabled"))return t.preventDefault(),void t.stopPropagation();if((()=>{const t=window.getSelection();return t&&"Range"===t.type})()&&!i.closest("button"))return;const n=i.closest("[data-panzoom-action]"),s=i.closest("[data-panzoom-change]"),o=n||s,a=o&&w(o)?o.dataset:null;if(a){const e=a.panzoomChange,i=a.panzoomAction;if((e||i)&&t.preventDefault(),e){let t={};try{t=JSON.parse(e)}catch(t){console&&console.warn("The given data was not valid JSON")}return void this.applyChange(t)}if(i)return void(this[i]&&this[i]())}if(Math.abs(this.dragOffset.x)>3||Math.abs(this.dragOffset.y)>3)return t.preventDefault(),void t.stopPropagation();if(i.closest("[data-fancybox]"))return;const r=this.content.getBoundingClientRect(),l=this.dragStart;if(l.time&&!this.canZoomOut()&&(Math.abs(r.x-l.x)>2||Math.abs(r.y-l.y)>2))return;this.dragStart.time=0;const h=e=>{this.option("zoom",t)&&e&&"string"==typeof e&&/(iterateZoom)|(toggle(Zoom|Full|Cover|Max)|(zoomTo(Fit|Cover|Max)))/.test(e)&&"function"==typeof this[e]&&(t.preventDefault(),this[e]({event:t}))},c=this.option("click",t),d=this.option("dblClick",t);d?(this.clicks++,1==this.clicks&&(this.clickTimer=setTimeout((()=>{1===this.clicks?(this.emit("click",t),!t.defaultPrevented&&c&&h(c)):(this.emit("dblClick",t),t.defaultPrevented||h(d)),this.clicks=0,this.clickTimer=null}),350))):(this.emit("click",t),!t.defaultPrevented&&c&&h(c))}addTrackingPoint(t){const e=this.trackingPoints.filter((t=>t.time>Date.now()-100));e.push(t),this.trackingPoints=e}onPointerDown(t,e,i){var n;if(!1===this.option("touch",t))return!1;this.pwt=0,this.dragOffset={x:0,y:0,time:0},this.trackingPoints=[];const s=this.content.getBoundingClientRect();if(this.dragStart={x:s.x,y:s.y,top:s.top,left:s.left,time:Date.now()},this.clickTimer)return!1;if(this.panMode===O&&this.targetScale>1)return t.preventDefault(),t.stopPropagation(),!1;const o=t.composedPath()[0];if(!i.length){if(["TEXTAREA","OPTION","INPUT","SELECT","VIDEO","IFRAME"].includes(o.nodeName)||o.closest("[contenteditable],[data-selectable],[data-draggable],[data-clickable],[data-panzoom-change],[data-panzoom-action]"))return!1;null===(n=window.getSelection())||void 0===n||n.removeAllRanges()}if("mousedown"===t.type)["A","BUTTON"].includes(o.nodeName)||t.preventDefault();else if(Math.abs(this.velocity.a)>.3)return!1;return this.target.e=this.current.e,this.target.f=this.current.f,this.stop(),this.isDragging||(this.isDragging=!0,this.addTrackingPoint(e),this.emit("touchStart",t)),!0}onPointerMove(i,n,s){if(!1===this.option("touch",i))return;if(!this.isDragging)return;if(n.length<2&&this.panOnlyZoomed&&t(this.targetScale)<=t(this.minScale))return;if(this.emit("touchMove",i),i.defaultPrevented)return;this.addTrackingPoint(n[0]);const{content:o}=this,a=h(s[0],s[1]),r=h(n[0],n[1]);let c=0,d=0;if(n.length>1){const t=o.getBoundingClientRect();c=a.clientX-t.left-.5*t.width,d=a.clientY-t.top-.5*t.height}const u=l(s[0],s[1]),g=l(n[0],n[1]);let p=u?g/u:1,f=r.clientX-a.clientX,m=r.clientY-a.clientY;this.dragOffset.x+=f,this.dragOffset.y+=m,this.dragOffset.time=Date.now()-this.dragStart.time;let b=t(this.targetScale)===t(this.minScale)&&this.option("lockAxis");if(b&&!this.lockedAxis)if("xy"===b||"y"===b||"touchmove"===i.type){if(Math.abs(this.dragOffset.x)<6&&Math.abs(this.dragOffset.y)<6)return void i.preventDefault();const t=Math.abs(180*Math.atan2(this.dragOffset.y,this.dragOffset.x)/Math.PI);this.lockedAxis=t>45&&t<135?"y":"x",this.dragOffset.x=0,this.dragOffset.y=0,f=0,m=0}else this.lockedAxis=b;if(e(i.target,this.content)&&(b="x",this.dragOffset.y=0),b&&"xy"!==b&&this.lockedAxis!==b&&t(this.targetScale)===t(this.minScale))return;i.cancelable&&i.preventDefault(),this.container.classList.add(this.cn("isDragging"));const v=this.checkBounds(f,m);this.option("rubberband")?("x"!==this.isInfinite&&(v.xDiff>0&&f<0||v.xDiff<0&&f>0)&&(f*=Math.max(0,.5-Math.abs(.75/this.contentRect.fitWidth*v.xDiff))),"y"!==this.isInfinite&&(v.yDiff>0&&m<0||v.yDiff<0&&m>0)&&(m*=Math.max(0,.5-Math.abs(.75/this.contentRect.fitHeight*v.yDiff)))):(v.xDiff&&(f=0),v.yDiff&&(m=0));const y=this.targetScale,w=this.minScale,x=this.maxScale;y<.5*w&&(p=Math.max(p,w)),y>1.5*x&&(p=Math.min(p,x)),"y"===this.lockedAxis&&t(y)===t(w)&&(f=0),"x"===this.lockedAxis&&t(y)===t(w)&&(m=0),this.applyChange({originX:c,originY:d,panX:f,panY:m,scale:p,friction:this.option("dragFriction"),ignoreBounds:!0})}onPointerUp(t,i,n){if(n.length)return this.dragOffset.x=0,this.dragOffset.y=0,void(this.trackingPoints=[]);this.container.classList.remove(this.cn("isDragging")),this.isDragging&&(this.addTrackingPoint(i),this.panOnlyZoomed&&this.contentRect.width-this.contentRect.fitWidth<1&&this.contentRect.height-this.contentRect.fitHeight<1&&(this.trackingPoints=[]),e(t.target,this.content)&&"y"===this.lockedAxis&&(this.trackingPoints=[]),this.emit("touchEnd",t),this.isDragging=!1,this.lockedAxis=!1,this.state!==f.Destroy&&(t.defaultPrevented||this.startDecelAnim()))}startDecelAnim(){var e;const i=this.isScaling;this.rAF&&(cancelAnimationFrame(this.rAF),this.rAF=null),this.isBouncingX=!1,this.isBouncingY=!1;for(const t of m)this.velocity[t]=0;this.target.e=this.current.e,this.target.f=this.current.f,x(this.container,"is-scaling"),x(this.container,"is-animating"),this.isTicking=!1;const{trackingPoints:n}=this,s=n[0],o=n[n.length-1];let a=0,r=0,l=0;o&&s&&(a=o.clientX-s.clientX,r=o.clientY-s.clientY,l=o.time-s.time);const h=(null===(e=window.visualViewport)||void 0===e?void 0:e.scale)||1;1!==h&&(a*=h,r*=h);let c=0,d=0,u=0,g=0,p=this.option("decelFriction");const f=this.targetScale;if(l>0){u=Math.abs(a)>3?a/(l/30):0,g=Math.abs(r)>3?r/(l/30):0;const t=this.option("maxVelocity");t&&(u=Math.max(Math.min(u,t),-1*t),g=Math.max(Math.min(g,t),-1*t))}u&&(c=u/(1/(1-p)-1)),g&&(d=g/(1/(1-p)-1)),("y"===this.option("lockAxis")||"xy"===this.option("lockAxis")&&"y"===this.lockedAxis&&t(f)===this.minScale)&&(c=u=0),("x"===this.option("lockAxis")||"xy"===this.option("lockAxis")&&"x"===this.lockedAxis&&t(f)===this.minScale)&&(d=g=0);const b=this.dragOffset.x,v=this.dragOffset.y,y=this.option("dragMinThreshold")||0;Math.abs(b)<y&&Math.abs(v)<y&&(c=d=0,u=g=0),(this.option("zoom")&&(f<this.minScale-1e-5||f>this.maxScale+1e-5)||i&&!c&&!d)&&(p=.35),this.applyChange({panX:c,panY:d,friction:p}),this.emit("decel",u,g,b,v)}onWheel(t){var e=[-t.deltaX||0,-t.deltaY||0,-t.detail||0].reduce((function(t,e){return Math.abs(e)>Math.abs(t)?e:t}));const i=Math.max(-1,Math.min(1,e));if(this.emit("wheel",t,i),this.panMode===O)return;if(t.defaultPrevented)return;const n=this.option("wheel");"pan"===n?(t.preventDefault(),this.panOnlyZoomed&&!this.canZoomOut()||this.applyChange({panX:2*-t.deltaX,panY:2*-t.deltaY,bounce:!1})):"zoom"===n&&!1!==this.option("zoom")&&this.zoomWithWheel(t)}onMouseMove(t){this.panWithMouse(t)}onKeydown(t){"Escape"===t.key&&this.toggleFS()}onResize(){this.updateMetrics(),this.checkBounds().inBounds||this.requestTick()}setTransform(){this.emit("beforeTransform");const{current:e,target:i,content:n,contentRect:s}=this,o=Object.assign({},T);for(const n of m){const s="e"==n||"f"===n?M:S;o[n]=t(e[n],s),Math.abs(i[n]-e[n])<("e"==n||"f"===n?.51:.001)&&(e[n]=i[n])}let{a:a,b:r,c:l,d:h,e:c,f:d}=o,u=`matrix(${a}, ${r}, ${l}, ${h}, ${c}, ${d})`,g=n.parentElement instanceof HTMLPictureElement?n.parentElement:n;if(this.option("transformParent")&&(g=g.parentElement||g),g.style.transform===u)return;g.style.transform=u;const{contentWidth:p,contentHeight:f}=this.calculateContentDim();s.width=p,s.height=f,this.emit("afterTransform")}updateMetrics(e=!1){var i;if(!this||this.state===f.Destroy)return;if(this.isContentLoading)return;const n=Math.max(1,(null===(i=window.visualViewport)||void 0===i?void 0:i.scale)||1),{container:s,content:o}=this,a=o instanceof HTMLImageElement,r=s.getBoundingClientRect(),l=getComputedStyle(this.container);let h=r.width*n,c=r.height*n;const d=parseFloat(l.paddingTop)+parseFloat(l.paddingBottom),u=h-(parseFloat(l.paddingLeft)+parseFloat(l.paddingRight)),g=c-d;this.containerRect={width:h,height:c,innerWidth:u,innerHeight:g};let p=this.option("width")||"auto",m=this.option("height")||"auto";"auto"===p&&(p=parseFloat(o.dataset.width||"")||(t=>{let e=0;return e=t instanceof HTMLImageElement?t.naturalWidth:t instanceof SVGElement?t.width.baseVal.value:Math.max(t.offsetWidth,t.scrollWidth),e||0})(o)),"auto"===m&&(m=parseFloat(o.dataset.height||"")||(t=>{let e=0;return e=t instanceof HTMLImageElement?t.naturalHeight:t instanceof SVGElement?t.height.baseVal.value:Math.max(t.offsetHeight,t.scrollHeight),e||0})(o));let b=o.parentElement instanceof HTMLPictureElement?o.parentElement:o;this.option("transformParent")&&(b=b.parentElement||b);const v=b.getAttribute("style")||"";b.style.setProperty("transform","none","important"),a&&(b.style.width="",b.style.height=""),b.offsetHeight;const y=o.getBoundingClientRect();let w=y.width*n,x=y.height*n,P=0,T=0;a&&(Math.abs(p-w)>1||Math.abs(m-x)>1)&&({width:w,height:x,top:P,left:T}=((t,e,i,n)=>{const s=i/n;return s>t/e?(i=t,n=t/s):(i=e*s,n=e),{width:i,height:n,top:.5*(e-n),left:.5*(t-i)}})(w,x,p,m)),this.contentRect=Object.assign(Object.assign({},this.contentRect),{top:y.top-r.top+P,bottom:r.bottom-y.bottom+P,left:y.left-r.left+T,right:r.right-y.right+T,fitWidth:w,fitHeight:x,width:w,height:x,fullWidth:p,fullHeight:m}),b.style.cssText=v,a&&(b.style.width=`${w}px`,b.style.height=`${x}px`),this.setTransform(),!0!==e&&this.emit("refresh"),this.ignoreBounds||(t(this.targetScale)<t(this.minScale)?this.zoomTo(this.minScale,{friction:0}):this.targetScale>this.maxScale?this.zoomTo(this.maxScale,{friction:0}):this.state===f.Init||this.checkBounds().inBounds||this.requestTick()),this.updateControls()}calculateBounds(){const{contentWidth:e,contentHeight:i}=this.calculateContentDim(this.target),{targetScale:n,lockedAxis:s}=this,{fitWidth:o,fitHeight:a}=this.contentRect;let r=0,l=0,h=0,c=0;const d=this.option("infinite");if(!0===d||s&&d===s)r=-1/0,h=1/0,l=-1/0,c=1/0;else{let{containerRect:s,contentRect:d}=this,u=t(o*n,M),g=t(a*n,M),{innerWidth:p,innerHeight:f}=s;if(s.width===u&&(p=s.width),s.width===g&&(f=s.height),e>p){h=.5*(e-p),r=-1*h;let t=.5*(d.right-d.left);r+=t,h+=t}if(o>p&&e<p&&(r-=.5*(o-p),h-=.5*(o-p)),i>f){c=.5*(i-f),l=-1*c;let t=.5*(d.bottom-d.top);l+=t,c+=t}a>f&&i<f&&(r-=.5*(a-f),h-=.5*(a-f))}return{x:{min:r,max:h},y:{min:l,max:c}}}getBounds(){const t=this.option("bounds");return"auto"!==t?t:this.calculateBounds()}updateControls(){const e=this,i=e.container,{panMode:n,contentRect:o,targetScale:a,minScale:r}=e;let l=r,h=e.option("click")||!1;h&&(l=e.getNextScale(h));let c=e.canZoomIn(),d=e.canZoomOut(),u=n===E&&!!this.option("touch"),g=d&&u;if(u&&(t(a)<t(r)&&!this.panOnlyZoomed&&(g=!0),(t(o.width,1)>t(o.fitWidth,1)||t(o.height,1)>t(o.fitHeight,1))&&(g=!0)),t(o.width*a,1)<t(o.fitWidth,1)&&(g=!1),n===O&&(g=!1),s(i,this.cn("isDraggable"),g),!this.option("zoom"))return;let p=c&&t(l)>t(a),f=!p&&!g&&d&&t(l)<t(a);s(i,this.cn("canZoomIn"),p),s(i,this.cn("canZoomOut"),f);for(const t of i.querySelectorAll("[data-panzoom-action]")){let e=!1,i=!1;switch(t.dataset.panzoomAction){case"zoomIn":c?e=!0:i=!0;break;case"zoomOut":d?e=!0:i=!0;break;case"toggleZoom":case"iterateZoom":c||d?e=!0:i=!0;const n=t.querySelector("g");n&&(n.style.display=c?"":"none")}e?(t.removeAttribute("disabled"),t.removeAttribute("tabindex")):i&&(t.setAttribute("disabled",""),t.setAttribute("tabindex","-1"))}}panTo({x:t=this.target.e,y:e=this.target.f,scale:i=this.targetScale,friction:n=this.option("friction"),angle:s=0,originX:o=0,originY:a=0,flipX:r=!1,flipY:l=!1,ignoreBounds:h=!1}){this.state!==f.Destroy&&this.applyChange({panX:t-this.target.e,panY:e-this.target.f,scale:i/this.targetScale,angle:s,originX:o,originY:a,friction:n,flipX:r,flipY:l,ignoreBounds:h})}applyChange({panX:e=0,panY:i=0,scale:n=1,angle:s=0,originX:o=-this.current.e,originY:a=-this.current.f,friction:r=this.option("friction"),flipX:l=!1,flipY:h=!1,ignoreBounds:c=!1,bounce:d=this.option("bounce")}){const u=this.state;if(u===f.Destroy)return;this.rAF&&(cancelAnimationFrame(this.rAF),this.rAF=null),this.friction=r||0,this.ignoreBounds=c;const{current:g}=this,p=g.e,b=g.f,v=this.getMatrix(this.target);let y=(new DOMMatrix).translate(p,b).translate(o,a).translate(e,i);if(this.option("zoom")){if(!c){const t=this.targetScale,e=this.minScale,i=this.maxScale;t*n<e&&(n=e/t),t*n>i&&(n=i/t)}y=y.scale(n)}y=y.translate(-o,-a).translate(-p,-b).multiply(v),s&&(y=y.rotate(s)),l&&(y=y.scale(-1,1)),h&&(y=y.scale(1,-1));for(const e of m)"e"!==e&&"f"!==e&&(y[e]>this.minScale+1e-5||y[e]<this.minScale-1e-5)?this.target[e]=y[e]:this.target[e]=t(y[e],M);(this.targetScale<this.scale||Math.abs(n-1)>.1||this.panMode===O||!1===d)&&!c&&this.clampTargetBounds(),u===f.Init?this.animate():this.isResting||(this.state=f.Panning,this.requestTick())}stop(t=!1){if(this.state===f.Init||this.state===f.Destroy)return;const e=this.isTicking;this.rAF&&(cancelAnimationFrame(this.rAF),this.rAF=null),this.isBouncingX=!1,this.isBouncingY=!1;for(const e of m)this.velocity[e]=0,"current"===t?this.current[e]=this.target[e]:"target"===t&&(this.target[e]=this.current[e]);this.setTransform(),x(this.container,"is-scaling"),x(this.container,"is-animating"),this.isTicking=!1,this.state=f.Ready,e&&(this.emit("endAnimation"),this.updateControls())}requestTick(){this.isTicking||(this.emit("startAnimation"),this.updateControls(),P(this.container,"is-animating"),this.isScaling&&P(this.container,"is-scaling")),this.isTicking=!0,this.rAF||(this.rAF=requestAnimationFrame((()=>this.animate())))}panWithMouse(e,i=this.option("mouseMoveFriction")){if(this.pmme=e,this.panMode!==O||!e)return;if(t(this.targetScale)<=t(this.minScale))return;this.emit("mouseMove",e);const{container:n,containerRect:s,contentRect:o}=this,a=s.width,r=s.height,l=n.getBoundingClientRect(),h=(e.clientX||0)-l.left,c=(e.clientY||0)-l.top;let{contentWidth:d,contentHeight:u}=this.calculateContentDim(this.target);const g=this.option("mouseMoveFactor");g>1&&(d!==a&&(d*=g),u!==r&&(u*=g));let p=.5*(d-a)-h/a*100/100*(d-a);p+=.5*(o.right-o.left);let f=.5*(u-r)-c/r*100/100*(u-r);f+=.5*(o.bottom-o.top),this.applyChange({panX:p-this.target.e,panY:f-this.target.f,friction:i})}zoomWithWheel(e){if(this.state===f.Destroy||this.state===f.Init)return;const i=Date.now();if(i-this.pwt<45)return void e.preventDefault();this.pwt=i;var n=[-e.deltaX||0,-e.deltaY||0,-e.detail||0].reduce((function(t,e){return Math.abs(e)>Math.abs(t)?e:t}));const s=Math.max(-1,Math.min(1,n)),{targetScale:o,maxScale:a,minScale:r}=this;let l=o*(100+45*s)/100;t(l)<t(r)&&t(o)<=t(r)?(this.cwd+=Math.abs(s),l=r):t(l)>t(a)&&t(o)>=t(a)?(this.cwd+=Math.abs(s),l=a):(this.cwd=0,l=Math.max(Math.min(l,a),r)),this.cwd>this.option("wheelLimit")||(e.preventDefault(),t(l)!==t(o)&&this.zoomTo(l,{event:e}))}canZoomIn(){return this.option("zoom")&&(t(this.contentRect.width,1)<t(this.contentRect.fitWidth,1)||t(this.targetScale)<t(this.maxScale))}canZoomOut(){return this.option("zoom")&&t(this.targetScale)>t(this.minScale)}zoomIn(t=1.25,e){this.zoomTo(this.targetScale*t,e)}zoomOut(t=.8,e){this.zoomTo(this.targetScale*t,e)}zoomToFit(t){this.zoomTo("fit",t)}zoomToCover(t){this.zoomTo("cover",t)}zoomToFull(t){this.zoomTo("full",t)}zoomToMax(t){this.zoomTo("max",t)}toggleZoom(t){this.zoomTo(this.getNextScale("toggleZoom"),t)}toggleMax(t){this.zoomTo(this.getNextScale("toggleMax"),t)}toggleCover(t){this.zoomTo(this.getNextScale("toggleCover"),t)}iterateZoom(t){this.zoomTo("next",t)}zoomTo(t=1,{friction:e="auto",originX:i="auto",originY:n="auto",event:s}={}){if(this.isContentLoading||this.state===f.Destroy)return;const{targetScale:o,fullScale:a,maxScale:r,coverScale:l}=this;if(this.stop(),this.panMode===O&&(s=this.pmme||s),s||"auto"===i||"auto"===n){const t=this.content.getBoundingClientRect(),e=this.container.getBoundingClientRect(),o=s?s.clientX:e.left+.5*e.width,a=s?s.clientY:e.top+.5*e.height;i=o-t.left-.5*t.width,n=a-t.top-.5*t.height}let h=1;"number"==typeof t?h=t:"full"===t?h=a:"cover"===t?h=l:"max"===t?h=r:"fit"===t?h=1:"next"===t&&(h=this.getNextScale("iterateZoom")),h=h/o||1,e="auto"===e?h>1?.15:.25:e,this.applyChange({scale:h,originX:i,originY:n,friction:e}),s&&this.panMode===O&&this.panWithMouse(s,e)}rotateCCW(){this.applyChange({angle:-90})}rotateCW(){this.applyChange({angle:90})}flipX(){this.applyChange({flipX:!0})}flipY(){this.applyChange({flipY:!0})}fitX(){this.stop("target");const{containerRect:t,contentRect:e,target:i}=this;this.applyChange({panX:.5*t.width-(e.left+.5*e.fitWidth)-i.e,panY:.5*t.height-(e.top+.5*e.fitHeight)-i.f,scale:t.width/e.fitWidth/this.targetScale,originX:0,originY:0,ignoreBounds:!0})}fitY(){this.stop("target");const{containerRect:t,contentRect:e,target:i}=this;this.applyChange({panX:.5*t.width-(e.left+.5*e.fitWidth)-i.e,panY:.5*t.innerHeight-(e.top+.5*e.fitHeight)-i.f,scale:t.height/e.fitHeight/this.targetScale,originX:0,originY:0,ignoreBounds:!0})}toggleFS(){const{container:t}=this,e=this.cn("inFullscreen"),i=this.cn("htmlHasFullscreen");t.classList.toggle(e);const n=t.classList.contains(e);n?(document.documentElement.classList.add(i),document.addEventListener("keydown",this.onKeydown,!0)):(document.documentElement.classList.remove(i),document.removeEventListener("keydown",this.onKeydown,!0)),this.updateMetrics(),this.emit(n?"enterFS":"exitFS")}getMatrix(t=this.current){const{a:e,b:i,c:n,d:s,e:o,f:a}=t;return new DOMMatrix([e,i,n,s,o,a])}reset(t){if(this.state!==f.Init&&this.state!==f.Destroy){this.stop("current");for(const t of m)this.target[t]=T[t];this.target.a=this.minScale,this.target.d=this.minScale,this.clampTargetBounds(),this.isResting||(this.friction=void 0===t?this.option("friction"):t,this.state=f.Panning,this.requestTick())}}destroy(){this.stop(),this.state=f.Destroy,this.detachEvents(),this.detachObserver();const{container:t,content:e}=this,i=this.option("classes")||{};for(const e of Object.values(i))t.classList.remove(e+"");e&&(e.removeEventListener("load",this.onLoad),e.removeEventListener("error",this.onError)),this.detachPlugins()}}Object.defineProperty(D,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:b}),Object.defineProperty(D,"Plugins",{enumerable:!0,configurable:!0,writable:!0,value:{}});const R=function(t,e){let i=!0;return(...n)=>{i&&(i=!1,t(...n),setTimeout((()=>{i=!0}),e))}},C=(t,e)=>{let i=[];return t.childNodes.forEach((t=>{t.nodeType!==Node.ELEMENT_NODE||e&&!t.matches(e)||i.push(t)})),i},A={viewport:null,track:null,enabled:!0,slides:[],axis:"x",transition:"fade",preload:1,slidesPerPage:"auto",initialPage:0,friction:.12,Panzoom:{decelFriction:.12},center:!0,infinite:!0,fill:!0,dragFree:!1,adaptiveHeight:!1,direction:"ltr",classes:{container:"f-carousel",viewport:"f-carousel__viewport",track:"f-carousel__track",slide:"f-carousel__slide",isLTR:"is-ltr",isRTL:"is-rtl",isHorizontal:"is-horizontal",isVertical:"is-vertical",inTransition:"in-transition",isSelected:"is-selected"},l10n:{NEXT:"Next slide",PREV:"Previous slide",GOTO:"Go to slide #%d"}};var j;!function(t){t[t.Init=0]="Init",t[t.Ready=1]="Ready",t[t.Destroy=2]="Destroy"}(j||(j={}));const F=t=>{if("string"==typeof t||t instanceof HTMLElement)t={html:t};else{const e=t.thumb;void 0!==e&&("string"==typeof e&&(t.thumbSrc=e),e instanceof HTMLImageElement&&(t.thumbEl=e,t.thumbElSrc=e.src,t.thumbSrc=e.src),delete t.thumb)}return Object.assign({html:"",el:null,isDom:!1,class:"",customClass:"",index:-1,dim:0,gap:0,pos:0,transition:!1},t)},I=(t={})=>Object.assign({index:-1,slides:[],dim:0,pos:-1},t);class B extends g{constructor(t,e){super(e),Object.defineProperty(this,"instance",{enumerable:!0,configurable:!0,writable:!0,value:t})}attach(){}detach(){}}const H={classes:{list:"f-carousel__dots",isDynamic:"is-dynamic",hasDots:"has-dots",dot:"f-carousel__dot",isBeforePrev:"is-before-prev",isPrev:"is-prev",isCurrent:"is-current",isNext:"is-next",isAfterNext:"is-after-next"},dotTpl:'<button type="button" data-carousel-page="%i" aria-label="{{GOTO}}"><span class="f-carousel__dot" aria-hidden="true"></span></button>',dynamicFrom:11,maxCount:1/0,minCount:2};class N extends B{constructor(){super(...arguments),Object.defineProperty(this,"isDynamic",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"list",{enumerable:!0,configurable:!0,writable:!0,value:null})}onRefresh(){this.refresh()}build(){let t=this.list;if(!t){t=document.createElement("ul"),P(t,this.cn("list")),t.setAttribute("role","tablist");const e=this.instance.container;e.appendChild(t),P(e,this.cn("hasDots")),this.list=t}return t}refresh(){var t;const e=this.instance.pages.length,i=Math.min(2,this.option("minCount")),n=Math.max(2e3,this.option("maxCount")),o=this.option("dynamicFrom");if(e<i||e>n)return void this.cleanup();const a="number"==typeof o&&e>5&&e>=o,r=!this.list||this.isDynamic!==a||this.list.children.length!==e;r&&this.cleanup();const l=this.build();if(s(l,this.cn("isDynamic"),!!a),r)for(let t=0;t<e;t++)l.append(this.createItem(t));let h,c=0;for(const e of[...l.children]){const i=c===this.instance.page;i&&(h=e),s(e,this.cn("isCurrent"),i),null===(t=e.children[0])||void 0===t||t.setAttribute("aria-selected",i?"true":"false");for(const t of["isBeforePrev","isPrev","isNext","isAfterNext"])x(e,this.cn(t));c++}if(h=h||l.firstChild,a&&h){const t=h.previousElementSibling,e=t&&t.previousElementSibling;P(t,this.cn("isPrev")),P(e,this.cn("isBeforePrev"));const i=h.nextElementSibling,n=i&&i.nextElementSibling;P(i,this.cn("isNext")),P(n,this.cn("isAfterNext"))}this.isDynamic=a}createItem(t=0){var e;const n=document.createElement("li");n.setAttribute("role","presentation");const s=i(this.instance.localize(this.option("dotTpl"),[["%d",t+1]]).replace(/\%i/g,t+""));return n.appendChild(s),null===(e=n.children[0])||void 0===e||e.setAttribute("role","tab"),n}cleanup(){this.list&&(this.list.remove(),this.list=null),this.isDynamic=!1,x(this.instance.container,this.cn("hasDots"))}attach(){this.instance.on(["refresh","change"],this.onRefresh)}detach(){this.instance.off(["refresh","change"],this.onRefresh),this.cleanup()}}Object.defineProperty(N,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:H});const X="disabled",W="next",Y="prev";class $ extends B{constructor(){super(...arguments),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"prev",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"next",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"isDom",{enumerable:!0,configurable:!0,writable:!0,value:!1})}onRefresh(){const t=this.instance,e=t.pages.length,i=t.page;if(e<2)return void this.cleanup();this.build();let n=this.prev,s=this.next;n&&s&&(n.removeAttribute(X),s.removeAttribute(X),t.isInfinite||(i<=0&&n.setAttribute(X,""),i>=e-1&&s.setAttribute(X,"")))}addBtn(t){var e;const i=this.instance,n=document.createElement("button");n.setAttribute("tabindex","0"),n.setAttribute("title",i.localize(`{{${t.toUpperCase()}}}`)),P(n,this.cn("button")+" "+this.cn(t===W?"isNext":"isPrev"));const s=i.isRTL?t===W?Y:W:t;var o;return n.innerHTML=i.localize(this.option(`${s}Tpl`)),n.dataset[`carousel${o=t,o?o.match("^[a-z]")?o.charAt(0).toUpperCase()+o.substring(1):o:""}`]="true",null===(e=this.container)||void 0===e||e.appendChild(n),n}build(){const t=this.instance.container,e=this.cn("container");let{container:i,prev:n,next:s}=this;i||(i=t.querySelector("."+e),this.isDom=!!i),i||(i=document.createElement("div"),P(i,e),t.appendChild(i)),this.container=i,s||(s=i.querySelector("[data-carousel-next]")),s||(s=this.addBtn(W)),this.next=s,n||(n=i.querySelector("[data-carousel-prev]")),n||(n=this.addBtn(Y)),this.prev=n}cleanup(){this.isDom||(this.prev&&this.prev.remove(),this.next&&this.next.remove(),this.container&&this.container.remove()),this.prev=null,this.next=null,this.container=null,this.isDom=!1}attach(){this.instance.on(["refresh","change"],this.onRefresh)}detach(){this.instance.off(["refresh","change"],this.onRefresh),this.cleanup()}}Object.defineProperty($,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{classes:{container:"f-carousel__nav",button:"f-button",isNext:"is-next",isPrev:"is-prev"},nextTpl:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M9 3l9 9-9 9"/></svg>',prevTpl:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M15 3l-9 9 9 9"/></svg>'}});class Z extends B{constructor(){super(...arguments),Object.defineProperty(this,"selectedIndex",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"target",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"nav",{enumerable:!0,configurable:!0,writable:!0,value:null})}addAsTargetFor(t){this.target=this.instance,this.nav=t,this.attachEvents()}addAsNavFor(t){this.nav=this.instance,this.target=t,this.attachEvents()}attachEvents(){const{nav:t,target:e}=this;t&&e&&(t.options.initialSlide=e.options.initialPage,t.state===j.Ready?this.onNavReady(t):t.on("ready",this.onNavReady),e.state===j.Ready?this.onTargetReady(e):e.on("ready",this.onTargetReady))}onNavReady(t){t.on("createSlide",this.onNavCreateSlide),t.on("Panzoom.click",this.onNavClick),t.on("Panzoom.touchEnd",this.onNavTouch),this.onTargetChange()}onTargetReady(t){t.on("change",this.onTargetChange),t.on("Panzoom.refresh",this.onTargetChange),this.onTargetChange()}onNavClick(t,e,i){this.onNavTouch(t,t.panzoom,i)}onNavTouch(t,e,i){var n,s;if(Math.abs(e.dragOffset.x)>3||Math.abs(e.dragOffset.y)>3)return;const o=i.target,{nav:a,target:r}=this;if(!a||!r||!o)return;const l=o.closest("[data-index]");if(i.stopPropagation(),i.preventDefault(),!l)return;const h=parseInt(l.dataset.index||"",10)||0,c=r.getPageForSlide(h),d=a.getPageForSlide(h);a.slideTo(d),r.slideTo(c,{friction:(null===(s=null===(n=this.nav)||void 0===n?void 0:n.plugins)||void 0===s?void 0:s.Sync.option("friction"))||0}),this.markSelectedSlide(h)}onNavCreateSlide(t,e){e.index===this.selectedIndex&&this.markSelectedSlide(e.index)}onTargetChange(){var t,e;const{target:i,nav:n}=this;if(!i||!n)return;if(n.state!==j.Ready||i.state!==j.Ready)return;const s=null===(e=null===(t=i.pages[i.page])||void 0===t?void 0:t.slides[0])||void 0===e?void 0:e.index,o=n.getPageForSlide(s);this.markSelectedSlide(s),n.slideTo(o,null===n.prevPage&&null===i.prevPage?{friction:0}:void 0)}markSelectedSlide(t){const e=this.nav;e&&e.state===j.Ready&&(this.selectedIndex=t,[...e.slides].map((e=>{e.el&&e.el.classList[e.index===t?"add":"remove"]("is-nav-selected")})))}attach(){const t=this;let e=t.options.target,i=t.options.nav;e?t.addAsNavFor(e):i&&t.addAsTargetFor(i)}detach(){const t=this,e=t.nav,i=t.target;e&&(e.off("ready",t.onNavReady),e.off("createSlide",t.onNavCreateSlide),e.off("Panzoom.click",t.onNavClick),e.off("Panzoom.touchEnd",t.onNavTouch)),t.nav=null,i&&(i.off("ready",t.onTargetReady),i.off("refresh",t.onTargetChange),i.off("change",t.onTargetChange)),t.target=null}}Object.defineProperty(Z,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{friction:.35}});const V={Navigation:$,Dots:N,Sync:Z},q="animationend",_="isSelected",G="slide";class U extends p{get axis(){return this.isHorizontal?"e":"f"}get isEnabled(){return this.state===j.Ready}get isInfinite(){let t=!1;const{contentDim:e,viewportDim:i,pages:n,slides:s}=this,o=s[0];return n.length>=2&&o&&e+o.dim>=i&&(t=this.option("infinite")),t}get isRTL(){return"rtl"===this.option("direction")}get isHorizontal(){return"x"===this.option("axis")}constructor(t,e={},i={}){if(super(),Object.defineProperty(this,"bp",{enumerable:!0,configurable:!0,writable:!0,value:""}),Object.defineProperty(this,"lp",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"userOptions",{enumerable:!0,configurable:!0,writable:!0,value:{}}),Object.defineProperty(this,"userPlugins",{enumerable:!0,configurable:!0,writable:!0,value:{}}),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:j.Init}),Object.defineProperty(this,"page",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"prevPage",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"viewport",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"track",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"slides",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"pages",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"panzoom",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"inTransition",{enumerable:!0,configurable:!0,writable:!0,value:new Set}),Object.defineProperty(this,"contentDim",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"viewportDim",{enumerable:!0,configurable:!0,writable:!0,value:0}),"string"==typeof t&&(t=document.querySelector(t)),!t||!w(t))throw new Error("No Element found");this.container=t,this.slideNext=R(this.slideNext.bind(this),150),this.slidePrev=R(this.slidePrev.bind(this),150),this.userOptions=e,this.userPlugins=i,queueMicrotask((()=>{this.processOptions()}))}processOptions(){var t,e;const i=d({},U.defaults,this.userOptions);let n="";const s=i.breakpoints;if(s&&c(s))for(const[t,e]of Object.entries(s))window.matchMedia(t).matches&&c(e)&&(n+=t,d(i,e));n===this.bp&&this.state!==j.Init||(this.bp=n,this.state===j.Ready&&(i.initialSlide=(null===(e=null===(t=this.pages[this.page])||void 0===t?void 0:t.slides[0])||void 0===e?void 0:e.index)||0),this.state!==j.Init&&this.destroy(),super.setOptions(i),!1===this.option("enabled")?this.attachEvents():setTimeout((()=>{this.init()}),0))}init(){this.state=j.Init,this.emit("init"),this.attachPlugins(Object.assign(Object.assign({},U.Plugins),this.userPlugins)),this.emit("attachPlugins"),this.initLayout(),this.initSlides(),this.updateMetrics(),this.setInitialPosition(),this.initPanzoom(),this.attachEvents(),this.state=j.Ready,this.emit("ready")}initLayout(){const{container:t}=this,e=this.option("classes");P(t,this.cn("container")),s(t,e.isLTR,!this.isRTL),s(t,e.isRTL,this.isRTL),s(t,e.isVertical,!this.isHorizontal),s(t,e.isHorizontal,this.isHorizontal);let i=this.option("viewport")||t.querySelector(`.${e.viewport}`);i||(i=document.createElement("div"),P(i,e.viewport),i.append(...C(t,`.${e.slide}`)),t.prepend(i)),i.addEventListener("scroll",this.onScroll);let n=this.option("track")||t.querySelector(`.${e.track}`);n||(n=document.createElement("div"),P(n,e.track),n.append(...Array.from(i.childNodes))),n.setAttribute("aria-live","polite"),i.contains(n)||i.prepend(n),this.viewport=i,this.track=n,this.emit("initLayout")}initSlides(){const{track:t}=this;if(!t)return;const e=[...this.slides],i=[];[...C(t,`.${this.cn(G)}`)].forEach((t=>{if(w(t)){const e=F({el:t,isDom:!0,index:this.slides.length});i.push(e)}}));for(let t of[...this.option("slides",[])||[],...e])i.push(F(t));this.slides=i;for(let t=0;t<this.slides.length;t++)this.slides[t].index=t;for(const t of i)this.emit("beforeInitSlide",t,t.index),this.emit("initSlide",t,t.index);this.emit("initSlides")}setInitialPage(){const t=this.option("initialSlide");this.page="number"==typeof t?this.getPageForSlide(t):parseInt(this.option("initialPage",0)+"",10)||0}setInitialPosition(){const{track:t,pages:e,isHorizontal:i}=this;if(!t||!e.length)return;let n=this.page;e[n]||(this.page=n=0);const s=(e[n].pos||0)*(this.isRTL&&i?1:-1),o=i?`${s}px`:"0",a=i?"0":`${s}px`;t.style.transform=`translate3d(${o}, ${a}, 0) scale(1)`,this.option("adaptiveHeight")&&this.setViewportHeight()}initPanzoom(){this.panzoom&&(this.panzoom.destroy(),this.panzoom=null);const t=this.option("Panzoom")||{};this.panzoom=new D(this.viewport,d({},{content:this.track,zoom:!1,panOnlyZoomed:!1,lockAxis:this.isHorizontal?"x":"y",infinite:this.isInfinite,click:!1,dblClick:!1,touch:t=>!(this.pages.length<2&&!t.options.infinite),bounds:()=>this.getBounds(),maxVelocity:t=>Math.abs(t.target[this.axis]-t.current[this.axis])<2*this.viewportDim?100:0},t)),this.panzoom.on("*",((t,e,...i)=>{this.emit(`Panzoom.${e}`,t,...i)})),this.panzoom.on("decel",this.onDecel),this.panzoom.on("refresh",this.onRefresh),this.panzoom.on("beforeTransform",this.onBeforeTransform),this.panzoom.on("endAnimation",this.onEndAnimation)}attachEvents(){const t=this.container;t&&(t.addEventListener("click",this.onClick,{passive:!1,capture:!1}),t.addEventListener("slideTo",this.onSlideTo)),window.addEventListener("resize",this.onResize)}createPages(){let t=[];const{contentDim:e,viewportDim:i}=this;let n=this.option("slidesPerPage");n=("auto"===n||e<=i)&&!1!==this.option("fill")?1/0:parseFloat(n+"");let s=0,o=0,a=0;for(const e of this.slides)(!t.length||o+e.dim-i>.05||a>=n)&&(t.push(I()),s=t.length-1,o=0,a=0),t[s].slides.push(e),o+=e.dim+e.gap,a++;return t}processPages(){const e=this.pages,{contentDim:i,viewportDim:n,isInfinite:s}=this,o=this.option("center"),a=this.option("fill"),r=a&&o&&i>n&&!s;if(e.forEach(((t,e)=>{var s;t.index=e,t.pos=(null===(s=t.slides[0])||void 0===s?void 0:s.pos)||0,t.dim=0;for(const[e,i]of t.slides.entries())t.dim+=i.dim,e<t.slides.length-1&&(t.dim+=i.gap);r&&t.pos+.5*t.dim<.5*n?t.pos=0:r&&t.pos+.5*t.dim>=i-.5*n?t.pos=i-n:o&&(t.pos+=-.5*(n-t.dim))})),e.forEach((e=>{a&&!s&&i>n&&(e.pos=Math.max(e.pos,0),e.pos=Math.min(e.pos,i-n)),e.pos=t(e.pos,1e3),e.dim=t(e.dim,1e3),Math.abs(e.pos)<=.1&&(e.pos=0)})),s)return e;const l=[];let h;return e.forEach((t=>{const e=Object.assign({},t);h&&e.pos===h.pos?(h.dim+=e.dim,h.slides=[...h.slides,...e.slides]):(e.index=l.length,h=e,l.push(e))})),l}getPageFromIndex(t=0){const e=this.pages.length;let i;return t=parseInt((t||0).toString())||0,i=this.isInfinite?(t%e+e)%e:Math.max(Math.min(t,e-1),0),i}getSlideMetrics(e){var i,n;const s=this.isHorizontal?"width":"height";let o=0,a=0,r=e.el;const l=!(!r||r.parentNode);if(r?o=parseFloat(r.dataset[s]||"")||0:(r=document.createElement("div"),r.style.visibility="hidden",(this.track||document.body).prepend(r)),P(r,this.cn(G)+" "+e.class+" "+e.customClass),o)r.style[s]=`${o}px`,r.style["width"===s?"height":"width"]="";else{l&&(this.track||document.body).prepend(r),o=r.getBoundingClientRect()[s]*Math.max(1,(null===(i=window.visualViewport)||void 0===i?void 0:i.scale)||1);let t=r[this.isHorizontal?"offsetWidth":"offsetHeight"];t-1>o&&(o=t)}const h=getComputedStyle(r);return"content-box"===h.boxSizing&&(this.isHorizontal?(o+=parseFloat(h.paddingLeft)||0,o+=parseFloat(h.paddingRight)||0):(o+=parseFloat(h.paddingTop)||0,o+=parseFloat(h.paddingBottom)||0)),a=parseFloat(h[this.isHorizontal?"marginRight":"marginBottom"])||0,l?null===(n=r.parentElement)||void 0===n||n.removeChild(r):e.el||r.remove(),{dim:t(o,1e3),gap:t(a,1e3)}}getBounds(){const{isInfinite:t,isRTL:e,isHorizontal:i,pages:n}=this;let s={min:0,max:0};if(t)s={min:-1/0,max:1/0};else if(n.length){const t=n[0].pos,o=n[n.length-1].pos;s=e&&i?{min:t,max:o}:{min:-1*o,max:-1*t}}return{x:i?s:{min:0,max:0},y:i?{min:0,max:0}:s}}repositionSlides(){let e,{isHorizontal:i,isRTL:n,isInfinite:s,viewport:o,viewportDim:a,contentDim:r,page:l,pages:h,slides:c,panzoom:d}=this,u=0,g=0,p=0,f=0;d?f=-1*d.current[this.axis]:h[l]&&(f=h[l].pos||0),e=i?n?"right":"left":"top",n&&i&&(f*=-1);for(const i of c){const n=i.el;n?("top"===e?(n.style.right="",n.style.left=""):n.style.top="",i.index!==u?n.style[e]=0===g?"":`${t(g,1e3)}px`:n.style[e]="",p+=i.dim+i.gap,u++):g+=i.dim+i.gap}if(s&&p&&o){let n=getComputedStyle(o),s="padding",l=i?"Right":"Bottom",h=parseFloat(n[s+(i?"Left":"Top")]);f-=h,a+=h,a+=parseFloat(n[s+l]);for(const i of c)i.el&&(t(i.pos)<t(a)&&t(i.pos+i.dim+i.gap)<t(f)&&t(f)>t(r-a)&&(i.el.style[e]=`${t(g+p,1e3)}px`),t(i.pos+i.gap)>=t(r-a)&&t(i.pos)>t(f+a)&&t(f)<t(a)&&(i.el.style[e]=`-${t(p,1e3)}px`))}let m,b,v=[...this.inTransition];if(v.length>1&&(m=h[v[0]],b=h[v[1]]),m&&b){let i=0;for(const n of c)n.el?this.inTransition.has(n.index)&&m.slides.indexOf(n)<0&&(n.el.style[e]=`${t(i+(m.pos-b.pos),1e3)}px`):i+=n.dim+n.gap}}createSlideEl(t){const{track:e,slides:i}=this;if(!e||!t)return;if(t.el&&t.el.parentNode)return;const n=t.el||document.createElement("div");P(n,this.cn(G)),P(n,t.class),P(n,t.customClass);const s=t.html;s&&(s instanceof HTMLElement?n.appendChild(s):n.innerHTML=t.html+"");const o=[];i.forEach(((t,e)=>{t.el&&o.push(e)}));const a=t.index;let r=null;if(o.length){r=i[o.reduce(((t,e)=>Math.abs(e-a)<Math.abs(t-a)?e:t))]}const l=r&&r.el&&r.el.parentNode?r.index<t.index?r.el.nextSibling:r.el:null;e.insertBefore(n,e.contains(l)?l:null),t.el=n,this.emit("createSlide",t)}removeSlideEl(t,e=!1){const i=null==t?void 0:t.el;if(!i||!i.parentNode)return;const n=this.cn(_);if(i.classList.contains(n)&&(x(i,n),this.emit("unselectSlide",t)),t.isDom&&!e)return i.removeAttribute("aria-hidden"),i.removeAttribute("data-index"),void(i.style.left="");this.emit("removeSlide",t);const s=new CustomEvent(q);i.dispatchEvent(s),t.el&&(t.el.remove(),t.el=null)}transitionTo(t=0,e=this.option("transition")){var i,n,s,o;if(!e)return!1;const a=this.page,{pages:r,panzoom:l}=this;t=parseInt((t||0).toString())||0;const h=this.getPageFromIndex(t);if(!l||!r[h]||r.length<2||Math.abs(((null===(n=null===(i=r[a])||void 0===i?void 0:i.slides[0])||void 0===n?void 0:n.dim)||0)-this.viewportDim)>1)return!1;const c=t>a?1:-1,d=r[h].pos*(this.isRTL?1:-1);if(a===h&&Math.abs(d-l.target[this.axis])<1)return!1;this.clearTransitions();const u=l.isResting;P(this.container,this.cn("inTransition"));const g=(null===(s=r[a])||void 0===s?void 0:s.slides[0])||null,p=(null===(o=r[h])||void 0===o?void 0:o.slides[0])||null;this.inTransition.add(p.index),this.createSlideEl(p);let f=g.el,m=p.el;u||e===G||(e="fadeFast",f=null);const b=this.isRTL?"next":"prev",v=this.isRTL?"prev":"next";return f&&(this.inTransition.add(g.index),g.transition=e,f.addEventListener(q,this.onAnimationEnd),f.classList.add(`f-${e}Out`,`to-${c>0?v:b}`)),m&&(p.transition=e,m.addEventListener(q,this.onAnimationEnd),m.classList.add(`f-${e}In`,`from-${c>0?b:v}`)),l.current[this.axis]=d,l.target[this.axis]=d,l.requestTick(),this.onChange(h),!0}manageSlideVisiblity(){const t=new Set,e=new Set,i=this.getVisibleSlides(parseFloat(this.option("preload",0)+"")||0);for(const n of this.slides)i.has(n)?t.add(n):e.add(n);for(const e of this.inTransition)t.add(this.slides[e]);for(const e of t)this.createSlideEl(e),this.lazyLoadSlide(e);for(const i of e)t.has(i)||this.removeSlideEl(i);this.markSelectedSlides(),this.repositionSlides()}markSelectedSlides(){if(!this.pages[this.page]||!this.pages[this.page].slides)return;const t="aria-hidden";let e=this.cn(_);if(e)for(const i of this.slides){const n=i.el;n&&(n.dataset.index=`${i.index}`,n.classList.contains("f-thumbs__slide")?this.getVisibleSlides(0).has(i)?n.removeAttribute(t):n.setAttribute(t,"true"):this.pages[this.page].slides.includes(i)?(n.classList.contains(e)||(P(n,e),this.emit("selectSlide",i)),n.removeAttribute(t)):(n.classList.contains(e)&&(x(n,e),this.emit("unselectSlide",i)),n.setAttribute(t,"true")))}}flipInfiniteTrack(){const{axis:t,isHorizontal:e,isInfinite:i,isRTL:n,viewportDim:s,contentDim:o}=this,a=this.panzoom;if(!a||!i)return;let r=a.current[t],l=a.target[t]-r,h=0,c=.5*s;n&&e?(r<-c&&(h=-1,r+=o),r>o-c&&(h=1,r-=o)):(r>c&&(h=1,r-=o),r<-o+c&&(h=-1,r+=o)),h&&(a.current[t]=r,a.target[t]=r+l)}lazyLoadImg(t,e){const n=this,s="f-fadeIn",o="is-preloading";let a=!1,r=null;const l=()=>{a||(a=!0,r&&(r.remove(),r=null),x(e,o),e.complete&&(P(e,s),setTimeout((()=>{x(e,s)}),350)),this.option("adaptiveHeight")&&t.el&&this.pages[this.page].slides.indexOf(t)>-1&&(n.updateMetrics(),n.setViewportHeight()),this.emit("load",t))};P(e,o),e.src=e.dataset.lazySrcset||e.dataset.lazySrc||"",delete e.dataset.lazySrc,delete e.dataset.lazySrcset,e.addEventListener("error",(()=>{l()})),e.addEventListener("load",(()=>{l()})),setTimeout((()=>{const n=e.parentNode;n&&t.el&&(e.complete?l():a||(r=i(y),n.insertBefore(r,e)))}),300)}lazyLoadSlide(t){const e=t&&t.el;if(!e)return;const i=new Set;let n=Array.from(e.querySelectorAll("[data-lazy-src],[data-lazy-srcset]"));e.dataset.lazySrc&&n.push(e),n.map((t=>{t instanceof HTMLImageElement?i.add(t):t instanceof HTMLElement&&t.dataset.lazySrc&&(t.style.backgroundImage=`url('${t.dataset.lazySrc}')`,delete t.dataset.lazySrc)}));for(const e of i)this.lazyLoadImg(t,e)}onAnimationEnd(t){var e;const i=t.target,n=i?parseInt(i.dataset.index||"",10)||0:-1,s=this.slides[n],o=t.animationName;if(!i||!s||!o)return;const a=!!this.inTransition.has(n)&&s.transition;a&&o.substring(0,a.length+2)===`f-${a}`&&this.inTransition.delete(n),this.inTransition.size||this.clearTransitions(),n===this.page&&(null===(e=this.panzoom)||void 0===e?void 0:e.isResting)&&this.emit("settle")}onDecel(t,e=0,i=0,n=0,s=0){if(this.option("dragFree"))return void this.setPageFromPosition();const{isRTL:o,isHorizontal:a,axis:r,pages:l}=this,h=l.length,c=Math.abs(Math.atan2(i,e)/(Math.PI/180));let d=0;if(d=c>45&&c<135?a?0:i:a?e:0,!h)return;let u=this.page,g=o&&a?1:-1;const p=t.current[r]*g;let{pageIndex:f}=this.getPageFromPosition(p);Math.abs(d)>5?(l[u].dim<document.documentElement["client"+(this.isHorizontal?"Width":"Height")]-1&&(u=f),u=o&&a?d<0?u-1:u+1:d<0?u+1:u-1):u=0===n&&0===s?u:f,this.slideTo(u,{transition:!1,friction:t.option("decelFriction")})}onClick(t){const e=t.target,i=e&&w(e)?e.dataset:null;let n,s;i&&(void 0!==i.carouselPage?(s="slideTo",n=i.carouselPage):void 0!==i.carouselNext?s="slideNext":void 0!==i.carouselPrev&&(s="slidePrev")),s?(t.preventDefault(),t.stopPropagation(),e&&!e.hasAttribute("disabled")&&this[s](n)):this.emit("click",t)}onSlideTo(t){const e=t.detail||0;this.slideTo(this.getPageForSlide(e),{friction:0})}onChange(t,e=0){const i=this.page;this.prevPage=i,this.page=t,this.option("adaptiveHeight")&&this.setViewportHeight(),t!==i&&(this.markSelectedSlides(),this.emit("change",t,i,e))}onRefresh(){let t=this.contentDim,e=this.viewportDim;this.updateMetrics(),this.contentDim===t&&this.viewportDim===e||this.slideTo(this.page,{friction:0,transition:!1})}onScroll(){var t;null===(t=this.viewport)||void 0===t||t.scroll(0,0)}onResize(){this.option("breakpoints")&&this.processOptions()}onBeforeTransform(t){this.lp!==t.current[this.axis]&&(this.flipInfiniteTrack(),this.manageSlideVisiblity()),this.lp=t.current.e}onEndAnimation(){this.inTransition.size||this.emit("settle")}reInit(t=null,e=null){this.destroy(),this.state=j.Init,this.prevPage=null,this.userOptions=t||this.userOptions,this.userPlugins=e||this.userPlugins,this.processOptions()}slideTo(t=0,{friction:e=this.option("friction"),transition:i=this.option("transition")}={}){if(this.state===j.Destroy)return;t=parseInt((t||0).toString())||0;const n=this.getPageFromIndex(t),{axis:s,isHorizontal:o,isRTL:a,pages:r,panzoom:l}=this,h=r.length,c=a&&o?1:-1;if(!l||!h)return;if(this.page!==n){const e=new Event("beforeChange",{bubbles:!0,cancelable:!0});if(this.emit("beforeChange",e,t),e.defaultPrevented)return}if(this.transitionTo(t,i))return;let d=r[n].pos;if(this.isInfinite){const e=this.contentDim,i=l.target[s]*c;if(2===h)d+=e*Math.floor(parseFloat(t+"")/2);else{d=[d,d-e,d+e].reduce((function(t,e){return Math.abs(e-i)<Math.abs(t-i)?e:t}))}}d*=c,Math.abs(l.target[s]-d)<1||(l.panTo({x:o?d:0,y:o?0:d,friction:e}),this.onChange(n))}slideToClosest(t){if(this.panzoom){const{pageIndex:e}=this.getPageFromPosition();this.slideTo(e,t)}}slideNext(){this.slideTo(this.page+1)}slidePrev(){this.slideTo(this.page-1)}clearTransitions(){this.inTransition.clear(),x(this.container,this.cn("inTransition"));const t=["to-prev","to-next","from-prev","from-next"];for(const e of this.slides){const i=e.el;if(i){i.removeEventListener(q,this.onAnimationEnd),i.classList.remove(...t);const n=e.transition;n&&i.classList.remove(`f-${n}Out`,`f-${n}In`)}}this.manageSlideVisiblity()}addSlide(t,e){var i,n,s,o;const a=this.panzoom,r=(null===(i=this.pages[this.page])||void 0===i?void 0:i.pos)||0,l=(null===(n=this.pages[this.page])||void 0===n?void 0:n.dim)||0,h=this.contentDim<this.viewportDim;let c=Array.isArray(e)?e:[e];const d=[];for(const t of c)d.push(F(t));this.slides.splice(t,0,...d);for(let t=0;t<this.slides.length;t++)this.slides[t].index=t;for(const t of d)this.emit("beforeInitSlide",t,t.index);if(this.page>=t&&(this.page+=d.length),this.updateMetrics(),a){const e=(null===(s=this.pages[this.page])||void 0===s?void 0:s.pos)||0,i=(null===(o=this.pages[this.page])||void 0===o?void 0:o.dim)||0,n=this.pages.length||1,c=this.isRTL?l-i:i-l,d=this.isRTL?r-e:e-r;h&&1===n?(t<=this.page&&(a.current[this.axis]-=c,a.target[this.axis]-=c),a.panTo({[this.isHorizontal?"x":"y"]:-1*e})):d&&t<=this.page&&(a.target[this.axis]-=d,a.current[this.axis]-=d,a.requestTick())}for(const t of d)this.emit("initSlide",t,t.index)}prependSlide(t){this.addSlide(0,t)}appendSlide(t){this.addSlide(this.slides.length,t)}removeSlide(t){const e=this.slides.length;t=(t%e+e)%e;const i=this.slides[t];if(i){this.removeSlideEl(i,!0),this.slides.splice(t,1);for(let t=0;t<this.slides.length;t++)this.slides[t].index=t;this.updateMetrics(),this.slideTo(this.page,{friction:0,transition:!1}),this.emit("destroySlide",i)}}updateMetrics(){const{panzoom:e,viewport:i,track:n,slides:s,isHorizontal:o,isInfinite:a}=this;if(!n)return;const r=o?"width":"height",l=o?"offsetWidth":"offsetHeight";if(i){let e=Math.max(i[l],t(i.getBoundingClientRect()[r],1e3)),n=getComputedStyle(i),s="padding",a=o?"Right":"Bottom";e-=parseFloat(n[s+(o?"Left":"Top")])+parseFloat(n[s+a]),this.viewportDim=e}let h,c=0;for(const[e,i]of s.entries()){let n=0,o=0;!i.el&&h?(n=h.dim,o=h.gap):(({dim:n,gap:o}=this.getSlideMetrics(i)),h=i),n=t(n,1e3),o=t(o,1e3),i.dim=n,i.gap=o,i.pos=c,c+=n,(a||e<s.length-1)&&(c+=o)}c=t(c,1e3),this.contentDim=c,e&&(e.contentRect[r]=c,e.contentRect[o?"fullWidth":"fullHeight"]=c),this.pages=this.createPages(),this.pages=this.processPages(),this.state===j.Init&&this.setInitialPage(),this.page=Math.max(0,Math.min(this.page,this.pages.length-1)),this.manageSlideVisiblity(),this.emit("refresh")}getProgress(e,i=!1,n=!1){void 0===e&&(e=this.page);const s=this,o=s.panzoom,a=s.contentDim,r=s.pages[e]||0;if(!r||!o)return e>this.page?-1:1;let l=-1*o.current.e,h=t((l-r.pos)/(1*r.dim),1e3),c=h,d=h;this.isInfinite&&!0!==n&&(c=t((l-r.pos+a)/(1*r.dim),1e3),d=t((l-r.pos-a)/(1*r.dim),1e3));let u=[h,c,d].reduce((function(t,e){return Math.abs(e)<Math.abs(t)?e:t}));return i?u:u>1?1:u<-1?-1:u}setViewportHeight(){const{page:t,pages:e,viewport:i,isHorizontal:n}=this;if(!i||!e[t])return;let s=0;n&&this.track&&(this.track.style.height="auto",e[t].slides.forEach((t=>{t.el&&(s=Math.max(s,t.el.offsetHeight))}))),i.style.height=s?`${s}px`:""}getPageForSlide(t){for(const e of this.pages)for(const i of e.slides)if(i.index===t)return e.index;return-1}getVisibleSlides(t=0){var e;const i=new Set;let{panzoom:n,contentDim:s,viewportDim:o,pages:a,page:r}=this;if(o){s=s+(null===(e=this.slides[this.slides.length-1])||void 0===e?void 0:e.gap)||0;let l=0;l=n&&n.state!==f.Init&&n.state!==f.Destroy?-1*n.current[this.axis]:a[r]&&a[r].pos||0,this.isInfinite&&(l-=Math.floor(l/s)*s),this.isRTL&&this.isHorizontal&&(l*=-1);const h=l-o*t,c=l+o*(t+1),d=this.isInfinite?[-1,0,1]:[0];for(const t of this.slides)for(const e of d){const n=t.pos+e*s,o=n+t.dim+t.gap;n<c&&o>h&&i.add(t)}}return i}getPageFromPosition(t){const{viewportDim:e,contentDim:i,slides:n,pages:s,panzoom:o}=this,a=s.length,r=n.length,l=n[0],h=n[r-1],c=this.option("center");let d=0,u=0,g=0,p=void 0===t?-1*((null==o?void 0:o.target[this.axis])||0):t;c&&(p+=.5*e),this.isInfinite?(p<l.pos-.5*h.gap&&(p-=i,g=-1),p>h.pos+h.dim+.5*h.gap&&(p-=i,g=1)):p=Math.max(l.pos||0,Math.min(p,h.pos));let f=h,m=n.find((t=>{const e=t.pos-.5*f.gap,i=t.pos+t.dim+.5*t.gap;return f=t,p>=e&&p<i}));return m||(m=h),u=this.getPageForSlide(m.index),d=u+g*a,{page:d,pageIndex:u}}setPageFromPosition(){const{pageIndex:t}=this.getPageFromPosition();this.onChange(t)}destroy(){if([j.Destroy].includes(this.state))return;this.state=j.Destroy;const{container:t,viewport:e,track:i,slides:n,panzoom:s}=this,o=this.option("classes");t.removeEventListener("click",this.onClick,{passive:!1,capture:!1}),t.removeEventListener("slideTo",this.onSlideTo),window.removeEventListener("resize",this.onResize),s&&(s.destroy(),this.panzoom=null),n&&n.forEach((t=>{this.removeSlideEl(t)})),this.detachPlugins(),e&&(e.removeEventListener("scroll",this.onScroll),e.offsetParent&&i&&i.offsetParent&&e.replaceWith(...i.childNodes));for(const[e,i]of Object.entries(o))"container"!==e&&i&&t.classList.remove(i);this.track=null,this.viewport=null,this.page=0,this.slides=[];const a=this.events.get("ready");this.events=new Map,a&&this.events.set("ready",a)}}Object.defineProperty(U,"Panzoom",{enumerable:!0,configurable:!0,writable:!0,value:D}),Object.defineProperty(U,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:A}),Object.defineProperty(U,"Plugins",{enumerable:!0,configurable:!0,writable:!0,value:V});
+/**
+ * Fizzy UI utils v3.0.0
+ * MIT license
+ */
+
+( function( global, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory( global );
+  } else {
+    // browser global
+    global.fizzyUIUtils = factory( global );
+  }
+
+}( this, function factory( global ) {
+
+let utils = {};
+
+// ----- extend ----- //
+
+// extends objects
+utils.extend = function( a, b ) {
+  return Object.assign( a, b );
+};
+
+// ----- modulo ----- //
+
+utils.modulo = function( num, div ) {
+  return ( ( num % div ) + div ) % div;
+};
+
+// ----- makeArray ----- //
+
+// turn element or nodeList into an array
+utils.makeArray = function( obj ) {
+  // use object if already an array
+  if ( Array.isArray( obj ) ) return obj;
+
+  // return empty array if undefined or null. #6
+  if ( obj === null || obj === undefined ) return [];
+
+  let isArrayLike = typeof obj == 'object' && typeof obj.length == 'number';
+  // convert nodeList to array
+  if ( isArrayLike ) return [ ...obj ];
+
+  // array of single index
+  return [ obj ];
+};
+
+// ----- removeFrom ----- //
+
+utils.removeFrom = function( ary, obj ) {
+  let index = ary.indexOf( obj );
+  if ( index != -1 ) {
+    ary.splice( index, 1 );
+  }
+};
+
+// ----- getParent ----- //
+
+utils.getParent = function( elem, selector ) {
+  while ( elem.parentNode && elem != document.body ) {
+    elem = elem.parentNode;
+    if ( elem.matches( selector ) ) return elem;
+  }
+};
+
+// ----- getQueryElement ----- //
+
+// use element as selector string
+utils.getQueryElement = function( elem ) {
+  if ( typeof elem == 'string' ) {
+    return document.querySelector( elem );
+  }
+  return elem;
+};
+
+// ----- handleEvent ----- //
+
+// enable .ontype to trigger from .addEventListener( elem, 'type' )
+utils.handleEvent = function( event ) {
+  let method = 'on' + event.type;
+  if ( this[ method ] ) {
+    this[ method ]( event );
+  }
+};
+
+// ----- filterFindElements ----- //
+
+utils.filterFindElements = function( elems, selector ) {
+  // make array of elems
+  elems = utils.makeArray( elems );
+
+  return elems
+    // check that elem is an actual element
+    .filter( ( elem ) => elem instanceof HTMLElement )
+    .reduce( ( ffElems, elem ) => {
+      // add elem if no selector
+      if ( !selector ) {
+        ffElems.push( elem );
+        return ffElems;
+      }
+      // filter & find items if we have a selector
+      // filter
+      if ( elem.matches( selector ) ) {
+        ffElems.push( elem );
+      }
+      // find children
+      let childElems = elem.querySelectorAll( selector );
+      // concat childElems to filterFound array
+      ffElems = ffElems.concat( ...childElems );
+      return ffElems;
+    }, [] );
+};
+
+// ----- debounceMethod ----- //
+
+utils.debounceMethod = function( _class, methodName, threshold ) {
+  threshold = threshold || 100;
+  // original method
+  let method = _class.prototype[ methodName ];
+  let timeoutName = methodName + 'Timeout';
+
+  _class.prototype[ methodName ] = function() {
+    clearTimeout( this[ timeoutName ] );
+
+    let args = arguments;
+    this[ timeoutName ] = setTimeout( () => {
+      method.apply( this, args );
+      delete this[ timeoutName ];
+    }, threshold );
+  };
+};
+
+// ----- docReady ----- //
+
+utils.docReady = function( onDocReady ) {
+  let readyState = document.readyState;
+  if ( readyState == 'complete' || readyState == 'interactive' ) {
+    // do async to allow for other scripts to run. metafizzy/flickity#441
+    setTimeout( onDocReady );
+  } else {
+    document.addEventListener( 'DOMContentLoaded', onDocReady );
+  }
+};
+
+// ----- htmlInit ----- //
+
+// http://bit.ly/3oYLusc
+utils.toDashed = function( str ) {
+  return str.replace( /(.)([A-Z])/g, function( match, $1, $2 ) {
+    return $1 + '-' + $2;
+  } ).toLowerCase();
+};
+
+let console = global.console;
+
+// allow user to initialize classes via [data-namespace] or .js-namespace class
+// htmlInit( Widget, 'widgetName' )
+// options are parsed from data-namespace-options
+utils.htmlInit = function( WidgetClass, namespace ) {
+  utils.docReady( function() {
+    let dashedNamespace = utils.toDashed( namespace );
+    let dataAttr = 'data-' + dashedNamespace;
+    let dataAttrElems = document.querySelectorAll( `[${dataAttr}]` );
+    let jQuery = global.jQuery;
+
+    [ ...dataAttrElems ].forEach( ( elem ) => {
+      let attr = elem.getAttribute( dataAttr );
+      let options;
+      try {
+        options = attr && JSON.parse( attr );
+      } catch ( error ) {
+        // log error, do not initialize
+        if ( console ) {
+          console.error( `Error parsing ${dataAttr} on ${elem.className}: ${error}` );
+        }
+        return;
+      }
+      // initialize
+      let instance = new WidgetClass( elem, options );
+      // make available via $().data('namespace')
+      if ( jQuery ) {
+        jQuery.data( elem, namespace, instance );
+      }
+    } );
+
+  } );
+};
+
+// -----  ----- //
+
+return utils;
+
+} ) );
 
 
 /***/ }),
 
-/***/ "./node_modules/@fancyapps/ui/dist/carousel/carousel.autoplay.css":
-/*!************************************************************************!*\
-  !*** ./node_modules/@fancyapps/ui/dist/carousel/carousel.autoplay.css ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./node_modules/flickity/js/add-remove-cell.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/flickity/js/add-remove-cell.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
+// add, remove cell
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+        __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js"),
+        __webpack_require__(/*! fizzy-ui-utils */ "./node_modules/fizzy-ui-utils/utils.js"),
+    );
+  } else {
+    // browser global
+    factory(
+        window.Flickity,
+        window.fizzyUIUtils,
+    );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( Flickity, utils ) {
+
+// append cells to a document fragment
+function getCellsFragment( cells ) {
+  let fragment = document.createDocumentFragment();
+  cells.forEach( ( cell ) => fragment.appendChild( cell.element ) );
+  return fragment;
+}
+
+// -------------------------- add/remove cell prototype -------------------------- //
+
+let proto = Flickity.prototype;
+
+/**
+ * Insert, prepend, or append cells
+ * @param {[Element, Array, NodeList]} elems - Elements to insert
+ * @param {Integer} index - Zero-based number to insert
+ */
+proto.insert = function( elems, index ) {
+  let cells = this._makeCells( elems );
+  if ( !cells || !cells.length ) return;
+
+  let len = this.cells.length;
+  // default to append
+  index = index === undefined ? len : index;
+  // add cells with document fragment
+  let fragment = getCellsFragment( cells );
+  // append to slider
+  let isAppend = index === len;
+  if ( isAppend ) {
+    this.slider.appendChild( fragment );
+  } else {
+    let insertCellElement = this.cells[ index ].element;
+    this.slider.insertBefore( fragment, insertCellElement );
+  }
+  // add to this.cells
+  if ( index === 0 ) {
+    // prepend, add to start
+    this.cells = cells.concat( this.cells );
+  } else if ( isAppend ) {
+    // append, add to end
+    this.cells = this.cells.concat( cells );
+  } else {
+    // insert in this.cells
+    let endCells = this.cells.splice( index, len - index );
+    this.cells = this.cells.concat( cells ).concat( endCells );
+  }
+
+  this._sizeCells( cells );
+  this.cellChange( index );
+  this.positionSliderAtSelected();
+};
+
+proto.append = function( elems ) {
+  this.insert( elems, this.cells.length );
+};
+
+proto.prepend = function( elems ) {
+  this.insert( elems, 0 );
+};
+
+/**
+ * Remove cells
+ * @param {[Element, Array, NodeList]} elems - ELements to remove
+ */
+proto.remove = function( elems ) {
+  let cells = this.getCells( elems );
+  if ( !cells || !cells.length ) return;
+
+  let minCellIndex = this.cells.length - 1;
+  // remove cells from collection & DOM
+  cells.forEach( ( cell ) => {
+    cell.remove();
+    let index = this.cells.indexOf( cell );
+    minCellIndex = Math.min( index, minCellIndex );
+    utils.removeFrom( this.cells, cell );
+  } );
+
+  this.cellChange( minCellIndex );
+  this.positionSliderAtSelected();
+};
+
+/**
+ * logic to be run after a cell's size changes
+ * @param {Element} elem - cell's element
+ */
+proto.cellSizeChange = function( elem ) {
+  let cell = this.getCell( elem );
+  if ( !cell ) return;
+
+  cell.getSize();
+
+  let index = this.cells.indexOf( cell );
+  this.cellChange( index );
+  // do not position slider after lazy load
+};
+
+/**
+ * logic any time a cell is changed: added, removed, or size changed
+ * @param {Integer} changedCellIndex - index of the changed cell, optional
+ */
+proto.cellChange = function( changedCellIndex ) {
+  let prevSelectedElem = this.selectedElement;
+  this._positionCells( changedCellIndex );
+  this._updateWrapShiftCells();
+  this.setGallerySize();
+  // update selectedIndex, try to maintain position & select previous selected element
+  let cell = this.getCell( prevSelectedElem );
+  if ( cell ) this.selectedIndex = this.getCellSlideIndex( cell );
+  this.selectedIndex = Math.min( this.slides.length - 1, this.selectedIndex );
+
+  this.emitEvent( 'cellChange', [ changedCellIndex ] );
+  // position slider
+  this.select( this.selectedIndex );
+};
+
+// -----  ----- //
+
+return Flickity;
+
+} ) );
 
 
 /***/ }),
 
-/***/ "./node_modules/@fancyapps/ui/dist/carousel/carousel.css":
-/*!***************************************************************!*\
-  !*** ./node_modules/@fancyapps/ui/dist/carousel/carousel.css ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./node_modules/flickity/js/animate.js":
+/*!*********************************************!*\
+  !*** ./node_modules/flickity/js/animate.js ***!
+  \*********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
+// animate
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory( __webpack_require__(/*! fizzy-ui-utils */ "./node_modules/fizzy-ui-utils/utils.js") );
+  } else {
+    // browser global
+    window.Flickity = window.Flickity || {};
+    window.Flickity.animatePrototype = factory( window.fizzyUIUtils );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( utils ) {
+
+// -------------------------- animate -------------------------- //
+
+let proto = {};
+
+proto.startAnimation = function() {
+  if ( this.isAnimating ) return;
+
+  this.isAnimating = true;
+  this.restingFrames = 0;
+  this.animate();
+};
+
+proto.animate = function() {
+  this.applyDragForce();
+  this.applySelectedAttraction();
+
+  let previousX = this.x;
+
+  this.integratePhysics();
+  this.positionSlider();
+  this.settle( previousX );
+  // animate next frame
+  if ( this.isAnimating ) requestAnimationFrame( () => this.animate() );
+};
+
+proto.positionSlider = function() {
+  let x = this.x;
+  // wrap position around
+  if ( this.isWrapping ) {
+    x = utils.modulo( x, this.slideableWidth ) - this.slideableWidth;
+    this.shiftWrapCells( x );
+  }
+
+  this.setTranslateX( x, this.isAnimating );
+  this.dispatchScrollEvent();
+};
+
+proto.setTranslateX = function( x, is3d ) {
+  x += this.cursorPosition;
+  // reverse if right-to-left and using transform
+  if ( this.options.rightToLeft ) x = -x;
+  let translateX = this.getPositionValue( x );
+  // use 3D transforms for hardware acceleration on iOS
+  // but use 2D when settled, for better font-rendering
+  this.slider.style.transform = is3d ?
+    `translate3d(${translateX},0,0)` : `translateX(${translateX})`;
+};
+
+proto.dispatchScrollEvent = function() {
+  let firstSlide = this.slides[0];
+  if ( !firstSlide ) return;
+
+  let positionX = -this.x - firstSlide.target;
+  let progress = positionX / this.slidesWidth;
+  this.dispatchEvent( 'scroll', null, [ progress, positionX ] );
+};
+
+proto.positionSliderAtSelected = function() {
+  if ( !this.cells.length ) return;
+
+  this.x = -this.selectedSlide.target;
+  this.velocity = 0; // stop wobble
+  this.positionSlider();
+};
+
+proto.getPositionValue = function( position ) {
+  if ( this.options.percentPosition ) {
+    // percent position, round to 2 digits, like 12.34%
+    return ( Math.round( ( position / this.size.innerWidth ) * 10000 ) * 0.01 ) + '%';
+  } else {
+    // pixel positioning
+    return Math.round( position ) + 'px';
+  }
+};
+
+proto.settle = function( previousX ) {
+  // keep track of frames where x hasn't moved
+  let isResting = !this.isPointerDown &&
+      Math.round( this.x * 100 ) === Math.round( previousX * 100 );
+  if ( isResting ) this.restingFrames++;
+  // stop animating if resting for 3 or more frames
+  if ( this.restingFrames > 2 ) {
+    this.isAnimating = false;
+    delete this.isFreeScrolling;
+    // render position with translateX when settled
+    this.positionSlider();
+    this.dispatchEvent( 'settle', null, [ this.selectedIndex ] );
+  }
+};
+
+proto.shiftWrapCells = function( x ) {
+  // shift before cells
+  let beforeGap = this.cursorPosition + x;
+  this._shiftCells( this.beforeShiftCells, beforeGap, -1 );
+  // shift after cells
+  let afterGap = this.size.innerWidth - ( x + this.slideableWidth + this.cursorPosition );
+  this._shiftCells( this.afterShiftCells, afterGap, 1 );
+};
+
+proto._shiftCells = function( cells, gap, shift ) {
+  cells.forEach( ( cell ) => {
+    let cellShift = gap > 0 ? shift : 0;
+    this._wrapShiftCell( cell, cellShift );
+    gap -= cell.size.outerWidth;
+  } );
+};
+
+proto._unshiftCells = function( cells ) {
+  if ( !cells || !cells.length ) return;
+
+  cells.forEach( ( cell ) => this._wrapShiftCell( cell, 0 ) );
+};
+
+// @param {Integer} shift - 0, 1, or -1
+proto._wrapShiftCell = function( cell, shift ) {
+  this._renderCellPosition( cell, cell.x + this.slideableWidth * shift );
+};
+
+// -------------------------- physics -------------------------- //
+
+proto.integratePhysics = function() {
+  this.x += this.velocity;
+  this.velocity *= this.getFrictionFactor();
+};
+
+proto.applyForce = function( force ) {
+  this.velocity += force;
+};
+
+proto.getFrictionFactor = function() {
+  return 1 - this.options[ this.isFreeScrolling ? 'freeScrollFriction' : 'friction' ];
+};
+
+proto.getRestingPosition = function() {
+  // my thanks to Steven Wittens, who simplified this math greatly
+  return this.x + this.velocity / ( 1 - this.getFrictionFactor() );
+};
+
+proto.applyDragForce = function() {
+  if ( !this.isDraggable || !this.isPointerDown ) return;
+
+  // change the position to drag position by applying force
+  let dragVelocity = this.dragX - this.x;
+  let dragForce = dragVelocity - this.velocity;
+  this.applyForce( dragForce );
+};
+
+proto.applySelectedAttraction = function() {
+  // do not attract if pointer down or no slides
+  let dragDown = this.isDraggable && this.isPointerDown;
+  if ( dragDown || this.isFreeScrolling || !this.slides.length ) return;
+
+  let distance = this.selectedSlide.target * -1 - this.x;
+  let force = distance * this.options.selectedAttraction;
+  this.applyForce( force );
+};
+
+return proto;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/cell.js":
+/*!******************************************!*\
+  !*** ./node_modules/flickity/js/cell.js ***!
+  \******************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// Flickity.Cell
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory( __webpack_require__(/*! get-size */ "./node_modules/get-size/get-size.js") );
+  } else {
+    // browser global
+    window.Flickity = window.Flickity || {};
+    window.Flickity.Cell = factory( window.getSize );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( getSize ) {
+
+const cellClassName = 'flickity-cell';
+
+function Cell( elem ) {
+  this.element = elem;
+  this.element.classList.add( cellClassName );
+
+  this.x = 0;
+  this.unselect();
+}
+
+let proto = Cell.prototype;
+
+proto.destroy = function() {
+  // reset style
+  this.unselect();
+  this.element.classList.remove( cellClassName );
+  this.element.style.transform = '';
+  this.element.removeAttribute('aria-hidden');
+};
+
+proto.getSize = function() {
+  this.size = getSize( this.element );
+};
+
+proto.select = function() {
+  this.element.classList.add('is-selected');
+  this.element.removeAttribute('aria-hidden');
+};
+
+proto.unselect = function() {
+  this.element.classList.remove('is-selected');
+  this.element.setAttribute( 'aria-hidden', 'true' );
+};
+
+proto.remove = function() {
+  this.element.remove();
+};
+
+return Cell;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/core.js":
+/*!******************************************!*\
+  !*** ./node_modules/flickity/js/core.js ***!
+  \******************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// Flickity main
+/* eslint-disable max-params */
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+        window,
+        __webpack_require__(/*! ev-emitter */ "./node_modules/ev-emitter/ev-emitter.js"),
+        __webpack_require__(/*! get-size */ "./node_modules/get-size/get-size.js"),
+        __webpack_require__(/*! fizzy-ui-utils */ "./node_modules/fizzy-ui-utils/utils.js"),
+        __webpack_require__(/*! ./cell */ "./node_modules/flickity/js/cell.js"),
+        __webpack_require__(/*! ./slide */ "./node_modules/flickity/js/slide.js"),
+        __webpack_require__(/*! ./animate */ "./node_modules/flickity/js/animate.js"),
+    );
+  } else {
+    // browser global
+    let _Flickity = window.Flickity;
+
+    window.Flickity = factory(
+        window,
+        window.EvEmitter,
+        window.getSize,
+        window.fizzyUIUtils,
+        _Flickity.Cell,
+        _Flickity.Slide,
+        _Flickity.animatePrototype,
+    );
+  }
+
+}( typeof window != 'undefined' ? window : this,
+    function factory( window, EvEmitter, getSize, utils, Cell, Slide, animatePrototype ) {
+/* eslint-enable max-params */
+
+// vars
+const { getComputedStyle, console } = window;
+let { jQuery } = window;
+
+// -------------------------- Flickity -------------------------- //
+
+// globally unique identifiers
+let GUID = 0;
+// internal store of all Flickity intances
+let instances = {};
+
+function Flickity( element, options ) {
+  let queryElement = utils.getQueryElement( element );
+  if ( !queryElement ) {
+    if ( console ) console.error(`Bad element for Flickity: ${queryElement || element}`);
+    return;
+  }
+  this.element = queryElement;
+  // do not initialize twice on same element
+  if ( this.element.flickityGUID ) {
+    let instance = instances[ this.element.flickityGUID ];
+    if ( instance ) instance.option( options );
+    return instance;
+  }
+
+  // add jQuery
+  if ( jQuery ) {
+    this.$element = jQuery( this.element );
+  }
+  // options
+  this.options = { ...this.constructor.defaults };
+  this.option( options );
+
+  // kick things off
+  this._create();
+}
+
+Flickity.defaults = {
+  accessibility: true,
+  // adaptiveHeight: false,
+  cellAlign: 'center',
+  // cellSelector: undefined,
+  // contain: false,
+  freeScrollFriction: 0.075, // friction when free-scrolling
+  friction: 0.28, // friction when selecting
+  namespaceJQueryEvents: true,
+  // initialIndex: 0,
+  percentPosition: true,
+  resize: true,
+  selectedAttraction: 0.025,
+  setGallerySize: true,
+  // watchCSS: false,
+  // wrapAround: false
+};
+
+// hash of methods triggered on _create()
+Flickity.create = {};
+
+let proto = Flickity.prototype;
+// inherit EventEmitter
+Object.assign( proto, EvEmitter.prototype );
+
+proto._create = function() {
+  let { resize, watchCSS, rightToLeft } = this.options;
+  // add id for Flickity.data
+  let id = this.guid = ++GUID;
+  this.element.flickityGUID = id; // expando
+  instances[ id ] = this; // associate via id
+  // initial properties
+  this.selectedIndex = 0;
+  // how many frames slider has been in same position
+  this.restingFrames = 0;
+  // initial physics properties
+  this.x = 0;
+  this.velocity = 0;
+  this.beginMargin = rightToLeft ? 'marginRight' : 'marginLeft';
+  this.endMargin = rightToLeft ? 'marginLeft' : 'marginRight';
+  // create viewport & slider
+  this.viewport = document.createElement('div');
+  this.viewport.className = 'flickity-viewport';
+  this._createSlider();
+  // used for keyboard navigation
+  this.focusableElems = [ this.element ];
+
+  if ( resize || watchCSS ) {
+    window.addEventListener( 'resize', this );
+  }
+
+  // add listeners from on option
+  for ( let eventName in this.options.on ) {
+    let listener = this.options.on[ eventName ];
+    this.on( eventName, listener );
+  }
+
+  for ( let method in Flickity.create ) {
+    Flickity.create[ method ].call( this );
+  }
+
+  if ( watchCSS ) {
+    this.watchCSS();
+  } else {
+    this.activate();
+  }
+};
+
+/**
+ * set options
+ * @param {Object} opts - options to extend
+ */
+proto.option = function( opts ) {
+  Object.assign( this.options, opts );
+};
+
+proto.activate = function() {
+  if ( this.isActive ) return;
+
+  this.isActive = true;
+  this.element.classList.add('flickity-enabled');
+  if ( this.options.rightToLeft ) {
+    this.element.classList.add('flickity-rtl');
+  }
+
+  this.getSize();
+  // move initial cell elements so they can be loaded as cells
+  let cellElems = this._filterFindCellElements( this.element.children );
+  this.slider.append( ...cellElems );
+  this.viewport.append( this.slider );
+  this.element.append( this.viewport );
+  // get cells from children
+  this.reloadCells();
+
+  if ( this.options.accessibility ) {
+    // allow element to focusable
+    this.element.tabIndex = 0;
+    // listen for key presses
+    this.element.addEventListener( 'keydown', this );
+  }
+
+  this.emitEvent('activate');
+  this.selectInitialIndex();
+  // flag for initial activation, for using initialIndex
+  this.isInitActivated = true;
+  // ready event. #493
+  this.dispatchEvent('ready');
+};
+
+// slider positions the cells
+proto._createSlider = function() {
+  // slider element does all the positioning
+  let slider = document.createElement('div');
+  slider.className = 'flickity-slider';
+  this.slider = slider;
+};
+
+proto._filterFindCellElements = function( elems ) {
+  return utils.filterFindElements( elems, this.options.cellSelector );
+};
+
+// goes through all children
+proto.reloadCells = function() {
+  // collection of item elements
+  this.cells = this._makeCells( this.slider.children );
+  this.positionCells();
+  this._updateWrapShiftCells();
+  this.setGallerySize();
+};
+
+/**
+ * turn elements into Flickity.Cells
+ * @param {[Array, NodeList, HTMLElement]} elems - elements to make into cells
+ * @returns {Array} items - collection of new Flickity Cells
+ */
+proto._makeCells = function( elems ) {
+  let cellElems = this._filterFindCellElements( elems );
+
+  // create new Cells for collection
+  return cellElems.map( ( cellElem ) => new Cell( cellElem ) );
+};
+
+proto.getLastCell = function() {
+  return this.cells[ this.cells.length - 1 ];
+};
+
+proto.getLastSlide = function() {
+  return this.slides[ this.slides.length - 1 ];
+};
+
+// positions all cells
+proto.positionCells = function() {
+  // size all cells
+  this._sizeCells( this.cells );
+  // position all cells
+  this._positionCells( 0 );
+};
+
+/**
+ * position certain cells
+ * @param {Integer} index - which cell to start with
+ */
+proto._positionCells = function( index ) {
+  index = index || 0;
+  // also measure maxCellHeight
+  // start 0 if positioning all cells
+  this.maxCellHeight = index ? this.maxCellHeight || 0 : 0;
+  let cellX = 0;
+  // get cellX
+  if ( index > 0 ) {
+    let startCell = this.cells[ index - 1 ];
+    cellX = startCell.x + startCell.size.outerWidth;
+  }
+
+  this.cells.slice( index ).forEach( ( cell ) => {
+    cell.x = cellX;
+    this._renderCellPosition( cell, cellX );
+    cellX += cell.size.outerWidth;
+    this.maxCellHeight = Math.max( cell.size.outerHeight, this.maxCellHeight );
+  } );
+  // keep track of cellX for wrap-around
+  this.slideableWidth = cellX;
+  // slides
+  this.updateSlides();
+  // contain slides target
+  this._containSlides();
+  // update slidesWidth
+  this.slidesWidth = this.cells.length ?
+    this.getLastSlide().target - this.slides[0].target : 0;
+};
+
+proto._renderCellPosition = function( cell, x ) {
+  // render position of cell with in slider
+  let sideOffset = this.options.rightToLeft ? -1 : 1;
+  let renderX = x * sideOffset;
+  if ( this.options.percentPosition ) renderX *= this.size.innerWidth / cell.size.width;
+  let positionValue = this.getPositionValue( renderX );
+  cell.element.style.transform = `translateX( ${positionValue} )`;
+};
+
+/**
+ * cell.getSize() on multiple cells
+ * @param {Array} cells - cells to size
+ */
+proto._sizeCells = function( cells ) {
+  cells.forEach( ( cell ) => cell.getSize() );
+};
+
+// --------------------------  -------------------------- //
+
+proto.updateSlides = function() {
+  this.slides = [];
+  if ( !this.cells.length ) return;
+
+  let { beginMargin, endMargin } = this;
+  let slide = new Slide( beginMargin, endMargin, this.cellAlign );
+  this.slides.push( slide );
+
+  let canCellFit = this._getCanCellFit();
+
+  this.cells.forEach( ( cell, i ) => {
+    // just add cell if first cell in slide
+    if ( !slide.cells.length ) {
+      slide.addCell( cell );
+      return;
+    }
+
+    let slideWidth = ( slide.outerWidth - slide.firstMargin ) +
+      ( cell.size.outerWidth - cell.size[ endMargin ] );
+
+    if ( canCellFit( i, slideWidth ) ) {
+      slide.addCell( cell );
+    } else {
+      // doesn't fit, new slide
+      slide.updateTarget();
+
+      slide = new Slide( beginMargin, endMargin, this.cellAlign );
+      this.slides.push( slide );
+      slide.addCell( cell );
+    }
+  } );
+  // last slide
+  slide.updateTarget();
+  // update .selectedSlide
+  this.updateSelectedSlide();
+};
+
+proto._getCanCellFit = function() {
+  let { groupCells } = this.options;
+  if ( !groupCells ) return () => false;
+
+  if ( typeof groupCells == 'number' ) {
+    // group by number. 3 -> [0,1,2], [3,4,5], ...
+    let number = parseInt( groupCells, 10 );
+    return ( i ) => ( i % number ) !== 0;
+  }
+  // default, group by width of slide
+  let percent = 1;
+  // parse '75%
+  let percentMatch = typeof groupCells == 'string' && groupCells.match( /^(\d+)%$/ );
+  if ( percentMatch ) percent = parseInt( percentMatch[1], 10 ) / 100;
+  let groupWidth = ( this.size.innerWidth + 1 ) * percent;
+  return ( i, slideWidth ) => slideWidth <= groupWidth;
+};
+
+// alias _init for jQuery plugin .flickity()
+proto._init =
+proto.reposition = function() {
+  this.positionCells();
+  this.positionSliderAtSelected();
+};
+
+proto.getSize = function() {
+  this.size = getSize( this.element );
+  this.setCellAlign();
+  this.cursorPosition = this.size.innerWidth * this.cellAlign;
+};
+
+let cellAlignShorthands = {
+  left: 0,
+  center: 0.5,
+  right: 1,
+};
+
+proto.setCellAlign = function() {
+  let { cellAlign, rightToLeft } = this.options;
+  let shorthand = cellAlignShorthands[ cellAlign ];
+  this.cellAlign = shorthand !== undefined ? shorthand : cellAlign;
+  if ( rightToLeft ) this.cellAlign = 1 - this.cellAlign;
+};
+
+proto.setGallerySize = function() {
+  if ( !this.options.setGallerySize ) return;
+
+  let height = this.options.adaptiveHeight && this.selectedSlide ?
+    this.selectedSlide.height : this.maxCellHeight;
+  this.viewport.style.height = `${height}px`;
+};
+
+proto._updateWrapShiftCells = function() {
+  // update isWrapping
+  this.isWrapping = this.getIsWrapping();
+  // only for wrap-around
+  if ( !this.isWrapping ) return;
+
+  // unshift previous cells
+  this._unshiftCells( this.beforeShiftCells );
+  this._unshiftCells( this.afterShiftCells );
+  // get before cells
+  // initial gap
+  let beforeGapX = this.cursorPosition;
+  let lastIndex = this.cells.length - 1;
+  this.beforeShiftCells = this._getGapCells( beforeGapX, lastIndex, -1 );
+  // get after cells
+  // ending gap between last cell and end of gallery viewport
+  let afterGapX = this.size.innerWidth - this.cursorPosition;
+  // start cloning at first cell, working forwards
+  this.afterShiftCells = this._getGapCells( afterGapX, 0, 1 );
+};
+
+proto.getIsWrapping = function() {
+  let { wrapAround } = this.options;
+  if ( !wrapAround || this.slides.length < 2 ) return false;
+
+  if ( wrapAround !== 'fill' ) return true;
+  // check that slides can fit
+
+  let gapWidth = this.slideableWidth - this.size.innerWidth;
+  if ( gapWidth > this.size.innerWidth ) return true; // gap * 2x big, all good
+  // check that content width - shifting cell is bigger than viewport width
+  for ( let cell of this.cells ) {
+    if ( cell.size.outerWidth > gapWidth ) return false;
+  }
+  return true;
+};
+
+proto._getGapCells = function( gapX, cellIndex, increment ) {
+  // keep adding cells until the cover the initial gap
+  let cells = [];
+  while ( gapX > 0 ) {
+    let cell = this.cells[ cellIndex ];
+    if ( !cell ) break;
+
+    cells.push( cell );
+    cellIndex += increment;
+    gapX -= cell.size.outerWidth;
+  }
+  return cells;
+};
+
+// ----- contain & wrap ----- //
+
+// contain cell targets so no excess sliding
+proto._containSlides = function() {
+  let isContaining = this.options.contain && !this.isWrapping &&
+      this.cells.length;
+  if ( !isContaining ) return;
+
+  let contentWidth = this.slideableWidth - this.getLastCell().size[ this.endMargin ];
+  // content is less than gallery size
+  let isContentSmaller = contentWidth < this.size.innerWidth;
+  if ( isContentSmaller ) {
+    // all cells fit inside gallery
+    this.slides.forEach( ( slide ) => {
+      slide.target = contentWidth * this.cellAlign;
+    } );
+  } else {
+    // contain to bounds
+    let beginBound = this.cursorPosition + this.cells[0].size[ this.beginMargin ];
+    let endBound = contentWidth - this.size.innerWidth * ( 1 - this.cellAlign );
+    this.slides.forEach( ( slide ) => {
+      slide.target = Math.max( slide.target, beginBound );
+      slide.target = Math.min( slide.target, endBound );
+    } );
+  }
+};
+
+// ----- events ----- //
+
+/**
+ * emits events via eventEmitter and jQuery events
+ * @param {String} type - name of event
+ * @param {Event} event - original event
+ * @param {Array} args - extra arguments
+ */
+proto.dispatchEvent = function( type, event, args ) {
+  let emitArgs = event ? [ event ].concat( args ) : args;
+  this.emitEvent( type, emitArgs );
+
+  if ( jQuery && this.$element ) {
+    // default trigger with type if no event
+    type += this.options.namespaceJQueryEvents ? '.flickity' : '';
+    let $event = type;
+    if ( event ) {
+      // create jQuery event
+      let jQEvent = new jQuery.Event( event );
+      jQEvent.type = type;
+      $event = jQEvent;
+    }
+    this.$element.trigger( $event, args );
+  }
+};
+
+const unidraggerEvents = [
+  'dragStart',
+  'dragMove',
+  'dragEnd',
+  'pointerDown',
+  'pointerMove',
+  'pointerEnd',
+  'staticClick',
+];
+
+let _emitEvent = proto.emitEvent;
+proto.emitEvent = function( eventName, args ) {
+  if ( eventName === 'staticClick' ) {
+    // add cellElem and cellIndex args to staticClick
+    let clickedCell = this.getParentCell( args[0].target );
+    let cellElem = clickedCell && clickedCell.element;
+    let cellIndex = clickedCell && this.cells.indexOf( clickedCell );
+    args = args.concat( cellElem, cellIndex );
+  }
+  // do regular thing
+  _emitEvent.call( this, eventName, args );
+  // duck-punch in jQuery events for Unidragger events
+  let isUnidraggerEvent = unidraggerEvents.includes( eventName );
+  if ( !isUnidraggerEvent || !jQuery || !this.$element ) return;
+
+  eventName += this.options.namespaceJQueryEvents ? '.flickity' : '';
+  let event = args.shift( 0 );
+  let jQEvent = new jQuery.Event( event );
+  jQEvent.type = eventName;
+  this.$element.trigger( jQEvent, args );
+};
+
+// -------------------------- select -------------------------- //
+
+/**
+ * @param {Integer} index - index of the slide
+ * @param {Boolean} isWrap - will wrap-around to last/first if at the end
+ * @param {Boolean} isInstant - will immediately set position at selected cell
+ */
+proto.select = function( index, isWrap, isInstant ) {
+  if ( !this.isActive ) return;
+
+  index = parseInt( index, 10 );
+  this._wrapSelect( index );
+
+  if ( this.isWrapping || isWrap ) {
+    index = utils.modulo( index, this.slides.length );
+  }
+  // bail if invalid index
+  if ( !this.slides[ index ] ) return;
+
+  let prevIndex = this.selectedIndex;
+  this.selectedIndex = index;
+  this.updateSelectedSlide();
+  if ( isInstant ) {
+    this.positionSliderAtSelected();
+  } else {
+    this.startAnimation();
+  }
+  if ( this.options.adaptiveHeight ) {
+    this.setGallerySize();
+  }
+  // events
+  this.dispatchEvent( 'select', null, [ index ] );
+  // change event if new index
+  if ( index !== prevIndex ) {
+    this.dispatchEvent( 'change', null, [ index ] );
+  }
+};
+
+// wraps position for wrapAround, to move to closest slide. #113
+proto._wrapSelect = function( index ) {
+  if ( !this.isWrapping ) return;
+
+  const { selectedIndex, slideableWidth, slides: { length } } = this;
+  // shift index for wrap, do not wrap dragSelect
+  if ( !this.isDragSelect ) {
+    let wrapIndex = utils.modulo( index, length );
+    // go to shortest
+    let delta = Math.abs( wrapIndex - selectedIndex );
+    let backWrapDelta = Math.abs( ( wrapIndex + length ) - selectedIndex );
+    let forewardWrapDelta = Math.abs( ( wrapIndex - length ) - selectedIndex );
+    if ( backWrapDelta < delta ) {
+      index += length;
+    } else if ( forewardWrapDelta < delta ) {
+      index -= length;
+    }
+  }
+
+  // wrap position so slider is within normal area
+  if ( index < 0 ) {
+    this.x -= slideableWidth;
+  } else if ( index >= length ) {
+    this.x += slideableWidth;
+  }
+};
+
+proto.previous = function( isWrap, isInstant ) {
+  this.select( this.selectedIndex - 1, isWrap, isInstant );
+};
+
+proto.next = function( isWrap, isInstant ) {
+  this.select( this.selectedIndex + 1, isWrap, isInstant );
+};
+
+proto.updateSelectedSlide = function() {
+  let slide = this.slides[ this.selectedIndex ];
+  // selectedIndex could be outside of slides, if triggered before resize()
+  if ( !slide ) return;
+
+  // unselect previous selected slide
+  this.unselectSelectedSlide();
+  // update new selected slide
+  this.selectedSlide = slide;
+  slide.select();
+  this.selectedCells = slide.cells;
+  this.selectedElements = slide.getCellElements();
+  // HACK: selectedCell & selectedElement is first cell in slide, backwards compatibility
+  this.selectedCell = slide.cells[0];
+  this.selectedElement = this.selectedElements[0];
+};
+
+proto.unselectSelectedSlide = function() {
+  if ( this.selectedSlide ) this.selectedSlide.unselect();
+};
+
+proto.selectInitialIndex = function() {
+  let initialIndex = this.options.initialIndex;
+  // already activated, select previous selectedIndex
+  if ( this.isInitActivated ) {
+    this.select( this.selectedIndex, false, true );
+    return;
+  }
+  // select with selector string
+  if ( initialIndex && typeof initialIndex == 'string' ) {
+    let cell = this.queryCell( initialIndex );
+    if ( cell ) {
+      this.selectCell( initialIndex, false, true );
+      return;
+    }
+  }
+
+  let index = 0;
+  // select with number
+  if ( initialIndex && this.slides[ initialIndex ] ) {
+    index = initialIndex;
+  }
+  // select instantly
+  this.select( index, false, true );
+};
+
+/**
+ * select slide from number or cell element
+ * @param {[Element, Number]} value - zero-based index or element to select
+ * @param {Boolean} isWrap - enables wrapping around for extra index
+ * @param {Boolean} isInstant - disables slide animation
+ */
+proto.selectCell = function( value, isWrap, isInstant ) {
+  // get cell
+  let cell = this.queryCell( value );
+  if ( !cell ) return;
+
+  let index = this.getCellSlideIndex( cell );
+  this.select( index, isWrap, isInstant );
+};
+
+proto.getCellSlideIndex = function( cell ) {
+  // get index of slide that has cell
+  let cellSlide = this.slides.find( ( slide ) => slide.cells.includes( cell ) );
+  return this.slides.indexOf( cellSlide );
+};
+
+// -------------------------- get cells -------------------------- //
+
+/**
+ * get Flickity.Cell, given an Element
+ * @param {Element} elem - matching cell element
+ * @returns {Flickity.Cell} cell - matching cell
+ */
+proto.getCell = function( elem ) {
+  // loop through cells to get the one that matches
+  for ( let cell of this.cells ) {
+    if ( cell.element === elem ) return cell;
+  }
+};
+
+/**
+ * get collection of Flickity.Cells, given Elements
+ * @param {[Element, Array, NodeList]} elems - multiple elements
+ * @returns {Array} cells - Flickity.Cells
+ */
+proto.getCells = function( elems ) {
+  elems = utils.makeArray( elems );
+  return elems.map( ( elem ) => this.getCell( elem ) ).filter( Boolean );
+};
+
+/**
+ * get cell elements
+ * @returns {Array} cellElems
+ */
+proto.getCellElements = function() {
+  return this.cells.map( ( cell ) => cell.element );
+};
+
+/**
+ * get parent cell from an element
+ * @param {Element} elem - child element
+ * @returns {Flickit.Cell} cell - parent cell
+ */
+proto.getParentCell = function( elem ) {
+  // first check if elem is cell
+  let cell = this.getCell( elem );
+  if ( cell ) return cell;
+
+  // try to get parent cell elem
+  let closest = elem.closest('.flickity-slider > *');
+  return this.getCell( closest );
+};
+
+/**
+ * get cells adjacent to a slide
+ * @param {Integer} adjCount - number of adjacent slides
+ * @param {Integer} index - index of slide to start
+ * @returns {Array} cells - array of Flickity.Cells
+ */
+proto.getAdjacentCellElements = function( adjCount, index ) {
+  if ( !adjCount ) return this.selectedSlide.getCellElements();
+
+  index = index === undefined ? this.selectedIndex : index;
+
+  let len = this.slides.length;
+  if ( 1 + ( adjCount * 2 ) >= len ) {
+    return this.getCellElements(); // get all
+  }
+
+  let cellElems = [];
+  for ( let i = index - adjCount; i <= index + adjCount; i++ ) {
+    let slideIndex = this.isWrapping ? utils.modulo( i, len ) : i;
+    let slide = this.slides[ slideIndex ];
+    if ( slide ) {
+      cellElems = cellElems.concat( slide.getCellElements() );
+    }
+  }
+  return cellElems;
+};
+
+/**
+ * select slide from number or cell element
+ * @param {[Element, String, Number]} selector - element, selector string, or index
+ * @returns {Flickity.Cell} - matching cell
+ */
+proto.queryCell = function( selector ) {
+  if ( typeof selector == 'number' ) {
+    // use number as index
+    return this.cells[ selector ];
+  }
+  // do not select invalid selectors from hash: #123, #/. #791
+  let isSelectorString = typeof selector == 'string' && !selector.match( /^[#.]?[\d/]/ );
+  if ( isSelectorString ) {
+    // use string as selector, get element
+    selector = this.element.querySelector( selector );
+  }
+  // get cell from element
+  return this.getCell( selector );
+};
+
+// -------------------------- events -------------------------- //
+
+proto.uiChange = function() {
+  this.emitEvent('uiChange');
+};
+
+// ----- resize ----- //
+
+proto.onresize = function() {
+  this.watchCSS();
+  this.resize();
+};
+
+utils.debounceMethod( Flickity, 'onresize', 150 );
+
+proto.resize = function() {
+  // #1177 disable resize behavior when animating or dragging for iOS 15
+  if ( !this.isActive || this.isAnimating || this.isDragging ) return;
+  this.getSize();
+  // wrap values
+  if ( this.isWrapping ) {
+    this.x = utils.modulo( this.x, this.slideableWidth );
+  }
+  this.positionCells();
+  this._updateWrapShiftCells();
+  this.setGallerySize();
+  this.emitEvent('resize');
+  // update selected index for group slides, instant
+  // TODO: position can be lost between groups of various numbers
+  let selectedElement = this.selectedElements && this.selectedElements[0];
+  this.selectCell( selectedElement, false, true );
+};
+
+// watches the :after property, activates/deactivates
+proto.watchCSS = function() {
+  if ( !this.options.watchCSS ) return;
+
+  let afterContent = getComputedStyle( this.element, ':after' ).content;
+  // activate if :after { content: 'flickity' }
+  if ( afterContent.includes('flickity') ) {
+    this.activate();
+  } else {
+    this.deactivate();
+  }
+};
+
+// ----- keydown ----- //
+
+// go previous/next if left/right keys pressed
+proto.onkeydown = function( event ) {
+  let { activeElement } = document;
+  let handler = Flickity.keyboardHandlers[ event.key ];
+  // only work if element is in focus
+  if ( !this.options.accessibility || !activeElement || !handler ) return;
+
+  let isFocused = this.focusableElems.some( ( elem ) => activeElement === elem );
+  if ( isFocused ) handler.call( this );
+};
+
+Flickity.keyboardHandlers = {
+  ArrowLeft: function() {
+    this.uiChange();
+    let leftMethod = this.options.rightToLeft ? 'next' : 'previous';
+    this[ leftMethod ]();
+  },
+  ArrowRight: function() {
+    this.uiChange();
+    let rightMethod = this.options.rightToLeft ? 'previous' : 'next';
+    this[ rightMethod ]();
+  },
+};
+
+// ----- focus ----- //
+
+proto.focus = function() {
+  this.element.focus({ preventScroll: true });
+};
+
+// -------------------------- destroy -------------------------- //
+
+// deactivate all Flickity functionality, but keep stuff available
+proto.deactivate = function() {
+  if ( !this.isActive ) return;
+
+  this.element.classList.remove('flickity-enabled');
+  this.element.classList.remove('flickity-rtl');
+  this.unselectSelectedSlide();
+  // destroy cells
+  this.cells.forEach( ( cell ) => cell.destroy() );
+  this.viewport.remove();
+  // move child elements back into element
+  this.element.append( ...this.slider.children );
+  if ( this.options.accessibility ) {
+    this.element.removeAttribute('tabIndex');
+    this.element.removeEventListener( 'keydown', this );
+  }
+  // set flags
+  this.isActive = false;
+  this.emitEvent('deactivate');
+};
+
+proto.destroy = function() {
+  this.deactivate();
+  window.removeEventListener( 'resize', this );
+  this.allOff();
+  this.emitEvent('destroy');
+  if ( jQuery && this.$element ) {
+    jQuery.removeData( this.element, 'flickity' );
+  }
+  delete this.element.flickityGUID;
+  delete instances[ this.guid ];
+};
+
+// -------------------------- prototype -------------------------- //
+
+Object.assign( proto, animatePrototype );
+
+// -------------------------- extras -------------------------- //
+
+/**
+ * get Flickity instance from element
+ * @param {[Element, String]} elem - element or selector string
+ * @returns {Flickity} - Flickity instance
+ */
+Flickity.data = function( elem ) {
+  elem = utils.getQueryElement( elem );
+  if ( elem ) return instances[ elem.flickityGUID ];
+};
+
+utils.htmlInit( Flickity, 'flickity' );
+
+let { jQueryBridget } = window;
+if ( jQuery && jQueryBridget ) {
+  jQueryBridget( 'flickity', Flickity, jQuery );
+}
+
+// set internal jQuery, for Webpack + jQuery v3, #478
+Flickity.setJQuery = function( jq ) {
+  jQuery = jq;
+};
+
+Flickity.Cell = Cell;
+Flickity.Slide = Slide;
+
+return Flickity;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/drag.js":
+/*!******************************************!*\
+  !*** ./node_modules/flickity/js/drag.js ***!
+  \******************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// drag
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+        window,
+        __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js"),
+        __webpack_require__(/*! unidragger */ "./node_modules/unidragger/unidragger.js"),
+        __webpack_require__(/*! fizzy-ui-utils */ "./node_modules/fizzy-ui-utils/utils.js"),
+    );
+  } else {
+    // browser global
+    window.Flickity = factory(
+        window,
+        window.Flickity,
+        window.Unidragger,
+        window.fizzyUIUtils,
+    );
+  }
+
+}( typeof window != 'undefined' ? window : this,
+    function factory( window, Flickity, Unidragger, utils ) {
+
+// ----- defaults ----- //
+
+Object.assign( Flickity.defaults, {
+  draggable: '>1',
+  dragThreshold: 3,
+} );
+
+// -------------------------- drag prototype -------------------------- //
+
+let proto = Flickity.prototype;
+Object.assign( proto, Unidragger.prototype ); // inherit Unidragger
+proto.touchActionValue = '';
+
+// --------------------------  -------------------------- //
+
+Flickity.create.drag = function() {
+  this.on( 'activate', this.onActivateDrag );
+  this.on( 'uiChange', this._uiChangeDrag );
+  this.on( 'deactivate', this.onDeactivateDrag );
+  this.on( 'cellChange', this.updateDraggable );
+  this.on( 'pointerDown', this.handlePointerDown );
+  this.on( 'pointerUp', this.handlePointerUp );
+  this.on( 'pointerDown', this.handlePointerDone );
+  this.on( 'dragStart', this.handleDragStart );
+  this.on( 'dragMove', this.handleDragMove );
+  this.on( 'dragEnd', this.handleDragEnd );
+  this.on( 'staticClick', this.handleStaticClick );
+  // TODO updateDraggable on resize? if groupCells & slides change
+};
+
+proto.onActivateDrag = function() {
+  this.handles = [ this.viewport ];
+  this.bindHandles();
+  this.updateDraggable();
+};
+
+proto.onDeactivateDrag = function() {
+  this.unbindHandles();
+  this.element.classList.remove('is-draggable');
+};
+
+proto.updateDraggable = function() {
+  // disable dragging if less than 2 slides. #278
+  if ( this.options.draggable === '>1' ) {
+    this.isDraggable = this.slides.length > 1;
+  } else {
+    this.isDraggable = this.options.draggable;
+  }
+  this.element.classList.toggle( 'is-draggable', this.isDraggable );
+};
+
+proto._uiChangeDrag = function() {
+  delete this.isFreeScrolling;
+};
+
+// -------------------------- pointer events -------------------------- //
+
+proto.handlePointerDown = function( event ) {
+  if ( !this.isDraggable ) {
+    // proceed for staticClick
+    this.bindActivePointerEvents( event );
+    return;
+  }
+
+  let isTouchStart = event.type === 'touchstart';
+  let isTouchPointer = event.pointerType === 'touch';
+  let isFocusNode = event.target.matches('input, textarea, select');
+  if ( !isTouchStart && !isTouchPointer && !isFocusNode ) event.preventDefault();
+  if ( !isFocusNode ) this.focus();
+  // blur
+  if ( document.activeElement !== this.element ) document.activeElement.blur();
+  // stop if it was moving
+  this.dragX = this.x;
+  this.viewport.classList.add('is-pointer-down');
+  // track scrolling
+  this.pointerDownScroll = getScrollPosition();
+  window.addEventListener( 'scroll', this );
+  this.bindActivePointerEvents( event );
+};
+
+// ----- move ----- //
+
+proto.hasDragStarted = function( moveVector ) {
+  return Math.abs( moveVector.x ) > this.options.dragThreshold;
+};
+
+// ----- up ----- //
+
+proto.handlePointerUp = function() {
+  delete this.isTouchScrolling;
+  this.viewport.classList.remove('is-pointer-down');
+};
+
+proto.handlePointerDone = function() {
+  window.removeEventListener( 'scroll', this );
+  delete this.pointerDownScroll;
+};
+
+// -------------------------- dragging -------------------------- //
+
+proto.handleDragStart = function() {
+  if ( !this.isDraggable ) return;
+
+  this.dragStartPosition = this.x;
+  this.startAnimation();
+  window.removeEventListener( 'scroll', this );
+};
+
+proto.handleDragMove = function( event, pointer, moveVector ) {
+  if ( !this.isDraggable ) return;
+
+  event.preventDefault();
+
+  this.previousDragX = this.dragX;
+  // reverse if right-to-left
+  let direction = this.options.rightToLeft ? -1 : 1;
+  // wrap around move. #589
+  if ( this.isWrapping ) moveVector.x %= this.slideableWidth;
+  let dragX = this.dragStartPosition + moveVector.x * direction;
+
+  if ( !this.isWrapping ) {
+    // slow drag
+    let originBound = Math.max( -this.slides[0].target, this.dragStartPosition );
+    dragX = dragX > originBound ? ( dragX + originBound ) * 0.5 : dragX;
+    let endBound = Math.min( -this.getLastSlide().target, this.dragStartPosition );
+    dragX = dragX < endBound ? ( dragX + endBound ) * 0.5 : dragX;
+  }
+
+  this.dragX = dragX;
+  this.dragMoveTime = new Date();
+};
+
+proto.handleDragEnd = function() {
+  if ( !this.isDraggable ) return;
+
+  let { freeScroll } = this.options;
+  if ( freeScroll ) this.isFreeScrolling = true;
+  // set selectedIndex based on where flick will end up
+  let index = this.dragEndRestingSelect();
+
+  if ( freeScroll && !this.isWrapping ) {
+    // if free-scroll & not wrap around
+    // do not free-scroll if going outside of bounding slides
+    // so bounding slides can attract slider, and keep it in bounds
+    let restingX = this.getRestingPosition();
+    this.isFreeScrolling = -restingX > this.slides[0].target &&
+      -restingX < this.getLastSlide().target;
+  } else if ( !freeScroll && index === this.selectedIndex ) {
+    // boost selection if selected index has not changed
+    index += this.dragEndBoostSelect();
+  }
+  delete this.previousDragX;
+  // apply selection
+  // HACK, set flag so dragging stays in correct direction
+  this.isDragSelect = this.isWrapping;
+  this.select( index );
+  delete this.isDragSelect;
+};
+
+proto.dragEndRestingSelect = function() {
+  let restingX = this.getRestingPosition();
+  // how far away from selected slide
+  let distance = Math.abs( this.getSlideDistance( -restingX, this.selectedIndex ) );
+  // get closet resting going up and going down
+  let positiveResting = this._getClosestResting( restingX, distance, 1 );
+  let negativeResting = this._getClosestResting( restingX, distance, -1 );
+  // use closer resting for wrap-around
+  return positiveResting.distance < negativeResting.distance ?
+    positiveResting.index : negativeResting.index;
+};
+
+/**
+ * given resting X and distance to selected cell
+ * get the distance and index of the closest cell
+ * @param {Number} restingX - estimated post-flick resting position
+ * @param {Number} distance - distance to selected cell
+ * @param {Integer} increment - +1 or -1, going up or down
+ * @returns {Object} - { distance: {Number}, index: {Integer} }
+ */
+proto._getClosestResting = function( restingX, distance, increment ) {
+  let index = this.selectedIndex;
+  let minDistance = Infinity;
+  let condition = this.options.contain && !this.isWrapping ?
+    // if containing, keep going if distance is equal to minDistance
+    ( dist, minDist ) => dist <= minDist :
+    ( dist, minDist ) => dist < minDist;
+
+  while ( condition( distance, minDistance ) ) {
+    // measure distance to next cell
+    index += increment;
+    minDistance = distance;
+    distance = this.getSlideDistance( -restingX, index );
+    if ( distance === null ) break;
+
+    distance = Math.abs( distance );
+  }
+  return {
+    distance: minDistance,
+    // selected was previous index
+    index: index - increment,
+  };
+};
+
+/**
+ * measure distance between x and a slide target
+ * @param {Number} x - horizontal position
+ * @param {Integer} index - slide index
+ * @returns {Number} - slide distance
+ */
+proto.getSlideDistance = function( x, index ) {
+  let len = this.slides.length;
+  // wrap around if at least 2 slides
+  let isWrapAround = this.options.wrapAround && len > 1;
+  let slideIndex = isWrapAround ? utils.modulo( index, len ) : index;
+  let slide = this.slides[ slideIndex ];
+  if ( !slide ) return null;
+
+  // add distance for wrap-around slides
+  let wrap = isWrapAround ? this.slideableWidth * Math.floor( index/len ) : 0;
+  return x - ( slide.target + wrap );
+};
+
+proto.dragEndBoostSelect = function() {
+  // do not boost if no previousDragX or dragMoveTime
+  if ( this.previousDragX === undefined || !this.dragMoveTime ||
+    // or if drag was held for 100 ms
+    new Date() - this.dragMoveTime > 100 ) {
+    return 0;
+  }
+
+  let distance = this.getSlideDistance( -this.dragX, this.selectedIndex );
+  let delta = this.previousDragX - this.dragX;
+  if ( distance > 0 && delta > 0 ) {
+    // boost to next if moving towards the right, and positive velocity
+    return 1;
+  } else if ( distance < 0 && delta < 0 ) {
+    // boost to previous if moving towards the left, and negative velocity
+    return -1;
+  }
+  return 0;
+};
+
+// ----- scroll ----- //
+
+proto.onscroll = function() {
+  let scroll = getScrollPosition();
+  let scrollMoveX = this.pointerDownScroll.x - scroll.x;
+  let scrollMoveY = this.pointerDownScroll.y - scroll.y;
+  // cancel click/tap if scroll is too much
+  if ( Math.abs( scrollMoveX ) > 3 || Math.abs( scrollMoveY ) > 3 ) {
+    this.pointerDone();
+  }
+};
+
+// ----- utils ----- //
+
+function getScrollPosition() {
+  return {
+    x: window.pageXOffset,
+    y: window.pageYOffset,
+  };
+}
+
+// -----  ----- //
+
+return Flickity;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/imagesloaded.js":
+/*!**************************************************!*\
+  !*** ./node_modules/flickity/js/imagesloaded.js ***!
+  \**************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// imagesloaded
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+        __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js"),
+        __webpack_require__(/*! imagesloaded */ "./node_modules/imagesloaded/imagesloaded.js"),
+    );
+  } else {
+    // browser global
+    factory(
+        window.Flickity,
+        window.imagesLoaded,
+    );
+  }
+
+}( typeof window != 'undefined' ? window : this,
+    function factory( Flickity, imagesLoaded ) {
+
+Flickity.create.imagesLoaded = function() {
+  this.on( 'activate', this.imagesLoaded );
+};
+
+Flickity.prototype.imagesLoaded = function() {
+  if ( !this.options.imagesLoaded ) return;
+
+  let onImagesLoadedProgress = ( instance, image ) => {
+    let cell = this.getParentCell( image.img );
+    this.cellSizeChange( cell && cell.element );
+    if ( !this.options.freeScroll ) this.positionSliderAtSelected();
+  };
+  imagesLoaded( this.slider ).on( 'progress', onImagesLoadedProgress );
+};
+
+return Flickity;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/flickity/js/index.js ***!
+  \*******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/*!
+ * Flickity v3.0.0
+ * Touch, responsive, flickable carousels
+ *
+ * Licensed GPLv3 for open source use
+ * or Flickity Commercial License for commercial use
+ *
+ * https://flickity.metafizzy.co
+ * Copyright 2015-2022 Metafizzy
+ */
+
+if (  true && module.exports ) {
+  const Flickity = __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js");
+  __webpack_require__(/*! ./drag */ "./node_modules/flickity/js/drag.js");
+  __webpack_require__(/*! ./prev-next-button */ "./node_modules/flickity/js/prev-next-button.js");
+  __webpack_require__(/*! ./page-dots */ "./node_modules/flickity/js/page-dots.js");
+  __webpack_require__(/*! ./player */ "./node_modules/flickity/js/player.js");
+  __webpack_require__(/*! ./add-remove-cell */ "./node_modules/flickity/js/add-remove-cell.js");
+  __webpack_require__(/*! ./lazyload */ "./node_modules/flickity/js/lazyload.js");
+  __webpack_require__(/*! ./imagesloaded */ "./node_modules/flickity/js/imagesloaded.js");
+
+  module.exports = Flickity;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/lazyload.js":
+/*!**********************************************!*\
+  !*** ./node_modules/flickity/js/lazyload.js ***!
+  \**********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// lazyload
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+        __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js"),
+        __webpack_require__(/*! fizzy-ui-utils */ "./node_modules/fizzy-ui-utils/utils.js"),
+    );
+  } else {
+    // browser global
+    factory(
+        window.Flickity,
+        window.fizzyUIUtils,
+    );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( Flickity, utils ) {
+
+const lazyAttr = 'data-flickity-lazyload';
+const lazySrcAttr = `${lazyAttr}-src`;
+const lazySrcsetAttr = `${lazyAttr}-srcset`;
+const imgSelector = `img[${lazyAttr}], img[${lazySrcAttr}], ` +
+  `img[${lazySrcsetAttr}], source[${lazySrcsetAttr}]`;
+
+Flickity.create.lazyLoad = function() {
+  this.on( 'select', this.lazyLoad );
+
+  this.handleLazyLoadComplete = this.onLazyLoadComplete.bind( this );
+};
+
+let proto = Flickity.prototype;
+
+proto.lazyLoad = function() {
+  let { lazyLoad } = this.options;
+  if ( !lazyLoad ) return;
+
+  // get adjacent cells, use lazyLoad option for adjacent count
+  let adjCount = typeof lazyLoad == 'number' ? lazyLoad : 0;
+  // lazy load images
+  this.getAdjacentCellElements( adjCount )
+    .map( getCellLazyImages )
+    .flat()
+    .forEach( ( img ) => new LazyLoader( img, this.handleLazyLoadComplete ) );
+};
+
+function getCellLazyImages( cellElem ) {
+  // check if cell element is lazy image
+  if ( cellElem.matches('img') ) {
+    let cellAttr = cellElem.getAttribute( lazyAttr );
+    let cellSrcAttr = cellElem.getAttribute( lazySrcAttr );
+    let cellSrcsetAttr = cellElem.getAttribute( lazySrcsetAttr );
+    if ( cellAttr || cellSrcAttr || cellSrcsetAttr ) {
+      return cellElem;
+    }
+  }
+  // select lazy images in cell
+  return [ ...cellElem.querySelectorAll( imgSelector ) ];
+}
+
+proto.onLazyLoadComplete = function( img, event ) {
+  let cell = this.getParentCell( img );
+  let cellElem = cell && cell.element;
+  this.cellSizeChange( cellElem );
+
+  this.dispatchEvent( 'lazyLoad', event, cellElem );
+};
+
+// -------------------------- LazyLoader -------------------------- //
+
+/**
+ * class to handle loading images
+ * @param {Image} img - Image element
+ * @param {Function} onComplete - callback function
+ */
+function LazyLoader( img, onComplete ) {
+  this.img = img;
+  this.onComplete = onComplete;
+  this.load();
+}
+
+LazyLoader.prototype.handleEvent = utils.handleEvent;
+
+LazyLoader.prototype.load = function() {
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  // get src & srcset
+  let src = this.img.getAttribute( lazyAttr ) ||
+    this.img.getAttribute( lazySrcAttr );
+  let srcset = this.img.getAttribute( lazySrcsetAttr );
+  // set src & serset
+  this.img.src = src;
+  if ( srcset ) this.img.setAttribute( 'srcset', srcset );
+  // remove attr
+  this.img.removeAttribute( lazyAttr );
+  this.img.removeAttribute( lazySrcAttr );
+  this.img.removeAttribute( lazySrcsetAttr );
+};
+
+LazyLoader.prototype.onload = function( event ) {
+  this.complete( event, 'flickity-lazyloaded' );
+};
+
+LazyLoader.prototype.onerror = function( event ) {
+  this.complete( event, 'flickity-lazyerror' );
+};
+
+LazyLoader.prototype.complete = function( event, className ) {
+  // unbind events
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+  let mediaElem = this.img.parentNode.matches('picture') ? this.img.parentNode : this.img;
+  mediaElem.classList.add( className );
+
+  this.onComplete( this.img, event );
+};
+
+// -----  ----- //
+
+Flickity.LazyLoader = LazyLoader;
+
+return Flickity;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/page-dots.js":
+/*!***********************************************!*\
+  !*** ./node_modules/flickity/js/page-dots.js ***!
+  \***********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// page dots
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+        __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js"),
+        __webpack_require__(/*! fizzy-ui-utils */ "./node_modules/fizzy-ui-utils/utils.js"),
+    );
+  } else {
+    // browser global
+    factory(
+        window.Flickity,
+        window.fizzyUIUtils,
+    );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( Flickity, utils ) {
+
+// -------------------------- PageDots -------------------------- //
+
+function PageDots() {
+  // create holder element
+  this.holder = document.createElement('div');
+  this.holder.className = 'flickity-page-dots';
+  // create dots, array of elements
+  this.dots = [];
+}
+
+PageDots.prototype.setDots = function( slidesLength ) {
+  // get difference between number of slides and number of dots
+  let delta = slidesLength - this.dots.length;
+  if ( delta > 0 ) {
+    this.addDots( delta );
+  } else if ( delta < 0 ) {
+    this.removeDots( -delta );
+  }
+};
+
+PageDots.prototype.addDots = function( count ) {
+  let newDots = new Array( count ).fill()
+    .map( ( item, i ) => {
+      let dot = document.createElement('button');
+      dot.setAttribute( 'type', 'button' );
+      let num = i + 1 + this.dots.length;
+      dot.className = 'flickity-page-dot';
+      dot.textContent = `View slide ${num}`;
+      return dot;
+    } );
+
+  this.holder.append( ...newDots );
+  this.dots = this.dots.concat( newDots );
+};
+
+PageDots.prototype.removeDots = function( count ) {
+  // remove from this.dots collection
+  let removeDots = this.dots.splice( this.dots.length - count, count );
+  // remove from DOM
+  removeDots.forEach( ( dot ) => dot.remove() );
+};
+
+PageDots.prototype.updateSelected = function( index ) {
+  // remove selected class on previous
+  if ( this.selectedDot ) {
+    this.selectedDot.classList.remove('is-selected');
+    this.selectedDot.removeAttribute('aria-current');
+  }
+  // don't proceed if no dots
+  if ( !this.dots.length ) return;
+
+  this.selectedDot = this.dots[ index ];
+  this.selectedDot.classList.add('is-selected');
+  this.selectedDot.setAttribute( 'aria-current', 'step' );
+};
+
+Flickity.PageDots = PageDots;
+
+// -------------------------- Flickity -------------------------- //
+
+Object.assign( Flickity.defaults, {
+  pageDots: true,
+} );
+
+Flickity.create.pageDots = function() {
+  if ( !this.options.pageDots ) return;
+
+  this.pageDots = new PageDots();
+  this.handlePageDotsClick = this.onPageDotsClick.bind( this );
+  // events
+  this.on( 'activate', this.activatePageDots );
+  this.on( 'select', this.updateSelectedPageDots );
+  this.on( 'cellChange', this.updatePageDots );
+  this.on( 'resize', this.updatePageDots );
+  this.on( 'deactivate', this.deactivatePageDots );
+};
+
+let proto = Flickity.prototype;
+
+proto.activatePageDots = function() {
+  this.pageDots.setDots( this.slides.length );
+  this.focusableElems.push( ...this.pageDots.dots );
+  this.pageDots.holder.addEventListener( 'click', this.handlePageDotsClick );
+  this.element.append( this.pageDots.holder );
+};
+
+proto.onPageDotsClick = function( event ) {
+  let index = this.pageDots.dots.indexOf( event.target );
+  if ( index === -1 ) return; // only dot clicks
+
+  this.uiChange();
+  this.select( index );
+};
+
+proto.updateSelectedPageDots = function() {
+  this.pageDots.updateSelected( this.selectedIndex );
+};
+
+proto.updatePageDots = function() {
+  this.pageDots.dots.forEach( ( dot ) => {
+    utils.removeFrom( this.focusableElems, dot );
+  } );
+  this.pageDots.setDots( this.slides.length );
+  this.focusableElems.push( ...this.pageDots.dots );
+};
+
+proto.deactivatePageDots = function() {
+  this.pageDots.holder.remove();
+  this.pageDots.holder.removeEventListener( 'click', this.handlePageDotsClick );
+};
+
+// -----  ----- //
+
+Flickity.PageDots = PageDots;
+
+return Flickity;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/player.js":
+/*!********************************************!*\
+  !*** ./node_modules/flickity/js/player.js ***!
+  \********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// player & autoPlay
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory( __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js") );
+  } else {
+    // browser global
+    factory( window.Flickity );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( Flickity ) {
+
+// -------------------------- Player -------------------------- //
+
+function Player( autoPlay, onTick ) {
+  this.autoPlay = autoPlay;
+  this.onTick = onTick;
+  this.state = 'stopped';
+  // visibility change event handler
+  this.onVisibilityChange = this.visibilityChange.bind( this );
+  this.onVisibilityPlay = this.visibilityPlay.bind( this );
+}
+
+// start play
+Player.prototype.play = function() {
+  if ( this.state === 'playing' ) return;
+
+  // do not play if page is hidden, start playing when page is visible
+  let isPageHidden = document.hidden;
+  if ( isPageHidden ) {
+    document.addEventListener( 'visibilitychange', this.onVisibilityPlay );
+    return;
+  }
+
+  this.state = 'playing';
+  // listen to visibility change
+  document.addEventListener( 'visibilitychange', this.onVisibilityChange );
+  // start ticking
+  this.tick();
+};
+
+Player.prototype.tick = function() {
+  // do not tick if not playing
+  if ( this.state !== 'playing' ) return;
+
+  // default to 3 seconds
+  let time = typeof this.autoPlay == 'number' ? this.autoPlay : 3000;
+  // HACK: reset ticks if stopped and started within interval
+  this.clear();
+  this.timeout = setTimeout( () => {
+    this.onTick();
+    this.tick();
+  }, time );
+};
+
+Player.prototype.stop = function() {
+  this.state = 'stopped';
+  this.clear();
+  // remove visibility change event
+  document.removeEventListener( 'visibilitychange', this.onVisibilityChange );
+};
+
+Player.prototype.clear = function() {
+  clearTimeout( this.timeout );
+};
+
+Player.prototype.pause = function() {
+  if ( this.state === 'playing' ) {
+    this.state = 'paused';
+    this.clear();
+  }
+};
+
+Player.prototype.unpause = function() {
+  // re-start play if paused
+  if ( this.state === 'paused' ) this.play();
+};
+
+// pause if page visibility is hidden, unpause if visible
+Player.prototype.visibilityChange = function() {
+  let isPageHidden = document.hidden;
+  this[ isPageHidden ? 'pause' : 'unpause' ]();
+};
+
+Player.prototype.visibilityPlay = function() {
+  this.play();
+  document.removeEventListener( 'visibilitychange', this.onVisibilityPlay );
+};
+
+// -------------------------- Flickity -------------------------- //
+
+Object.assign( Flickity.defaults, {
+  pauseAutoPlayOnHover: true,
+} );
+
+Flickity.create.player = function() {
+  this.player = new Player( this.options.autoPlay, () => {
+    this.next( true );
+  } );
+
+  this.on( 'activate', this.activatePlayer );
+  this.on( 'uiChange', this.stopPlayer );
+  this.on( 'pointerDown', this.stopPlayer );
+  this.on( 'deactivate', this.deactivatePlayer );
+};
+
+let proto = Flickity.prototype;
+
+proto.activatePlayer = function() {
+  if ( !this.options.autoPlay ) return;
+
+  this.player.play();
+  this.element.addEventListener( 'mouseenter', this );
+};
+
+// Player API, don't hate the ... thanks I know where the door is
+
+proto.playPlayer = function() {
+  this.player.play();
+};
+
+proto.stopPlayer = function() {
+  this.player.stop();
+};
+
+proto.pausePlayer = function() {
+  this.player.pause();
+};
+
+proto.unpausePlayer = function() {
+  this.player.unpause();
+};
+
+proto.deactivatePlayer = function() {
+  this.player.stop();
+  this.element.removeEventListener( 'mouseenter', this );
+};
+
+// ----- mouseenter/leave ----- //
+
+// pause auto-play on hover
+proto.onmouseenter = function() {
+  if ( !this.options.pauseAutoPlayOnHover ) return;
+
+  this.player.pause();
+  this.element.addEventListener( 'mouseleave', this );
+};
+
+// resume auto-play on hover off
+proto.onmouseleave = function() {
+  this.player.unpause();
+  this.element.removeEventListener( 'mouseleave', this );
+};
+
+// -----  ----- //
+
+Flickity.Player = Player;
+
+return Flickity;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/prev-next-button.js":
+/*!******************************************************!*\
+  !*** ./node_modules/flickity/js/prev-next-button.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+// prev/next buttons
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory( __webpack_require__(/*! ./core */ "./node_modules/flickity/js/core.js") );
+  } else {
+    // browser global
+    factory( window.Flickity );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( Flickity ) {
+
+const svgURI = 'http://www.w3.org/2000/svg';
+
+// -------------------------- PrevNextButton -------------------------- //
+
+function PrevNextButton( increment, direction, arrowShape ) {
+  this.increment = increment;
+  this.direction = direction;
+  this.isPrevious = increment === 'previous';
+  this.isLeft = direction === 'left';
+  this._create( arrowShape );
+}
+
+PrevNextButton.prototype._create = function( arrowShape ) {
+  // properties
+  let element = this.element = document.createElement('button');
+  element.className = `flickity-button flickity-prev-next-button ${this.increment}`;
+  let label = this.isPrevious ? 'Previous' : 'Next';
+  // prevent button from submitting form https://stackoverflow.com/a/10836076/182183
+  element.setAttribute( 'type', 'button' );
+  element.setAttribute( 'aria-label', label );
+  // init as disabled
+  this.disable();
+  // create arrow
+  let svg = this.createSVG( label, arrowShape );
+  element.append( svg );
+};
+
+PrevNextButton.prototype.createSVG = function( label, arrowShape ) {
+  let svg = document.createElementNS( svgURI, 'svg' );
+  svg.setAttribute( 'class', 'flickity-button-icon' );
+  svg.setAttribute( 'viewBox', '0 0 100 100' );
+  // add title #1189
+  let title = document.createElementNS( svgURI, 'title' );
+  title.append( label );
+  // add path
+  let path = document.createElementNS( svgURI, 'path' );
+  let pathMovements = getArrowMovements( arrowShape );
+  path.setAttribute( 'd', pathMovements );
+  path.setAttribute( 'class', 'arrow' );
+  // rotate arrow
+  if ( !this.isLeft ) {
+    path.setAttribute( 'transform', 'translate(100, 100) rotate(180)' );
+  }
+  svg.append( title, path );
+  return svg;
+};
+
+// get SVG path movmement
+function getArrowMovements( shape ) {
+  // use shape as movement if string
+  if ( typeof shape == 'string' ) return shape;
+
+  let { x0, x1, x2, x3, y1, y2 } = shape;
+
+  // create movement string
+  return `M ${x0}, 50
+    L ${x1}, ${y1 + 50}
+    L ${x2}, ${y2 + 50}
+    L ${x3}, 50
+    L ${x2}, ${50 - y2}
+    L ${x1}, ${50 - y1}
+    Z`;
+}
+
+// -----  ----- //
+
+PrevNextButton.prototype.enable = function() {
+  this.element.removeAttribute('disabled');
+};
+
+PrevNextButton.prototype.disable = function() {
+  this.element.setAttribute( 'disabled', true );
+};
+
+// -------------------------- Flickity prototype -------------------------- //
+
+Object.assign( Flickity.defaults, {
+  prevNextButtons: true,
+  arrowShape: {
+    x0: 10,
+    x1: 60, y1: 50,
+    x2: 70, y2: 40,
+    x3: 30,
+  },
+} );
+
+Flickity.create.prevNextButtons = function() {
+  if ( !this.options.prevNextButtons ) return;
+
+  let { rightToLeft, arrowShape } = this.options;
+  let prevDirection = rightToLeft ? 'right' : 'left';
+  let nextDirection = rightToLeft ? 'left' : 'right';
+  this.prevButton = new PrevNextButton( 'previous', prevDirection, arrowShape );
+  this.nextButton = new PrevNextButton( 'next', nextDirection, arrowShape );
+  this.focusableElems.push( this.prevButton.element );
+  this.focusableElems.push( this.nextButton.element );
+
+  this.handlePrevButtonClick = () => {
+    this.uiChange();
+    this.previous();
+  };
+
+  this.handleNextButtonClick = () => {
+    this.uiChange();
+    this.next();
+  };
+
+  this.on( 'activate', this.activatePrevNextButtons );
+  this.on( 'select', this.updatePrevNextButtons );
+};
+
+let proto = Flickity.prototype;
+
+proto.updatePrevNextButtons = function() {
+  let lastIndex = this.slides.length ? this.slides.length - 1 : 0;
+  this.updatePrevNextButton( this.prevButton, 0 );
+  this.updatePrevNextButton( this.nextButton, lastIndex );
+};
+
+proto.updatePrevNextButton = function( button, disabledIndex ) {
+  // enable is wrapAround and at least 2 slides
+  if ( this.isWrapping && this.slides.length > 1 ) {
+    button.enable();
+    return;
+  }
+
+  let isEnabled = this.selectedIndex !== disabledIndex;
+  button[ isEnabled ? 'enable' : 'disable' ]();
+  // if disabling button that is focused,
+  // shift focus to element to maintain keyboard accessibility
+  let isDisabledFocused = !isEnabled && document.activeElement === button.element;
+  if ( isDisabledFocused ) this.focus();
+};
+
+proto.activatePrevNextButtons = function() {
+  this.prevButton.element.addEventListener( 'click', this.handlePrevButtonClick );
+  this.nextButton.element.addEventListener( 'click', this.handleNextButtonClick );
+  this.element.append( this.prevButton.element, this.nextButton.element );
+  this.on( 'deactivate', this.deactivatePrevNextButtons );
+};
+
+proto.deactivatePrevNextButtons = function() {
+  this.prevButton.element.remove();
+  this.nextButton.element.remove();
+  this.prevButton.element.removeEventListener( 'click', this.handlePrevButtonClick );
+  this.nextButton.element.removeEventListener( 'click', this.handleNextButtonClick );
+  this.off( 'deactivate', this.deactivatePrevNextButtons );
+};
+
+// --------------------------  -------------------------- //
+
+Flickity.PrevNextButton = PrevNextButton;
+
+return Flickity;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/flickity/js/slide.js":
+/*!*******************************************!*\
+  !*** ./node_modules/flickity/js/slide.js ***!
+  \*******************************************/
+/***/ (function(module) {
+
+// slide
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory();
+  } else {
+    // browser global
+    window.Flickity = window.Flickity || {};
+    window.Flickity.Slide = factory();
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory() {
+
+function Slide( beginMargin, endMargin, cellAlign ) {
+  this.beginMargin = beginMargin;
+  this.endMargin = endMargin;
+  this.cellAlign = cellAlign;
+  this.cells = [];
+  this.outerWidth = 0;
+  this.height = 0;
+}
+
+let proto = Slide.prototype;
+
+proto.addCell = function( cell ) {
+  this.cells.push( cell );
+  this.outerWidth += cell.size.outerWidth;
+  this.height = Math.max( cell.size.outerHeight, this.height );
+  // first cell stuff
+  if ( this.cells.length === 1 ) {
+    this.x = cell.x; // x comes from first cell
+    this.firstMargin = cell.size[ this.beginMargin ];
+  }
+};
+
+proto.updateTarget = function() {
+  let lastCell = this.getLastCell();
+  let lastMargin = lastCell ? lastCell.size[ this.endMargin ] : 0;
+  let slideWidth = this.outerWidth - ( this.firstMargin + lastMargin );
+  this.target = this.x + this.firstMargin + slideWidth * this.cellAlign;
+};
+
+proto.getLastCell = function() {
+  return this.cells[ this.cells.length - 1 ];
+};
+
+proto.select = function() {
+  this.cells.forEach( ( cell ) => cell.select() );
+};
+
+proto.unselect = function() {
+  this.cells.forEach( ( cell ) => cell.unselect() );
+};
+
+proto.getCellElements = function() {
+  return this.cells.map( ( cell ) => cell.element );
+};
+
+return Slide;
+
+} ) );
+
+
+/***/ }),
+
+/***/ "./node_modules/get-size/get-size.js":
+/*!*******************************************!*\
+  !*** ./node_modules/get-size/get-size.js ***!
+  \*******************************************/
+/***/ ((module) => {
+
+/*!
+ * Infinite Scroll v2.0.4
+ * measure size of elements
+ * MIT license
+ */
+
+( function( window, factory ) {
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory();
+  } else {
+    // browser global
+    window.getSize = factory();
+  }
+
+} )( window, function factory() {
+
+// -------------------------- helpers -------------------------- //
+
+// get a number from a string, not a percentage
+function getStyleSize( value ) {
+  let num = parseFloat( value );
+  // not a percent like '100%', and a number
+  let isValid = value.indexOf('%') == -1 && !isNaN( num );
+  return isValid && num;
+}
+
+// -------------------------- measurements -------------------------- //
+
+let measurements = [
+  'paddingLeft',
+  'paddingRight',
+  'paddingTop',
+  'paddingBottom',
+  'marginLeft',
+  'marginRight',
+  'marginTop',
+  'marginBottom',
+  'borderLeftWidth',
+  'borderRightWidth',
+  'borderTopWidth',
+  'borderBottomWidth',
+];
+
+let measurementsLength = measurements.length;
+
+function getZeroSize() {
+  let size = {
+    width: 0,
+    height: 0,
+    innerWidth: 0,
+    innerHeight: 0,
+    outerWidth: 0,
+    outerHeight: 0,
+  };
+  measurements.forEach( ( measurement ) => {
+    size[ measurement ] = 0;
+  } );
+  return size;
+}
+
+// -------------------------- getSize -------------------------- //
+
+function getSize( elem ) {
+  // use querySeletor if elem is string
+  if ( typeof elem == 'string' ) elem = document.querySelector( elem );
+
+  // do not proceed on non-objects
+  let isElement = elem && typeof elem == 'object' && elem.nodeType;
+  if ( !isElement ) return;
+
+  let style = getComputedStyle( elem );
+
+  // if hidden, everything is 0
+  if ( style.display == 'none' ) return getZeroSize();
+
+  let size = {};
+  size.width = elem.offsetWidth;
+  size.height = elem.offsetHeight;
+
+  let isBorderBox = size.isBorderBox = style.boxSizing == 'border-box';
+
+  // get all measurements
+  measurements.forEach( ( measurement ) => {
+    let value = style[ measurement ];
+    let num = parseFloat( value );
+    // any 'auto', 'medium' value will be 0
+    size[ measurement ] = !isNaN( num ) ? num : 0;
+  } );
+
+  let paddingWidth = size.paddingLeft + size.paddingRight;
+  let paddingHeight = size.paddingTop + size.paddingBottom;
+  let marginWidth = size.marginLeft + size.marginRight;
+  let marginHeight = size.marginTop + size.marginBottom;
+  let borderWidth = size.borderLeftWidth + size.borderRightWidth;
+  let borderHeight = size.borderTopWidth + size.borderBottomWidth;
+
+  // overwrite width and height if we can get it from style
+  let styleWidth = getStyleSize( style.width );
+  if ( styleWidth !== false ) {
+    size.width = styleWidth +
+      // add padding and border unless it's already including it
+      ( isBorderBox ? 0 : paddingWidth + borderWidth );
+  }
+
+  let styleHeight = getStyleSize( style.height );
+  if ( styleHeight !== false ) {
+    size.height = styleHeight +
+      // add padding and border unless it's already including it
+      ( isBorderBox ? 0 : paddingHeight + borderHeight );
+  }
+
+  size.innerWidth = size.width - ( paddingWidth + borderWidth );
+  size.innerHeight = size.height - ( paddingHeight + borderHeight );
+
+  size.outerWidth = size.width + marginWidth;
+  size.outerHeight = size.height + marginHeight;
+
+  return size;
+}
+
+return getSize;
+
+} );
+
+
+/***/ }),
+
+/***/ "./node_modules/imagesloaded/imagesloaded.js":
+/*!***************************************************!*\
+  !*** ./node_modules/imagesloaded/imagesloaded.js ***!
+  \***************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+/*!
+ * imagesLoaded v5.0.0
+ * JavaScript is all like "You images are done yet or what?"
+ * MIT License
+ */
+
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory( window, __webpack_require__(/*! ev-emitter */ "./node_modules/ev-emitter/ev-emitter.js") );
+  } else {
+    // browser global
+    window.imagesLoaded = factory( window, window.EvEmitter );
+  }
+
+} )( typeof window !== 'undefined' ? window : this,
+    function factory( window, EvEmitter ) {
+
+let $ = window.jQuery;
+let console = window.console;
+
+// -------------------------- helpers -------------------------- //
+
+// turn element or nodeList into an array
+function makeArray( obj ) {
+  // use object if already an array
+  if ( Array.isArray( obj ) ) return obj;
+
+  let isArrayLike = typeof obj == 'object' && typeof obj.length == 'number';
+  // convert nodeList to array
+  if ( isArrayLike ) return [ ...obj ];
+
+  // array of single index
+  return [ obj ];
+}
+
+// -------------------------- imagesLoaded -------------------------- //
+
+/**
+ * @param {[Array, Element, NodeList, String]} elem
+ * @param {[Object, Function]} options - if function, use as callback
+ * @param {Function} onAlways - callback function
+ * @returns {ImagesLoaded}
+ */
+function ImagesLoaded( elem, options, onAlways ) {
+  // coerce ImagesLoaded() without new, to be new ImagesLoaded()
+  if ( !( this instanceof ImagesLoaded ) ) {
+    return new ImagesLoaded( elem, options, onAlways );
+  }
+  // use elem as selector string
+  let queryElem = elem;
+  if ( typeof elem == 'string' ) {
+    queryElem = document.querySelectorAll( elem );
+  }
+  // bail if bad element
+  if ( !queryElem ) {
+    console.error(`Bad element for imagesLoaded ${queryElem || elem}`);
+    return;
+  }
+
+  this.elements = makeArray( queryElem );
+  this.options = {};
+  // shift arguments if no options set
+  if ( typeof options == 'function' ) {
+    onAlways = options;
+  } else {
+    Object.assign( this.options, options );
+  }
+
+  if ( onAlways ) this.on( 'always', onAlways );
+
+  this.getImages();
+  // add jQuery Deferred object
+  if ( $ ) this.jqDeferred = new $.Deferred();
+
+  // HACK check async to allow time to bind listeners
+  setTimeout( this.check.bind( this ) );
+}
+
+ImagesLoaded.prototype = Object.create( EvEmitter.prototype );
+
+ImagesLoaded.prototype.getImages = function() {
+  this.images = [];
+
+  // filter & find items if we have an item selector
+  this.elements.forEach( this.addElementImages, this );
+};
+
+const elementNodeTypes = [ 1, 9, 11 ];
+
+/**
+ * @param {Node} elem
+ */
+ImagesLoaded.prototype.addElementImages = function( elem ) {
+  // filter siblings
+  if ( elem.nodeName === 'IMG' ) {
+    this.addImage( elem );
+  }
+  // get background image on element
+  if ( this.options.background === true ) {
+    this.addElementBackgroundImages( elem );
+  }
+
+  // find children
+  // no non-element nodes, #143
+  let { nodeType } = elem;
+  if ( !nodeType || !elementNodeTypes.includes( nodeType ) ) return;
+
+  let childImgs = elem.querySelectorAll('img');
+  // concat childElems to filterFound array
+  for ( let img of childImgs ) {
+    this.addImage( img );
+  }
+
+  // get child background images
+  if ( typeof this.options.background == 'string' ) {
+    let children = elem.querySelectorAll( this.options.background );
+    for ( let child of children ) {
+      this.addElementBackgroundImages( child );
+    }
+  }
+};
+
+const reURL = /url\((['"])?(.*?)\1\)/gi;
+
+ImagesLoaded.prototype.addElementBackgroundImages = function( elem ) {
+  let style = getComputedStyle( elem );
+  // Firefox returns null if in a hidden iframe https://bugzil.la/548397
+  if ( !style ) return;
+
+  // get url inside url("...")
+  let matches = reURL.exec( style.backgroundImage );
+  while ( matches !== null ) {
+    let url = matches && matches[2];
+    if ( url ) {
+      this.addBackground( url, elem );
+    }
+    matches = reURL.exec( style.backgroundImage );
+  }
+};
+
+/**
+ * @param {Image} img
+ */
+ImagesLoaded.prototype.addImage = function( img ) {
+  let loadingImage = new LoadingImage( img );
+  this.images.push( loadingImage );
+};
+
+ImagesLoaded.prototype.addBackground = function( url, elem ) {
+  let background = new Background( url, elem );
+  this.images.push( background );
+};
+
+ImagesLoaded.prototype.check = function() {
+  this.progressedCount = 0;
+  this.hasAnyBroken = false;
+  // complete if no images
+  if ( !this.images.length ) {
+    this.complete();
+    return;
+  }
+
+  /* eslint-disable-next-line func-style */
+  let onProgress = ( image, elem, message ) => {
+    // HACK - Chrome triggers event before object properties have changed. #83
+    setTimeout( () => {
+      this.progress( image, elem, message );
+    } );
+  };
+
+  this.images.forEach( function( loadingImage ) {
+    loadingImage.once( 'progress', onProgress );
+    loadingImage.check();
+  } );
+};
+
+ImagesLoaded.prototype.progress = function( image, elem, message ) {
+  this.progressedCount++;
+  this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
+  // progress event
+  this.emitEvent( 'progress', [ this, image, elem ] );
+  if ( this.jqDeferred && this.jqDeferred.notify ) {
+    this.jqDeferred.notify( this, image );
+  }
+  // check if completed
+  if ( this.progressedCount === this.images.length ) {
+    this.complete();
+  }
+
+  if ( this.options.debug && console ) {
+    console.log( `progress: ${message}`, image, elem );
+  }
+};
+
+ImagesLoaded.prototype.complete = function() {
+  let eventName = this.hasAnyBroken ? 'fail' : 'done';
+  this.isComplete = true;
+  this.emitEvent( eventName, [ this ] );
+  this.emitEvent( 'always', [ this ] );
+  if ( this.jqDeferred ) {
+    let jqMethod = this.hasAnyBroken ? 'reject' : 'resolve';
+    this.jqDeferred[ jqMethod ]( this );
+  }
+};
+
+// --------------------------  -------------------------- //
+
+function LoadingImage( img ) {
+  this.img = img;
+}
+
+LoadingImage.prototype = Object.create( EvEmitter.prototype );
+
+LoadingImage.prototype.check = function() {
+  // If complete is true and browser supports natural sizes,
+  // try to check for image status manually.
+  let isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    // report based on naturalWidth
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    return;
+  }
+
+  // If none of the checks above matched, simulate loading on detached element.
+  this.proxyImage = new Image();
+  // add crossOrigin attribute. #204
+  if ( this.img.crossOrigin ) {
+    this.proxyImage.crossOrigin = this.img.crossOrigin;
+  }
+  this.proxyImage.addEventListener( 'load', this );
+  this.proxyImage.addEventListener( 'error', this );
+  // bind to image as well for Firefox. #191
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.proxyImage.src = this.img.currentSrc || this.img.src;
+};
+
+LoadingImage.prototype.getIsImageComplete = function() {
+  // check for non-zero, non-undefined naturalWidth
+  // fixes Safari+InfiniteScroll+Masonry bug infinite-scroll#671
+  return this.img.complete && this.img.naturalWidth;
+};
+
+LoadingImage.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  let { parentNode } = this.img;
+  // emit progress with parent <picture> or self <img>
+  let elem = parentNode.nodeName === 'PICTURE' ? parentNode : this.img;
+  this.emitEvent( 'progress', [ this, elem, message ] );
+};
+
+// ----- events ----- //
+
+// trigger specified handler for event type
+LoadingImage.prototype.handleEvent = function( event ) {
+  let method = 'on' + event.type;
+  if ( this[ method ] ) {
+    this[ method ]( event );
+  }
+};
+
+LoadingImage.prototype.onload = function() {
+  this.confirm( true, 'onload' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.onerror = function() {
+  this.confirm( false, 'onerror' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.unbindEvents = function() {
+  this.proxyImage.removeEventListener( 'load', this );
+  this.proxyImage.removeEventListener( 'error', this );
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+// -------------------------- Background -------------------------- //
+
+function Background( url, element ) {
+  this.url = url;
+  this.element = element;
+  this.img = new Image();
+}
+
+// inherit LoadingImage prototype
+Background.prototype = Object.create( LoadingImage.prototype );
+
+Background.prototype.check = function() {
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.img.src = this.url;
+  // check if image is already complete
+  let isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    this.unbindEvents();
+  }
+};
+
+Background.prototype.unbindEvents = function() {
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+Background.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  this.emitEvent( 'progress', [ this, this.element, message ] );
+};
+
+// -------------------------- jQuery -------------------------- //
+
+ImagesLoaded.makeJQueryPlugin = function( jQuery ) {
+  jQuery = jQuery || window.jQuery;
+  if ( !jQuery ) return;
+
+  // set local variable
+  $ = jQuery;
+  // $().imagesLoaded()
+  $.fn.imagesLoaded = function( options, onAlways ) {
+    let instance = new ImagesLoaded( this, options, onAlways );
+    return instance.jqDeferred.promise( $( this ) );
+  };
+};
+// try making plugin
+ImagesLoaded.makeJQueryPlugin();
+
+// --------------------------  -------------------------- //
+
+return ImagesLoaded;
+
+} );
+
+
+/***/ }),
+
+/***/ "./node_modules/unidragger/unidragger.js":
+/*!***********************************************!*\
+  !*** ./node_modules/unidragger/unidragger.js ***!
+  \***********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+/*!
+ * Unidragger v3.0.1
+ * Draggable base class
+ * MIT license
+ */
+
+( function( window, factory ) {
+  // universal module definition
+  if (  true && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+        window,
+        __webpack_require__(/*! ev-emitter */ "./node_modules/ev-emitter/ev-emitter.js"),
+    );
+  } else {
+    // browser global
+    window.Unidragger = factory(
+        window,
+        window.EvEmitter,
+    );
+  }
+
+}( typeof window != 'undefined' ? window : this, function factory( window, EvEmitter ) {
+
+function Unidragger() {}
+
+// inherit EvEmitter
+let proto = Unidragger.prototype = Object.create( EvEmitter.prototype );
+
+// ----- bind start ----- //
+
+// trigger handler methods for events
+proto.handleEvent = function( event ) {
+  let method = 'on' + event.type;
+  if ( this[ method ] ) {
+    this[ method ]( event );
+  }
+};
+
+let startEvent, activeEvents;
+if ( 'ontouchstart' in window ) {
+  // HACK prefer Touch Events as you can preventDefault on touchstart to
+  // disable scroll in iOS & mobile Chrome metafizzy/flickity#1177
+  startEvent = 'touchstart';
+  activeEvents = [ 'touchmove', 'touchend', 'touchcancel' ];
+} else if ( window.PointerEvent ) {
+  // Pointer Events
+  startEvent = 'pointerdown';
+  activeEvents = [ 'pointermove', 'pointerup', 'pointercancel' ];
+} else {
+  // mouse events
+  startEvent = 'mousedown';
+  activeEvents = [ 'mousemove', 'mouseup' ];
+}
+
+// prototype so it can be overwriteable by Flickity
+proto.touchActionValue = 'none';
+
+proto.bindHandles = function() {
+  this._bindHandles( 'addEventListener', this.touchActionValue );
+};
+
+proto.unbindHandles = function() {
+  this._bindHandles( 'removeEventListener', '' );
+};
+
+/**
+ * Add or remove start event
+ * @param {String} bindMethod - addEventListener or removeEventListener
+ * @param {String} touchAction - value for touch-action CSS property
+ */
+proto._bindHandles = function( bindMethod, touchAction ) {
+  this.handles.forEach( ( handle ) => {
+    handle[ bindMethod ]( startEvent, this );
+    handle[ bindMethod ]( 'click', this );
+    // touch-action: none to override browser touch gestures. metafizzy/flickity#540
+    if ( window.PointerEvent ) handle.style.touchAction = touchAction;
+  } );
+};
+
+proto.bindActivePointerEvents = function() {
+  activeEvents.forEach( ( eventName ) => {
+    window.addEventListener( eventName, this );
+  } );
+};
+
+proto.unbindActivePointerEvents = function() {
+  activeEvents.forEach( ( eventName ) => {
+    window.removeEventListener( eventName, this );
+  } );
+};
+
+// ----- event handler helpers ----- //
+
+// trigger method with matching pointer
+proto.withPointer = function( methodName, event ) {
+  if ( event.pointerId === this.pointerIdentifier ) {
+    this[ methodName ]( event, event );
+  }
+};
+
+// trigger method with matching touch
+proto.withTouch = function( methodName, event ) {
+  let touch;
+  for ( let changedTouch of event.changedTouches ) {
+    if ( changedTouch.identifier === this.pointerIdentifier ) {
+      touch = changedTouch;
+    }
+  }
+  if ( touch ) this[ methodName ]( event, touch );
+};
+
+// ----- start event ----- //
+
+proto.onmousedown = function( event ) {
+  this.pointerDown( event, event );
+};
+
+proto.ontouchstart = function( event ) {
+  this.pointerDown( event, event.changedTouches[0] );
+};
+
+proto.onpointerdown = function( event ) {
+  this.pointerDown( event, event );
+};
+
+// nodes that have text fields
+const cursorNodes = [ 'TEXTAREA', 'INPUT', 'SELECT', 'OPTION' ];
+// input types that do not have text fields
+const clickTypes = [ 'radio', 'checkbox', 'button', 'submit', 'image', 'file' ];
+
+/**
+ * any time you set `event, pointer` it refers to:
+ * @param {Event} event
+ * @param {Event | Touch} pointer
+ */
+proto.pointerDown = function( event, pointer ) {
+  // dismiss multi-touch taps, right clicks, and clicks on text fields
+  let isCursorNode = cursorNodes.includes( event.target.nodeName );
+  let isClickType = clickTypes.includes( event.target.type );
+  let isOkayElement = !isCursorNode || isClickType;
+  let isOkay = !this.isPointerDown && !event.button && isOkayElement;
+  if ( !isOkay ) return;
+
+  this.isPointerDown = true;
+  // save pointer identifier to match up touch events
+  this.pointerIdentifier = pointer.pointerId !== undefined ?
+    // pointerId for pointer events, touch.indentifier for touch events
+    pointer.pointerId : pointer.identifier;
+  // track position for move
+  this.pointerDownPointer = {
+    pageX: pointer.pageX,
+    pageY: pointer.pageY,
+  };
+
+  this.bindActivePointerEvents();
+  this.emitEvent( 'pointerDown', [ event, pointer ] );
+};
+
+// ----- move ----- //
+
+proto.onmousemove = function( event ) {
+  this.pointerMove( event, event );
+};
+
+proto.onpointermove = function( event ) {
+  this.withPointer( 'pointerMove', event );
+};
+
+proto.ontouchmove = function( event ) {
+  this.withTouch( 'pointerMove', event );
+};
+
+proto.pointerMove = function( event, pointer ) {
+  let moveVector = {
+    x: pointer.pageX - this.pointerDownPointer.pageX,
+    y: pointer.pageY - this.pointerDownPointer.pageY,
+  };
+  this.emitEvent( 'pointerMove', [ event, pointer, moveVector ] );
+  // start drag if pointer has moved far enough to start drag
+  let isDragStarting = !this.isDragging && this.hasDragStarted( moveVector );
+  if ( isDragStarting ) this.dragStart( event, pointer );
+  if ( this.isDragging ) this.dragMove( event, pointer, moveVector );
+};
+
+// condition if pointer has moved far enough to start drag
+proto.hasDragStarted = function( moveVector ) {
+  return Math.abs( moveVector.x ) > 3 || Math.abs( moveVector.y ) > 3;
+};
+
+// ----- drag ----- //
+
+proto.dragStart = function( event, pointer ) {
+  this.isDragging = true;
+  this.isPreventingClicks = true; // set flag to prevent clicks
+  this.emitEvent( 'dragStart', [ event, pointer ] );
+};
+
+proto.dragMove = function( event, pointer, moveVector ) {
+  this.emitEvent( 'dragMove', [ event, pointer, moveVector ] );
+};
+
+// ----- end ----- //
+
+proto.onmouseup = function( event ) {
+  this.pointerUp( event, event );
+};
+
+proto.onpointerup = function( event ) {
+  this.withPointer( 'pointerUp', event );
+};
+
+proto.ontouchend = function( event ) {
+  this.withTouch( 'pointerUp', event );
+};
+
+proto.pointerUp = function( event, pointer ) {
+  this.pointerDone();
+  this.emitEvent( 'pointerUp', [ event, pointer ] );
+
+  if ( this.isDragging ) {
+    this.dragEnd( event, pointer );
+  } else {
+    // pointer didn't move enough for drag to start
+    this.staticClick( event, pointer );
+  }
+};
+
+proto.dragEnd = function( event, pointer ) {
+  this.isDragging = false; // reset flag
+  // re-enable clicking async
+  setTimeout( () => delete this.isPreventingClicks );
+
+  this.emitEvent( 'dragEnd', [ event, pointer ] );
+};
+
+// triggered on pointer up & pointer cancel
+proto.pointerDone = function() {
+  this.isPointerDown = false;
+  delete this.pointerIdentifier;
+  this.unbindActivePointerEvents();
+  this.emitEvent('pointerDone');
+};
+
+// ----- cancel ----- //
+
+proto.onpointercancel = function( event ) {
+  this.withPointer( 'pointerCancel', event );
+};
+
+proto.ontouchcancel = function( event ) {
+  this.withTouch( 'pointerCancel', event );
+};
+
+proto.pointerCancel = function( event, pointer ) {
+  this.pointerDone();
+  this.emitEvent( 'pointerCancel', [ event, pointer ] );
+};
+
+// ----- click ----- //
+
+// handle all clicks and prevent clicks when dragging
+proto.onclick = function( event ) {
+  if ( this.isPreventingClicks ) event.preventDefault();
+};
+
+// triggered after pointer down & up with no/tiny movement
+proto.staticClick = function( event, pointer ) {
+  // ignore emulated mouse up clicks
+  let isMouseup = event.type === 'mouseup';
+  if ( isMouseup && this.isIgnoringMouseUp ) return;
+
+  this.emitEvent( 'staticClick', [ event, pointer ] );
+
+  // set flag for emulated clicks 300ms after touchend
+  if ( isMouseup ) {
+    this.isIgnoringMouseUp = true;
+    // reset flag after 400ms
+    setTimeout( () => {
+      delete this.isIgnoringMouseUp;
+    }, 400 );
+  }
+};
+
+// -----  ----- //
+
+return Unidragger;
+
+} ) );
 
 
 /***/ })
@@ -77,13 +3496,25 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -114,56 +3545,26 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!*********************!*\
   !*** ./src/view.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fancyapps_ui_dist_carousel_carousel_esm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fancyapps/ui/dist/carousel/carousel.esm.js */ "./node_modules/@fancyapps/ui/dist/carousel/carousel.esm.js");
-/* harmony import */ var _fancyapps_ui_dist_carousel_carousel_autoplay_esm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fancyapps/ui/dist/carousel/carousel.autoplay.esm.js */ "./node_modules/@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js");
-/* harmony import */ var _fancyapps_ui_dist_carousel_carousel_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fancyapps/ui/dist/carousel/carousel.css */ "./node_modules/@fancyapps/ui/dist/carousel/carousel.css");
-/* harmony import */ var _fancyapps_ui_dist_carousel_carousel_autoplay_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fancyapps/ui/dist/carousel/carousel.autoplay.css */ "./node_modules/@fancyapps/ui/dist/carousel/carousel.autoplay.css");
+/* harmony import */ var flickity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! flickity */ "./node_modules/flickity/js/index.js");
+/* harmony import */ var flickity__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flickity__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * Use this file for JavaScript code that you want to run in the front-end
  * on posts/pages that contain this block.
- *
- * When this file is defined as the value of the `viewScript` property
- * in `block.json` it will be enqueued on the front end of the site.
- *
- * Example:
- *
- * ```js
- * {
- *   "viewScript": "file:./view.js"
- * }
- * ```
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
 
 
-
-
-
 const container = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
-const options = {
-  slidesPerPage: 1,
-  classes: {
-    container: "wp-block-wpdev-wcphx-2024",
-    slide: "wp-block-media-text"
-  },
-  Dots: {
-    minCount: 2
-  },
-  Autoplay: {
-    timeout: 5000,
-    showProgress: false
-  }
-};
-new _fancyapps_ui_dist_carousel_carousel_esm_js__WEBPACK_IMPORTED_MODULE_0__.Carousel(container[0], options, {
-  Autoplay: _fancyapps_ui_dist_carousel_carousel_autoplay_esm_js__WEBPACK_IMPORTED_MODULE_1__.Autoplay
-});
+const options = {};
+new (flickity__WEBPACK_IMPORTED_MODULE_0___default())(container[0], options);
 })();
 
 /******/ })()

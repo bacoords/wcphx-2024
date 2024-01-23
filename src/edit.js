@@ -30,17 +30,13 @@ import "./editor.scss";
  * @return {WPElement} Element to render.
  */
 export default function Edit() {
-	const blockProps = useBlockProps({
-		className: "f-carousel",
-	});
+	const blockProps = useBlockProps();
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["core/media-text"],
-		template: [
-			["core/media-text", { className: "f-carousel__slide", imageFill: true }],
-		],
+		template: [["core/media-text", { imageFill: true }]],
 		defaultBlock: {
 			name: "core/media-text",
-			attributes: { className: "f-carousel__slide", imageFill: true },
+			attributes: { imageFill: true },
 		},
 		directInsert: true,
 	});
