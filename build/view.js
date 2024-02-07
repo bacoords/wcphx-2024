@@ -3563,8 +3563,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const container = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
-const options = {};
-new (flickity__WEBPACK_IMPORTED_MODULE_0___default())(container[0], options);
+new (flickity__WEBPACK_IMPORTED_MODULE_0___default())(container[0]);
 })();
 
 /******/ })()

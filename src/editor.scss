@@ -9,11 +9,13 @@
 		padding-left: 0;
 		padding-right: 0;
 	}
+
 	&.is-selected,
 	&.has-child-selected {
-		row-gap: var(--wp--style--block-gap);
 		display: flex;
 		flex-direction: column;
+		row-gap: var(--wp--style--block-gap);
+
 		.wp-block-media-text {
 			outline: 1px solid var(--wp--preset--color--contrast, #343434);
 		}

@@ -11,9 +11,9 @@
   padding-right: 0;
 }
 .wp-block-wpdev-wcphx-2024.is-selected, .wp-block-wpdev-wcphx-2024.has-child-selected {
-  row-gap: var(--wp--style--block-gap);
   display: flex;
   flex-direction: column;
+  row-gap: var(--wp--style--block-gap);
 }
 .wp-block-wpdev-wcphx-2024.is-selected .wp-block-media-text, .wp-block-wpdev-wcphx-2024.has-child-selected .wp-block-media-text {
   outline: 1px solid var(--wp--preset--color--contrast, #343434);

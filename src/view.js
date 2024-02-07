@@ -8,6 +8,5 @@
 import Flickity from "flickity";
 
 const container = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
-const options = {};
 
-new Flickity(container[0], options);
+new Flickity(container[0]);
