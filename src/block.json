@@ -12,6 +12,12 @@
 		"WCPHX 2024",
 		"slider"
 	],
+	"attributes": {
+		"isCarousel": {
+			"type": "boolean",
+			"default": true
+		}
+	},
 	"supports": {
 		"html": false,
 		"align": ["wide", "full"],
@@ -22,6 +28,9 @@
 		"color": {
 			"background": true
 		}
+	},
+	"providesContext": {
+		"wpdev/wcphx-2024":"isCarousel"
 	},
 	"textdomain": "wcphx-2024",
 	"editorScript": "file:./index.js",

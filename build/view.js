@@ -3562,8 +3562,12 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const container = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
-new (flickity__WEBPACK_IMPORTED_MODULE_0___default())(container[0]);
+const containers = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
+if (containers.length > 0) {
+  for (let i = 0; i < containers.length; i++) {
+    new (flickity__WEBPACK_IMPORTED_MODULE_0___default())(containers[i]);
+  }
+}
 })();
 
 /******/ })()

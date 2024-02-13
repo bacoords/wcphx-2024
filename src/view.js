@@ -7,6 +7,10 @@
 
 import Flickity from "flickity";
 
-const container = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
+const containers = document.getElementsByClassName("wp-block-wpdev-wcphx-2024");
 
-new Flickity(container[0]);
+if (containers.length > 0) {
+	for (let i = 0; i < containers.length; i++) {
+		new Flickity(containers[i]);
+	}
+}
